@@ -21,22 +21,63 @@ darkToggle.addEventListener('click', () => {
     : '🌙 Dark Mode';
 });
 
-// Video data
+// Video data (categorized)
 const videos = {
   beginner: [
-    { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
-    { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-    { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" }
+    { title: "Drive Technique", url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
+    { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" },
+    { title: "Defensive Footwork Basics", url: "https://www.youtube.com/embed/GolGwsK9Nxg" },
+    { title: "Shadow Footwork Tutorial", url: "https://www.youtube.com/embed/w4us5HVuFgg" },
+    { title: "Correct Grip Tutorial", url: "https://www.youtube.com/embed/6kFhxbab55E" },
+    { title: "Split Step Explained", url: "https://www.youtube.com/embed/SoXecwpUKnE" },
+    { title: "Forehand Clear Guide", url: "https://www.youtube.com/embed/NQXEusQZvTM" },
+    { title: "Net Kill Footwork", url: "https://www.youtube.com/embed/xWyMt08KWJY" },
+    { title: "Serve Technique", url: "https://www.youtube.com/embed/FF86j8I-ndM" },
+    { title: "Basic Forehand Net Shot", url: "https://www.youtube.com/embed/R9cd-RwuFk8" },
+    { title: "Footwork Drills", url: "https://www.youtube.com/embed/z5L7SWuj860" },
+    { title: "Drop Shot Tutorial", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" },
+    { title: "How to Smash", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
+    { title: "3 Beginner Shots", url: "https://www.youtube.com/embed/9QPPvSdNj9w" },
+    { title: "Flick Serve Return", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
+    { title: "How to Hold the Racket", url: "https://www.youtube.com/embed/yxBVlMncudg" },
+    { title: "Racket Preparation", url: "https://www.youtube.com/embed/Ghvsu-eamKY" }
   ],
   intermediate: [
-    { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/7cRW_KaU-e4" },
-    { title: "Improve Badminton Stamina", url: "https://www.youtube.com/embed/FPXoW-hrKxg" },
-    { title: "Slice Drop Shot", url: "https://www.youtube.com/embed/6n5OqqdpY_M" }
+    { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/WY9tbZTuS_c" },
+    { title: "Deceptive Net Shot", url: "https://www.youtube.com/embed/S6idcFJ2Ym8" },
+    { title: "Net Lift Strategy", url: "https://www.youtube.com/embed/XKCa1KnnH5Q" },
+    { title: "Midcourt Offense Tips", url: "https://www.youtube.com/embed/AJfdtR8Ogus" },
+    { title: "Wall Drills", url: "https://www.youtube.com/embed/t4o6z5PboSE" },
+    { title: "Backhand Clear Technique", url: "https://www.youtube.com/embed/J-qiOgGEwBM" },
+    { title: "Advanced Net Kill Drills", url: "https://www.youtube.com/embed/_RVbO0PD1BI" },
+    { title: "Smash Jump Drill", url: "https://www.youtube.com/embed/qy4XJ3ZGkcE" },
+    { title: "Backhand Basics", url: "https://www.youtube.com/embed/jNdlYBI5ZGU" },
+    { title: "Smash Angle Drills", url: "https://www.youtube.com/embed/eVNY8r6Oeek" },
+    { title: "Doubles Defense Footwork", url: "https://www.youtube.com/embed/fCq-SO6rixQ" },
+    { title: "Drive vs. Push Shots", url: "https://www.youtube.com/embed/pYptyL25FtQ" },
+    { title: "Deep Backhand Clear", url: "https://www.youtube.com/embed/osptHe5dyPM" },
+    { title: "Crosscourt Net Shots", url: "https://www.youtube.com/embed/_ebb6FEV1oU" },
+    { title: "Footwork Patterns", url: "https://www.youtube.com/embed/lDCw1Ic9QUQ" },
+    { title: "Quick Recovery Footwork", url: "https://www.youtube.com/embed/h4D4vb4OZUg" },
+    { title: "Recovery in Rallies", url: "https://www.youtube.com/embed/MrvYbLAnecY" }
   ],
   advanced: [
-    { title: "Reading Opponent's Movement", url: "https://www.youtube.com/embed/wlTXLGBoZyA" },
-    { title: "Backhand Smash Tutorial", url: "https://www.youtube.com/embed/bO9oFvKqQ20" },
-    { title: "Recovery Steps in Defense", url: "https://www.youtube.com/embed/MUcwSo2a5Ng" }
+    { title: "Jump Smash Variations", url: "https://www.youtube.com/embed/zDzsdU4LO0g" },
+    { title: "Pro Deception Tips", url: "https://www.youtube.com/embed/K88F95osw0I" },
+    { title: "Elite-level Drills", url: "https://www.youtube.com/embed/pwyacObMGj8" },
+    { title: "Precision Placement", url: "https://www.youtube.com/embed/9_zISjHJq2E" },
+    { title: "Doubles Anticipation", url: "https://www.youtube.com/embed/8MS42n1gtcg" },
+    { title: "Transition Movement", url: "https://www.youtube.com/embed/0E6mm6PgeY4" },
+    { title: "Recovery Under Pressure", url: "https://www.youtube.com/embed/ySBotNdN7NU" },
+    { title: "Change of Pace", url: "https://www.youtube.com/embed/z0hXKlgA3p8" },
+    { title: "Mental Focus in Matches", url: "https://www.youtube.com/embed/aW1e4REHSWc" },
+    { title: "Pro Warmup Routines", url: "https://www.youtube.com/embed/W-fGXIgTzUg" },
+    { title: "Smash Deception", url: "https://www.youtube.com/embed/bqCpufQ-AXI" },
+    { title: "Backcourt Control", url: "https://www.youtube.com/embed/IlHI0q-UCMc" },
+    { title: "Tactical Positioning", url: "https://www.youtube.com/embed/EdCmk9BFsXQ" },
+    { title: "Pro Rally Analysis", url: "https://www.youtube.com/embed/pGd56ZQwAvE" },
+    { title: "Defensive Deception", url: "https://www.youtube.com/embed/lLwp8O9OOS8" },
+    { title: "Tournament Prep Mindset", url: "https://www.youtube.com/embed/R0rsw3mRTOA" }
   ]
 };
 
