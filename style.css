@@ -1,0 +1,110 @@
+/* Reset and basic */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #1e88e5;
+  color: white;
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.sidebar nav ul li a.active,
+.sidebar nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode sidebar */
+body.dark-mode .sidebar {
+  background-color: #0d47a1;
+}
+
+/* Dark mode sidebar links */
+body.dark-mode .sidebar nav ul li a {
+  color: #bbdefb;
+}
+
+body.dark-mode .sidebar nav ul li a.active,
+body.dark-mode .sidebar nav ul li a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Dark mode toggle button */
+#dark-toggle {
+  margin-top: auto;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  align-self: flex-start;
+}
+
+body.dark-mode #dark-toggle {
+  color: #ffeb3b;
+}
+
+/* Main content */
+main {
+  flex-grow: 1;
+  padding: 25px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+/* Video list styles */
+#video-list > div {
+  margin-bottom: 20px;
+}
+
+/* Dark mode body */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
