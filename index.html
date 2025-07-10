@@ -14,69 +14,69 @@
         <li><a href="#training" class="active">Training</a></li>
         <li><a href="#players">Players</a></li>
         <li><a href="#workouts">Workouts</a></li>
+        <li><a href="#matches">Matches</a></li>
         <li><a href="#feedback">Feedback</a></li>
       </ul>
     </nav>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
   </div>
 
   <div class="main-content">
     <main>
+      <!-- Training Section -->
       <section id="training">
-        <h2>Training Videos</h2>
-        <select id="level-select">
+        <h2>Training Plans</h2>
+        <label for="training-level">Select your level:</label>
+        <select id="training-level">
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
           <option value="advanced">Advanced</option>
         </select>
-        <div id="video-list"></div>
+        <div id="training-videos"></div>
       </section>
 
+      <!-- Players Section -->
       <section id="players" style="display:none;">
-        <h2>Players Info</h2>
-        <div class="player-profile">
-          <img src="https://badmintonfam.com/wp-content/uploads/2020/02/lin-dan.jpg" alt="Lin Dan" />
-          <h3>Lin Dan</h3>
-          <p>Two-time Olympic gold medalist, widely regarded as one of the greatest players ever.</p>
-        </div>
-        <div class="player-profile">
-          <img src="https://pbs.twimg.com/profile_images/1323259212862834178/R4-_vAfD_400x400.jpg" alt="Chen Long" />
-          <h3>Chen Long</h3>
-          <p>Olympic gold medalist and multiple-time World Champion.</p>
-        </div>
-        <div class="player-profile">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kento_Momota_at_the_2018_Indonesia_Open.jpg/220px-Kento_Momota_at_the_2018_Indonesia_Open.jpg" alt="Kento Momota" />
-          <h3>Kento Momota</h3>
-          <p>Known for his speed and precision, current world-class player from Japan.</p>
+        <h2>Players</h2>
+        <div id="players-list" class="player-cards"></div>
+
+        <div id="player-detail" style="display:none;">
+          <button id="backToPlayers">&larr; Back to Players</button>
+          <h3 id="player-name"></h3>
+          <p id="player-bio"></p>
+          <h4>Signature Moves:</h4>
+          <ul id="player-moves"></ul>
+          <div id="player-videos"></div>
         </div>
       </section>
 
+      <!-- Workouts Section -->
       <section id="workouts" style="display:none;">
         <h2>Workouts</h2>
-        <ul>
-          <li><a href="https://www.youtube.com/watch?v=c6n6PtZ5CRo" target="_blank" rel="noopener noreferrer">Speed & Agility Drills</a></li>
-          <li><a href="https://www.youtube.com/watch?v=s7q6c5rX_4k" target="_blank" rel="noopener noreferrer">Strength Training for Badminton</a></li>
-          <li><a href="https://www.youtube.com/watch?v=I25cKmyYjZI" target="_blank" rel="noopener noreferrer">Flexibility & Stretching Routine</a></li>
-          <li><a href="https://www.youtube.com/watch?v=JYBXwZCOj1Q" target="_blank" rel="noopener noreferrer">Footwork Conditioning</a></li>
-          <li><a href="https://www.youtube.com/watch?v=FNkdbCtWZPU" target="_blank" rel="noopener noreferrer">Core Strength Exercises</a></li>
-        </ul>
+        <p>Personalized workouts coming soon!</p>
       </section>
 
+      <!-- Matches Section -->
+      <section id="matches" style="display:none;">
+        <h2>Upcoming Matches</h2>
+        <ul id="matches-list"></ul>
+      </section>
+
+      <!-- Feedback Section -->
       <section id="feedback" style="display:none;">
         <h2>Feedback</h2>
+        <p>We’d love to hear from you!</p>
         <form id="feedback-form">
-          <label for="name">Name:</label><br />
-          <input type="text" id="name" name="name" required /><br />
-
-          <label for="email">Email:</label><br />
-          <input type="email" id="email" name="email" required /><br />
-
-          <label for="message">Message:</label><br />
-          <textarea id="message" name="message" rows="4" required></textarea><br />
-
-          <button type="submit">Send</button>
+          <textarea id="feedback-text" rows="5" placeholder="Your feedback..."></textarea>
+          <button type="submit">Submit</button>
         </form>
-        <p id="form-response" class="form-response"></p>
+        <p id="feedback-msg"></p>
       </section>
+
+      <!-- Streak Counter -->
+      <footer>
+        <p>🔥 Your current streak: <span id="streak-count">0</span> days</p>
+      </footer>
     </main>
   </div>
 
