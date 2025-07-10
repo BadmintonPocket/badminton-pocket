@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BadmintonPocket</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BadmintonPocket</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="sidebar">
     <h1>🏸 BadmintonPocket</h1>
     <nav>
       <ul>
-        <li><a href="#training" class="nav-link active">Training</a></li>
-        <li><a href="#players" class="nav-link">Players</a></li>
-        <li><a href="#workouts" class="nav-link">Workouts</a></li>
-        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+        <li><a href="#" class="nav-link active" data-target="training">Training</a></li>
+        <li><a href="#" class="nav-link" data-target="players">Players</a></li>
+        <li><a href="#" class="nav-link" data-target="workouts">Workouts</a></li>
+        <li><a href="#" class="nav-link" data-target="feedback">Feedback</a></li>
       </ul>
     </nav>
-    <button id="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+    <button id="dark-toggle" aria-label="Toggle Dark Mode">🌙</button>
   </div>
 
   <main>
@@ -34,7 +34,8 @@
 
     <section id="players" class="page">
       <h2>Players</h2>
-      <p>Coming soon...</p>
+      <ul id="player-list"></ul>
+      <div id="player-bio">Select a player to see details.</div>
     </section>
 
     <section id="workouts" class="page">
