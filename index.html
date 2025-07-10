@@ -11,7 +11,7 @@
     <h1>🏸 BadmintonPocket</h1>
     <nav>
       <ul>
-        <li><a href="#training">Training</a></li>
+        <li><a href="#training" class="active">Training</a></li>
         <li><a href="#players">Players</a></li>
         <li><a href="#workouts">Workouts</a></li>
         <li><a href="#feedback">Feedback</a></li>
@@ -33,17 +33,49 @@
 
       <section id="players" style="display:none;">
         <h2>Players Info</h2>
-        <p>Coming soon...</p>
+        <div class="player-profile">
+          <img src="https://badmintonfam.com/wp-content/uploads/2020/02/lin-dan.jpg" alt="Lin Dan" />
+          <h3>Lin Dan</h3>
+          <p>Two-time Olympic gold medalist, widely regarded as one of the greatest players ever.</p>
+        </div>
+        <div class="player-profile">
+          <img src="https://pbs.twimg.com/profile_images/1323259212862834178/R4-_vAfD_400x400.jpg" alt="Chen Long" />
+          <h3>Chen Long</h3>
+          <p>Olympic gold medalist and multiple-time World Champion.</p>
+        </div>
+        <div class="player-profile">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kento_Momota_at_the_2018_Indonesia_Open.jpg/220px-Kento_Momota_at_the_2018_Indonesia_Open.jpg" alt="Kento Momota" />
+          <h3>Kento Momota</h3>
+          <p>Known for his speed and precision, current world-class player from Japan.</p>
+        </div>
       </section>
 
       <section id="workouts" style="display:none;">
         <h2>Workouts</h2>
-        <p>Coming soon...</p>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=c6n6PtZ5CRo" target="_blank" rel="noopener noreferrer">Speed & Agility Drills</a></li>
+          <li><a href="https://www.youtube.com/watch?v=s7q6c5rX_4k" target="_blank" rel="noopener noreferrer">Strength Training for Badminton</a></li>
+          <li><a href="https://www.youtube.com/watch?v=I25cKmyYjZI" target="_blank" rel="noopener noreferrer">Flexibility & Stretching Routine</a></li>
+          <li><a href="https://www.youtube.com/watch?v=JYBXwZCOj1Q" target="_blank" rel="noopener noreferrer">Footwork Conditioning</a></li>
+          <li><a href="https://www.youtube.com/watch?v=FNkdbCtWZPU" target="_blank" rel="noopener noreferrer">Core Strength Exercises</a></li>
+        </ul>
       </section>
 
       <section id="feedback" style="display:none;">
         <h2>Feedback</h2>
-        <p>Coming soon...</p>
+        <form id="feedback-form">
+          <label for="name">Name:</label><br />
+          <input type="text" id="name" name="name" required /><br />
+
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" required /><br />
+
+          <label for="message">Message:</label><br />
+          <textarea id="message" name="message" rows="4" required></textarea><br />
+
+          <button type="submit">Send</button>
+        </form>
+        <p id="form-response" class="form-response"></p>
       </section>
     </main>
   </div>
