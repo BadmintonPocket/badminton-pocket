@@ -1,58 +1,53 @@
-/* DARK as default */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #222;
-  color: #eee;
-  transition: background .3s, color .3s;
+  background: #f0f8ff;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
 }
 .dark-mode {
-  background: #f7f7f7;
-  color: #222;
+  background: #222;
+  color: #eee;
 }
 
 .sidebar {
-  position: fixed;
-  top: 0; left: 0;
+  background: #7cc7f0;
   width: 240px;
-  height: 100%;
-  background: #111;
+  height: 100vh;
+  position: fixed;
   padding: 20px;
   box-sizing: border-box;
 }
 .sidebar h1 {
-  margin: 0 0 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 .sidebar li {
-  margin: 0.5rem 0;
+  margin: 10px 0;
 }
 .sidebar a {
-  color: #ccc;
+  color: #fff;
   text-decoration: none;
 }
-.sidebar a.active,
-.sidebar a:hover {
-  color: #fff;
+.sidebar a.active {
+  font-weight: bold;
 }
 .sidebar button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  padding: 8px 12px;
   background: none;
-  border: 1px solid #eee;
-  color: #eee;
+  color: #fff;
+  border: 1px solid #fff;
   cursor: pointer;
 }
 
 main {
   margin-left: 260px;
   padding: 20px;
-  box-sizing: border-box;
 }
 
 .page {
@@ -62,28 +57,21 @@ main {
   display: block;
 }
 
-#video-list > div {
-  margin-bottom: 2rem;
-}
-#video-list h3 {
-  margin: 0 0 0.5rem;
-}
 iframe {
   width: 100%;
   max-width: 560px;
   height: 315px;
   border: none;
+  margin-bottom: 20px;
 }
-
 .player-card {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #333;
-  border-radius: 6px;
+  background: #eaf7ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 10px;
 }
 .player-card img {
-  max-width: 100%;
-  height: auto;
+  max-width: 320px;
   display: block;
-  margin: 0 auto 1rem;
+  margin-bottom: 10px;
 }
