@@ -7,19 +7,21 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+  <div class="sidebar">
     <h1>🏸 BadmintonPocket</h1>
     <nav>
-      <button class="nav-btn active" data-target="training">Training</button>
-      <button class="nav-btn" data-target="players">Players</button>
-      <button class="nav-btn" data-target="workouts">Workouts</button>
-      <button class="nav-btn" data-target="feedback">Feedback</button>
-      <button id="dark-mode-toggle">🌙 Dark Mode</button>
+      <ul>
+        <li><a href="#training" class="nav-link active">Training</a></li>
+        <li><a href="#players" class="nav-link">Players</a></li>
+        <li><a href="#workouts" class="nav-link">Workouts</a></li>
+        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+      </ul>
     </nav>
-  </header>
+    <button id="dark-toggle">🌙</button>
+  </div>
 
   <main>
-    <section id="training" class="section active">
+    <section id="training" class="page active">
       <h2>Training Videos</h2>
       <label for="level-select">Choose Level:</label>
       <select id="level-select">
@@ -30,17 +32,17 @@
       <div id="video-list"></div>
     </section>
 
-    <section id="players" class="section">
+    <section id="players" class="page">
       <h2>Players</h2>
       <p>Coming soon...</p>
     </section>
 
-    <section id="workouts" class="section">
+    <section id="workouts" class="page">
       <h2>Workouts</h2>
       <p>Coming soon...</p>
     </section>
 
-    <section id="feedback" class="section">
+    <section id="feedback" class="page">
       <h2>Feedback</h2>
       <p>Coming soon...</p>
     </section>
