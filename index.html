@@ -7,17 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <button class="nav-btn active" data-target="training">Training Videos</button>
-    <button class="nav-btn" data-target="players">Players</button>
-    <button class="nav-btn" data-target="workouts">Workouts</button>
-    <button class="nav-btn" data-target="feedback">Feedback</button>
-  </nav>
+  <header>
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <button class="nav-btn active" data-target="training">Training</button>
+      <button class="nav-btn" data-target="players">Players</button>
+      <button class="nav-btn" data-target="workouts">Workouts</button>
+      <button class="nav-btn" data-target="feedback">Feedback</button>
+      <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    </nav>
+  </header>
 
   <main>
     <section id="training" class="section active">
-      <label for="level-select">Select Skill Level:</label>
-      <select id="level-select" aria-label="Select skill level">
+      <h2>Training Videos</h2>
+      <label for="level-select">Choose Level:</label>
+      <select id="level-select">
         <option value="beginner">Beginner</option>
         <option value="intermediate">Intermediate</option>
         <option value="advanced">Advanced</option>
@@ -27,18 +32,17 @@
 
     <section id="players" class="section">
       <h2>Players</h2>
-      <ul id="player-list" tabindex="0" aria-label="List of players"></ul>
-      <div id="player-bio" tabindex="0">Select a player to see details.</div>
+      <p>Coming soon...</p>
     </section>
 
     <section id="workouts" class="section">
       <h2>Workouts</h2>
-      <p>Coming soon!</p>
+      <p>Coming soon...</p>
     </section>
 
     <section id="feedback" class="section">
       <h2>Feedback</h2>
-      <p>Coming soon!</p>
+      <p>Coming soon...</p>
     </section>
   </main>
 
