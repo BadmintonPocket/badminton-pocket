@@ -1,50 +1,54 @@
 // app.js for BadmintonPocket v1
 
-// Simple navigation handling
 document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('.sidebar nav ul li a');
 
+  // Navigation click handler
   navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+    link.addEventListener('click', e => {
       e.preventDefault();
       const targetId = link.getAttribute('href').substring(1);
 
+      // Show matching section, hide others
       sections.forEach(section => {
         section.style.display = section.id === targetId ? 'block' : 'none';
       });
 
+      // Update active class on links
       navLinks.forEach(nav => nav.classList.remove('active'));
       link.classList.add('active');
     });
   });
 
-  // Show first section by default
+  // Show first section by default and highlight first nav link
   if (sections.length) {
     sections.forEach((section, i) => section.style.display = i === 0 ? 'block' : 'none');
     navLinks[0].classList.add('active');
   }
 });
 
-// Placeholder: Load videos for training
+// Sample videos (replace URLs with real ones)
 const videos = {
   beginner: [
-    { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/1a2b3c4d" },
-    { title: "Footwork Drills", url: "https://www.youtube.com/embed/5e6f7g8h" }
+    { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+    { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
   ],
   intermediate: [
-    { title: "Smash Techniques", url: "https://www.youtube.com/embed/9i0j1k2l" },
-    { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/3m4n5o6p" }
+    { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
+    { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" }
   ],
   advanced: [
-    { title: "Deception Shots", url: "https://www.youtube.com/embed/7q8r9s0t" },
-    { title: "Mental Toughness", url: "https://www.youtube.com/embed/1u2v3w4x" }
+    { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
+    { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" }
   ]
 };
 
+// Load videos into the video-list div based on selected level
 function loadVideos(level) {
   const container = document.getElementById('video-list');
   container.innerHTML = '';
+
   if (!videos[level]) return;
 
   videos[level].forEach(video => {
@@ -59,11 +63,11 @@ function loadVideos(level) {
 }
 
 // Event listener for level select dropdown
-document.getElementById('level-select')?.addEventListener('change', (e) => {
+document.getElementById('level-select').addEventListener('change', e => {
   loadVideos(e.target.value);
 });
 
 // Initial load
 document.addEventListener('DOMContentLoaded', () => {
-  loadVideos('beginner'); // default to beginner
+  loadVideos('beginner'); // default to beginner videos
 });
