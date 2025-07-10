@@ -1,156 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BadmintonPocket Test</title>
-<style>
-  /* Basic reset and layout */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    background: #f5f7fa;
-    color: #333;
-  }
-  .sidebar {
-    width: 220px;
-    background: #1e88e5;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .sidebar h1 {
-    margin-bottom: 20px;
-  }
-  nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  nav li {
-    margin-bottom: 12px;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  nav a.active, nav a:hover {
-    background: #1565c0;
-  }
-  #dark-toggle {
-    margin-top: auto;
-    background: #1565c0;
-    border: none;
-    padding: 10px;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BadmintonPocket</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f5f7fa;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #1e88e5;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex-shrink: 0;
+    }
+    .sidebar h1 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .sidebar nav ul li a.active,
+    .sidebar nav ul li a:hover {
+      background-color: #1565c0;
+    }
+    #dark-toggle {
+      margin-top: auto;
+      background: #1565c0;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #dark-toggle:hover {
+      background-color: #0d47a1;
+    }
 
-  main {
-    flex-grow: 1;
-    padding: 25px;
-    overflow-y: auto;
-  }
+    /* Main content */
+    main {
+      flex-grow: 1;
+      padding: 25px;
+      overflow-y: auto;
+    }
+    section.page {
+      display: none;
+    }
+    section.page.active {
+      display: block;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
 
-  section.page {
-    display: none;
-  }
-  section.page.active {
-    display: block;
-  }
+    /* Video list */
+    #video-list > div {
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 8px;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+    }
 
-  /* Dark mode styles */
-  body.dark {
-    background: #121212;
-    color: #eee;
-  }
-  body.dark .sidebar {
-    background: #283593;
-  }
-  body.dark nav a {
-    color: #bbdefb;
-  }
-  body.dark nav a.active, body.dark nav a:hover {
-    background: #3949ab;
-  }
-  body.dark #dark-toggle {
-    background: #5c6bc0;
-    color: #eee;
-  }
-</style>
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    body.dark-mode .sidebar {
+      background-color: #0d47a1;
+      color: #bbdefb;
+    }
+    body.dark-mode .sidebar nav ul li a {
+      color: #bbdefb;
+    }
+    body.dark-mode .sidebar nav ul li a.active,
+    body.dark-mode .sidebar nav ul li a:hover {
+      background-color: #5c6bc0;
+    }
+    body.dark-mode #dark-toggle {
+      background-color: #3949ab;
+      color: #eee;
+    }
+    body.dark-mode #dark-toggle:hover {
+      background-color: #283593;
+    }
+  </style>
 </head>
 <body>
+  <div class="sidebar">
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <ul>
+        <li><a href="#training" class="nav-link active">Training</a></li>
+        <li><a href="#players" class="nav-link">Players</a></li>
+        <li><a href="#workouts" class="nav-link">Workouts</a></li>
+        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+      </ul>
+    </nav>
+    <button id="dark-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+  </div>
 
-<div class="sidebar">
-  <h1>🏸 BadmintonPocket</h1>
-  <nav>
-    <ul>
-      <li><a href="#" class="nav-link active" data-target="training">Training</a></li>
-      <li><a href="#" class="nav-link" data-target="players">Players</a></li>
-      <li><a href="#" class="nav-link" data-target="workouts">Workouts</a></li>
-      <li><a href="#" class="nav-link" data-target="feedback">Feedback</a></li>
-    </ul>
-  </nav>
-  <button id="dark-toggle" aria-label="Toggle Dark Mode">🌙</button>
-</div>
+  <main>
+    <section id="training" class="page active">
+      <h2>Training Videos</h2>
+      <label for="level-select">Choose Level:</label>
+      <select id="level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="video-list"></div>
+    </section>
 
-<main>
-  <section id="training" class="page active">
-    <h2>Training Section</h2>
-    <p>Training content goes here.</p>
-  </section>
+    <section id="players" class="page">
+      <h2>Players</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <section id="players" class="page">
-    <h2>Players Section</h2>
-    <p>Players content goes here.</p>
-  </section>
+    <section id="workouts" class="page">
+      <h2>Workouts</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <section id="workouts" class="page">
-    <h2>Workouts Section</h2>
-    <p>Workouts content goes here.</p>
-  </section>
+    <section id="feedback" class="page">
+      <h2>Feedback</h2>
+      <p>Coming soon...</p>
+    </section>
+  </main>
 
-  <section id="feedback" class="page">
-    <h2>Feedback Section</h2>
-    <p>Feedback content goes here.</p>
-  </section>
-</main>
+  <script>
+    // Navigation links switch sections
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('section.page');
 
-<script>
-  // Navigation click handler
-  const navLinks = document.querySelectorAll('.nav-link');
-  const pages = document.querySelectorAll('section.page');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      // Remove active classes
-      navLinks.forEach(l => l.classList.remove('active'));
-      pages.forEach(p => p.classList.remove('active'));
-
-      // Add active class to clicked
-      link.classList.add('active');
-      const target = link.dataset.target;
-      document.getElementById(target).classList.add('active');
+        const target = link.getAttribute('href').substring(1);
+        pages.forEach(page => {
+          page.classList.toggle('active', page.id === target);
+        });
+      });
     });
-  });
 
-  // Dark mode toggle
-  const darkToggle = document.getElementById('dark-toggle');
-  darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-  });
-</script>
+    // Video Data: 10 videos per level
+    const videos = {
+      beginner: [
+        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+        { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
+        { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
+        { title: "Backhand Basics", url: "https://www.youtube.com/embed/7lVe9aUV-Lk" },
+        { title: "Clear Shot Tutorial", url: "https://www.youtube.com/embed/CLf4j1M9f0o" },
+        { title: "Net Play for Beginners", url: "https://www.youtube.com/embed/yq9hzFGHCkE" },
+        { title: "Basic Smash", url: "https://www.youtube.com/embed/dF6KWuzPTE4" },
+        { title: "Footwork Ladder Drill", url: "https://www.youtube.com/embed/ejkJUG3q3Y8" },
+        { title: "Defense Fundamentals", url: "https://www.youtube.com/embed/OnWyX7iqzLo" },
+        { title: "Beginner Match Highlights", url: "https://www.youtube.com/embed/Ei5PYAPuqvg" }
+      ],
+      intermediate: [
+        { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
+        { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
+        { title: "Advanced Footwork", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" },
+        { title: "Backhand Smash", url: "https://www.youtube.com/embed/f7tR4KzFtFQ" },
+        { title: "Attacking Net Play", url: "https://www.youtube.com/embed/BMxSU1TfTSo" },
+        { title: "Counter Attacks", url: "https://www.youtube.com/embed/z50rmF1MfLs" },
+        { title: "Mid-Court Drives", url: "https://www.youtube.com/embed/T-xKyTaH5v8" },
+        { title: "Footwork & Recovery", url: "https://www.youtube.com/embed/QTx-u-7sHqM" },
+        { title: "Smash Variation Drills", url: "https://www.youtube.com/embed/RH37mRkzbsw" },
+        { title: "Intermediate Match Play", url: "https://www.youtube.com/embed/Tq5loQhF6E8" }
+      ],
+      advanced: [
+        { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
+        { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
+        { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" },
+        { title: "Advanced Smashing", url: "https://www.youtube.com/embed/PAcqHlRQ9Zk" },
+        { title: "Net Kill Techniques", url: "https://www.youtube.com/embed/ExWZd5H0r6E" },
+        { title: "High-Speed Footwork", url: "https://www.youtube.com/embed/4u4mwM7C0qo" },
+        { title: "Match Analysis", url: "https://www.youtube.com/embed/17nq9w73I2g" },
+        { title: "Tournament Highlights", url: "https://www.youtube.com/embed/TZ21WPEWbmk" },
+        { title: "Professional Training", url: "https://www.youtube.com/embed/EcQo10cI8jA" },
+        { title: "Championship Play", url: "https://www.youtube.com/embed/CSd4t-9sBWg" }
+      ]
+    };
 
+    const levelSelect = document.getElementById('level-select');
+    const videoList = document.getElementById('video-list');
+
+    function loadVideos(level) {
+      videoList.innerHTML = '';
+      if (!videos[level]) return;
+
+      videos[level].forEach(video => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <h3>${video.title}</h3>
+          <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
+        `;
+        videoList.appendChild(div);
+      });
+    }
+
+    levelSelect.addEventListener('change', () => {
+      loadVideos(levelSelect.value);
+    });
+
+    // Initial load
+    loadVideos(levelSelect.value);
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        darkToggle.textContent = '☀️ Light Mode';
+      } else {
+        darkToggle.textContent = '🌙 Dark Mode';
+      }
+    });
+  </script>
 </body>
 </html>
