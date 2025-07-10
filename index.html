@@ -3,52 +3,154 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BadmintonPocket</title>
-<link rel="stylesheet" href="style.css" />
+<title>BadmintonPocket Test</title>
+<style>
+  /* Basic reset and layout */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background: #f5f7fa;
+    color: #333;
+  }
+  .sidebar {
+    width: 220px;
+    background: #1e88e5;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .sidebar h1 {
+    margin-bottom: 20px;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  nav li {
+    margin-bottom: 12px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  nav a.active, nav a:hover {
+    background: #1565c0;
+  }
+  #dark-toggle {
+    margin-top: auto;
+    background: #1565c0;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+  }
+
+  section.page {
+    display: none;
+  }
+  section.page.active {
+    display: block;
+  }
+
+  /* Dark mode styles */
+  body.dark {
+    background: #121212;
+    color: #eee;
+  }
+  body.dark .sidebar {
+    background: #283593;
+  }
+  body.dark nav a {
+    color: #bbdefb;
+  }
+  body.dark nav a.active, body.dark nav a:hover {
+    background: #3949ab;
+  }
+  body.dark #dark-toggle {
+    background: #5c6bc0;
+    color: #eee;
+  }
+</style>
 </head>
 <body>
-  <div class="sidebar">
-    <h1>🏸 BadmintonPocket</h1>
-    <nav>
-      <ul>
-        <li><a href="#" class="nav-link active" data-target="training">Training</a></li>
-        <li><a href="#" class="nav-link" data-target="players">Players</a></li>
-        <li><a href="#" class="nav-link" data-target="workouts">Workouts</a></li>
-        <li><a href="#" class="nav-link" data-target="feedback">Feedback</a></li>
-      </ul>
-    </nav>
-    <button id="dark-toggle" aria-label="Toggle Dark Mode">🌙</button>
-  </div>
 
-  <main>
-    <section id="training" class="page active">
-      <h2>Training Videos</h2>
-      <label for="level-select">Choose Level:</label>
-      <select id="level-select">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
-      </select>
-      <div id="video-list"></div>
-    </section>
+<div class="sidebar">
+  <h1>🏸 BadmintonPocket</h1>
+  <nav>
+    <ul>
+      <li><a href="#" class="nav-link active" data-target="training">Training</a></li>
+      <li><a href="#" class="nav-link" data-target="players">Players</a></li>
+      <li><a href="#" class="nav-link" data-target="workouts">Workouts</a></li>
+      <li><a href="#" class="nav-link" data-target="feedback">Feedback</a></li>
+    </ul>
+  </nav>
+  <button id="dark-toggle" aria-label="Toggle Dark Mode">🌙</button>
+</div>
 
-    <section id="players" class="page">
-      <h2>Players</h2>
-      <ul id="player-list"></ul>
-      <div id="player-bio">Select a player to see details.</div>
-    </section>
+<main>
+  <section id="training" class="page active">
+    <h2>Training Section</h2>
+    <p>Training content goes here.</p>
+  </section>
 
-    <section id="workouts" class="page">
-      <h2>Workouts</h2>
-      <p>Coming soon...</p>
-    </section>
+  <section id="players" class="page">
+    <h2>Players Section</h2>
+    <p>Players content goes here.</p>
+  </section>
 
-    <section id="feedback" class="page">
-      <h2>Feedback</h2>
-      <p>Coming soon...</p>
-    </section>
-  </main>
+  <section id="workouts" class="page">
+    <h2>Workouts Section</h2>
+    <p>Workouts content goes here.</p>
+  </section>
 
-  <script src="app.js"></script>
+  <section id="feedback" class="page">
+    <h2>Feedback Section</h2>
+    <p>Feedback content goes here.</p>
+  </section>
+</main>
+
+<script>
+  // Navigation click handler
+  const navLinks = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('section.page');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      // Remove active classes
+      navLinks.forEach(l => l.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+
+      // Add active class to clicked
+      link.classList.add('active');
+      const target = link.dataset.target;
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
+  // Dark mode toggle
+  const darkToggle = document.getElementById('dark-toggle');
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+</script>
+
 </body>
 </html>
