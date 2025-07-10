@@ -1,28 +1,31 @@
-/* Reset */
+/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Body & Layout */
 body {
   display: flex;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
   min-height: 100vh;
+  background: #f4f4f4;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
 }
 
+/* Sidebar Navigation */
 .sidebar {
-  background-color: #1976d2;
+  background: #1e88e5;
   color: white;
-  width: 250px;
+  width: 220px;
   padding: 20px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  position: fixed;
+  position: sticky;
+  top: 0;
   height: 100vh;
 }
 
@@ -38,106 +41,79 @@ body {
 }
 
 .sidebar nav ul li a {
-  color: white;
   text-decoration: none;
-  font-weight: bold;
-  padding: 8px;
+  color: white;
+  padding: 8px 12px;
   border-radius: 5px;
   display: block;
-  transition: background-color 0.2s ease;
+  transition: background 0.3s;
 }
 
 .sidebar nav ul li a:hover,
 .sidebar nav ul li a.active {
-  background-color: #0d47a1;
+  background: #1565c0;
 }
 
 #dark-toggle {
   margin-top: auto;
-  background: #1565c0;
-  border: none;
-  padding: 8px;
-  color: white;
+  background: transparent;
+  border: 2px solid white;
   border-radius: 5px;
+  color: white;
+  padding: 8px;
   cursor: pointer;
+  font-size: 1.1rem;
 }
 
+/* Main Content */
 main {
-  margin-left: 270px;
-  padding: 20px;
-  flex: 1;
+  flex-grow: 1;
+  padding: 30px;
 }
 
-/* Pages */
 .page {
   display: none;
 }
+
 .page.active {
   display: block;
 }
 
-/* Video Section */
+/* Training Section */
 #video-list {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-}
-#video-list h3 {
-  margin-bottom: 5px;
+  margin-top: 20px;
 }
 
-/* Player Bio */
-#player-list {
-  list-style: none;
-  max-width: 300px;
-  padding-left: 0;
-}
-#player-list li {
-  padding: 10px;
-  background-color: #e3f2fd;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#player-list li:hover,
-#player-list li.active {
-  background-color: #90caf9;
-}
-#player-bio {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #bbdefb;
-  border-radius: 5px;
-  max-width: 600px;
+#video-list iframe {
+  width: 320px;
+  height: 180px;
+  border-radius: 10px;
+  border: none;
 }
 
 /* Dark Mode */
 body.dark {
-  background-color: #121212;
-  color: #eee;
+  background: #121212;
+  color: #f0f0f0;
 }
+
 body.dark .sidebar {
-  background-color: #263238;
+  background: #212121;
 }
+
 body.dark .sidebar nav ul li a {
-  color: #eee;
+  color: #f0f0f0;
 }
-body.dark .sidebar nav ul li a:hover,
-body.dark .sidebar nav ul li a.active {
-  background-color: #37474f;
+
+body.dark .sidebar nav ul li a.active,
+body.dark .sidebar nav ul li a:hover {
+  background: #424242;
 }
+
 body.dark #dark-toggle {
-  background-color: #37474f;
-}
-body.dark #player-list li {
-  background-color: #37474f;
-  color: white;
-}
-body.dark #player-list li.active,
-body.dark #player-list li:hover {
-  background-color: #546e7a;
-}
-body.dark #player-bio {
-  background-color: #455a64;
+  border-color: #f0f0f0;
+  color: #f0f0f0;
 }
