@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Test Nav & Dark Mode</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  .nav-link { cursor: pointer; padding: 8px 12px; background: #ccc; margin-right: 5px; border-radius: 4px; }
+  .nav-link.active { background: #1565c0; color: white; }
+  .section { display: none; margin-top: 20px; }
+  .section.active { display: block; }
+  body.dark-mode { background: #121212; color: #eee; }
+</style>
+</head>
+<body>
+<nav>
+  <span class="nav-link active" data-target="sec1">Section 1</span>
+  <span class="nav-link" data-target="sec2">Section 2</span>
+  <span class="nav-link" data-target="sec3">Section 3</span>
+</nav>
+
+<div id="sec1" class="section active">Content of Section 1</div>
+<div id="sec2" class="section">Content of Section 2</div>
+<div id="sec3" class="section">Content of Section 3</div>
+
+<button id="dark-toggle" style="margin-top:20px;">Toggle Dark Mode</button>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.section');
+  const darkToggle = document.getElementById('dark-toggle');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      link.classList.add('active');
+      document.getElementById(link.getAttribute('data-target')).classList.add('active');
+    });
+  });
+
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+</body>
+</html>
