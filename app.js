@@ -1,122 +1,12 @@
-// Navigation
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('main .page');
-navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    navLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-    sections.forEach(s => s.classList.remove('active'));
-    const target = link.getAttribute('href').substring(1);
-    document.getElementById(target).classList.add('active');
-  });
-});
+// Navigation const navLinks = document.querySelectorAll('.nav-link'); const sections = document.querySelectorAll('main .page'); navLinks.forEach(link => { link.addEventListener('click', e => { e.preventDefault(); navLinks.forEach(l => l.classList.remove('active')); link.classList.add('active'); sections.forEach(s => s.classList.remove('active')); const target = link.getAttribute('href').substring(1); document.getElementById(target).classList.add('active'); }); });
 
-// Dark mode
-const darkToggle = document.getElementById('dark-toggle');
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  darkToggle.textContent = document.body.classList.contains('dark-mode')
-    ? '☀️ Light Mode'
-    : '🌙 Dark Mode';
-});
+// Dark mode const darkToggle = document.getElementById('dark-toggle'); darkToggle.addEventListener('click', () => { document.body.classList.toggle('dark-mode'); darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode'; });
 
-// Video data
-const videos = {
-  beginner: [
-    { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
-    { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-    { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" }
-  ],
-  intermediate: [
-    { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/7cRW_KaU-e4" },
-    { title: "Improve Badminton Stamina", url: "https://www.youtube.com/embed/FPXoW-hrKxg" },
-    { title: "Slice Drop Shot", url: "https://www.youtube.com/embed/6n5OqqdpY_M" }
-  ],
-  advanced: [
-    { title: "Reading Opponent's Movement", url: "https://www.youtube.com/embed/wlTXLGBoZyA" },
-    { title: "Backhand Smash Tutorial", url: "https://www.youtube.com/embed/bO9oFvKqQ20" },
-    { title: "Recovery Steps in Defense", url: "https://www.youtube.com/embed/MUcwSo2a5Ng" }
-  ]
-};
+// Video data (categorized from user's list) const videos = { beginner: [ { title: "Drive Technique", url: "https://www.youtube.com/embed/gqIsUa4gCz4" }, { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" }, { title: "Defensive Footwork Basics", url: "https://www.youtube.com/embed/GolGwsK9Nxg" }, { title: "Shadow Footwork Tutorial", url: "https://www.youtube.com/embed/w4us5HVuFgg" }, { title: "Correct Grip Tutorial", url: "https://www.youtube.com/embed/6kFhxbab55E" }, { title: "Split Step Explained", url: "https://www.youtube.com/embed/SoXecwpUKnE" }, { title: "Forehand Clear Guide", url: "https://www.youtube.com/embed/NQXEusQZvTM" }, { title: "Net Kill Footwork", url: "https://www.youtube.com/embed/xWyMt08KWJY" }, { title: "Serve Technique", url: "https://www.youtube.com/embed/FF86j8I-ndM" }, { title: "Basic Forehand Net Shot", url: "https://www.youtube.com/embed/R9cd-RwuFk8" }, { title: "Footwork Drills", url: "https://www.youtube.com/embed/z5L7SWuj860" }, { title: "Drop Shot Tutorial", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" }, { title: "How to Smash", url: "https://www.youtube.com/embed/9gZx_6UYyo0" }, { title: "3 Beginner Shots", url: "https://www.youtube.com/embed/9QPPvSdNj9w" }, { title: "Flick Serve Return", url: "https://www.youtube.com/embed/AVs3bIhdQig" }, { title: "How to Hold the Racket", url: "https://www.youtube.com/embed/yxBVlMncudg" }, { title: "Racket Preparation", url: "https://www.youtube.com/embed/Ghvsu-eamKY" } ], intermediate: [ { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/WY9tbZTuS_c" }, { title: "Deceptive Net Shot", url: "https://www.youtube.com/embed/S6idcFJ2Ym8" }, { title: "Net Lift Strategy", url: "https://www.youtube.com/embed/XKCa1KnnH5Q" }, { title: "Midcourt Offense Tips", url: "https://www.youtube.com/embed/AJfdtR8Ogus" }, { title: "Wall Drills", url: "https://www.youtube.com/embed/t4o6z5PboSE" }, { title: "Backhand Clear Technique", url: "https://www.youtube.com/embed/J-qiOgGEwBM" }, { title: "Advanced Net Kill Drills", url: "https://www.youtube.com/embed/_RVbO0PD1BI" }, { title: "Smash Jump Drill", url: "https://www.youtube.com/embed/qy4XJ3ZGkcE" }, { title: "Backhand Basics", url: "https://www.youtube.com/embed/jNdlYBI5ZGU" }, { title: "Smash Angle Drills", url: "https://www.youtube.com/embed/eVNY8r6Oeek" }, { title: "Doubles Defense Footwork", url: "https://www.youtube.com/embed/fCq-SO6rixQ" }, { title: "Drive vs. Push Shots", url: "https://www.youtube.com/embed/pYptyL25FtQ" }, { title: "Deep Backhand Clear", url: "https://www.youtube.com/embed/osptHe5dyPM" }, { title: "Crosscourt Net Shots", url: "https://www.youtube.com/embed/_ebb6FEV1oU" }, { title: "Footwork Patterns", url: "https://www.youtube.com/embed/lDCw1Ic9QUQ" }, { title: "Quick Recovery Footwork", url: "https://www.youtube.com/embed/h4D4vb4OZUg" }, { title: "Recovery in Rallies", url: "https://www.youtube.com/embed/MrvYbLAnecY" } ], advanced: [ { title: "Jump Smash Variations", url: "https://www.youtube.com/embed/zDzsdU4LO0g" }, { title: "Pro Deception Tips", url: "https://www.youtube.com/embed/K88F95osw0I" }, { title: "Elite-level Drills", url: "https://www.youtube.com/embed/pwyacObMGj8" }, { title: "Precision Placement", url: "https://www.youtube.com/embed/9_zISjHJq2E" }, { title: "Doubles Anticipation", url: "https://www.youtube.com/embed/8MS42n1gtcg" }, { title: "Transition Movement", url: "https://www.youtube.com/embed/0E6mm6PgeY4" }, { title: "Recovery Under Pressure", url: "https://www.youtube.com/embed/ySBotNdN7NU" }, { title: "Change of Pace", url: "https://www.youtube.com/embed/z0hXKlgA3p8" }, { title: "Mental Focus in Matches", url: "https://www.youtube.com/embed/aW1e4REHSWc" }, { title: "Pro Warmup Routines", url: "https://www.youtube.com/embed/W-fGXIgTzUg" }, { title: "Smash Deception", url: "https://www.youtube.com/embed/bqCpufQ-AXI" }, { title: "Backcourt Control", url: "https://www.youtube.com/embed/IlHI0q-UCMc" }, { title: "Tactical Positioning", url: "https://www.youtube.com/embed/EdCmk9BFsXQ" }, { title: "Pro Rally Analysis", url: "https://www.youtube.com/embed/pGd56ZQwAvE" }, { title: "Defensive Deception", url: "https://www.youtube.com/embed/lLwp8O9OOS8" }, { title: "Tournament Prep Mindset", url: "https://www.youtube.com/embed/R0rsw3mRTOA" } ] };
 
-const levelSelect = document.getElementById('level-select');
-const videoList = document.getElementById('video-list');
+const levelSelect = document.getElementById('level-select'); const videoList = document.getElementById('video-list');
 
-function loadVideos(level) {
-  videoList.innerHTML = '';
-  if (!videos[level]) return;
-  videos[level].forEach(video => {
-    const div = document.createElement('div');
-    div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
-    videoList.appendChild(div);
-  });
-}
+function loadVideos(level) { videoList.innerHTML = ''; if (!videos[level]) return; videos[level].forEach(video => { const div = document.createElement('div'); div.innerHTML = <h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>; videoList.appendChild(div); }); }
 
-loadVideos(levelSelect.value);
-levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+loadVideos(levelSelect.value); levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
 
-// Players data
-const players = [
-  {
-    name: "Lin Dan",
-    bio: "Two-time Olympic champion and one of the greatest badminton players of all time.",
-    signatureShots: ["Powerful Smash", "Fast Drop Shot", "Deceptive Net Play"]
-  },
-  {
-    name: "Carolina Marin",
-    bio: "Olympic gold medalist known for her aggressive playing style and speed.",
-    signatureShots: ["Fast Drive", "Crosscourt Smash", "Net Kill"]
-  },
-  {
-    name: "Viktor Axelsen",
-    bio: "World Champion known for his tall stature and strong overhead shots.",
-    signatureShots: ["Heavy Smash", "Clear Shot", "Net Shot"]
-  },
-  {
-    name: "Lee Zii Jia",
-    bio: "Top Malaysian player known for his explosive power and agility.",
-    signatureShots: ["Smash Power", "Quick Net Play", "Fast Footwork"]
-  },
-  {
-    name: "Kento Momota",
-    bio: "Japanese star famous for his defensive skills and consistency.",
-    signatureShots: ["Precision Drops", "Strong Defense", "Accurate Clears"]
-  }
-];
-
-const playerList = document.getElementById('player-list');
-const playerBio = document.getElementById('player-bio');
-
-players.forEach((player, index) => {
-  const li = document.createElement('li');
-  li.textContent = player.name;
-  li.style.cursor = "pointer";
-  li.style.padding = "8px";
-  li.style.borderBottom = "1px solid #ccc";
-
-  li.addEventListener('click', () => {
-    [...playerList.children].forEach(child => {
-      child.style.backgroundColor = '';
-      child.style.color = '';
-    });
-    li.style.backgroundColor = '#1e88e5';
-    li.style.color = 'white';
-
-    playerBio.innerHTML = `
-      <h3>${player.name}</h3>
-      <p>${player.bio}</p>
-      <h4>Signature Shots:</h4>
-      <ul>
-        ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
-      </ul>
-    `;
-  });
-
-  playerList.appendChild(li);
-});
-
-// Select first player by default
-if (playerList.children.length > 0) {
-  playerList.children[0].click();
-}
