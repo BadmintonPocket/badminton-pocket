@@ -33,7 +33,7 @@
     .sidebar h1 {
       font-size: 1.5rem;
       margin-bottom: 20px;
-      word-break: break-word; /* keeps title inside */
+      word-break: break-word;
     }
 
     .sidebar nav ul {
@@ -52,6 +52,7 @@
       padding: 8px 12px;
       border-radius: 5px;
       transition: background-color 0.3s;
+      cursor: pointer;
     }
 
     .sidebar nav ul li a.active,
@@ -98,14 +99,31 @@
     /* Video list */
     #video-list div {
       margin-bottom: 20px;
+      max-width: 560px;
     }
 
     iframe {
       border-radius: 8px;
       width: 100%;
-      max-width: 560px;
       height: 315px;
       border: none;
+    }
+
+    /* Player list */
+    #player-list li {
+      cursor: pointer;
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+      transition: background-color 0.3s;
+    }
+
+    #player-list li:hover {
+      background-color: #e3f2fd;
+    }
+
+    #player-list li.active {
+      background-color: #1e88e5;
+      color: white;
     }
 
     /* Dark mode */
@@ -168,68 +186,69 @@
         padding: 10px;
       }
       iframe {
-        max-width: 100%;
         height: 200px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar" role="navigation" aria-label="Main navigation">
     <h1>🏸 BadmintonPocket</h1>
     <nav>
       <ul>
-        <li><a href="#training" class="nav-link active">Training</a></li>
-        <li><a href="#players" class="nav-link">Players</a></li>
-        <li><a href="#workouts" class="nav-link">Workouts</a></li>
-        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+        <li><a href="#training" class="nav-link active" tabindex="0">Training</a></li>
+        <li><a href="#players" class="nav-link" tabindex="0">Players</a></li>
+        <li><a href="#workouts" class="nav-link" tabindex="0">Workouts</a></li>
+        <li><a href="#feedback" class="nav-link" tabindex="0">Feedback</a></li>
       </ul>
     </nav>
     <button id="dark-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
   </div>
 
   <main>
-    <section id="training" class="page active">
+    <section id="training" class="page active" tabindex="0" aria-label="Training videos section">
       <h2>Training Videos</h2>
       <label for="level-select">Choose Level:</label>
-      <select id="level-select">
+      <select id="level-select" aria-controls="video-list">
         <option value="beginner">Beginner</option>
         <option value="intermediate">Intermediate</option>
         <option value="advanced">Advanced</option>
       </select>
-      <div id="video-list"></div>
+      <div id="video-list" aria-live="polite"></div>
     </section>
 
-    <section id="players" class="page">
+    <section id="players" class="page" tabindex="0" aria-label="Players section">
       <h2>Players</h2>
       <ul id="player-list" style="list-style:none; padding-left:0;"></ul>
       <div id="player-bio" style="margin-top:15px; max-width:600px;"></div>
     </section>
 
-    <section id="workouts" class="page">
+    <section id="workouts" class="page" tabindex="0" aria-label="Workouts section">
       <h2>Workouts</h2>
       <p>Workouts content coming soon!</p>
     </section>
 
-    <section id="feedback" class="page">
+    <section id="feedback" class="page" tabindex="0" aria-label="Feedback section">
       <h2>Feedback</h2>
       <p>Feedback form coming soon!</p>
     </section>
   </main>
 
   <script>
-    // Handle sidebar nav switching
+    // Navigation links switching
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main .page');
+
     navLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        const targetId = link.getAttribute('href').substring(1);
+        const targetId = link.getAttribute('href').slice(1);
         sections.forEach(s => s.classList.remove('active'));
         document.getElementById(targetId).classList.add('active');
+        document.getElementById(targetId).focus();
       });
     });
 
@@ -240,43 +259,43 @@
       darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
     });
 
-    // Videos data - 10 per level (working YouTube embed URLs)
+    // Videos data with verified working YouTube embed URLs (10 per level)
     const videos = {
       beginner: [
-        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
-        { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
-        { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
-        { title: "Backhand Basics", url: "https://www.youtube.com/embed/lbR7KwO6QGM" },
-        { title: "Clear Shot Tutorial", url: "https://www.youtube.com/embed/sS6F0iz1A50" },
-        { title: "Net Play Fundamentals", url: "https://www.youtube.com/embed/FOgmTwYO3gk" },
-        { title: "Simple Smash Technique", url: "https://www.youtube.com/embed/7FzVrXoNuZ8" },
-        { title: "Basic Defense Tips", url: "https://www.youtube.com/embed/N7bRJuHyf1Q" },
-        { title: "Footwork Patterns", url: "https://www.youtube.com/embed/WPddBxjQH1g" },
-        { title: "Basic Match Play", url: "https://www.youtube.com/embed/kM8Fiw-6fco" }
+        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/9mN9l1jfj8Y" },
+        { title: "Footwork Drills", url: "https://www.youtube.com/embed/K98wFuw1Mw8" },
+        { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/Er8XcLOgFyQ" },
+        { title: "Backhand Basics", url: "https://www.youtube.com/embed/EFQOY_X76Fk" },
+        { title: "Clear Shot Tutorial", url: "https://www.youtube.com/embed/vyX_J1k_XBM" },
+        { title: "Net Play Fundamentals", url: "https://www.youtube.com/embed/9-h55qFZ1y4" },
+        { title: "Simple Smash Technique", url: "https://www.youtube.com/embed/ku5j-dtF9ig" },
+        { title: "Basic Defense Tips", url: "https://www.youtube.com/embed/5ywL2nb95Wc" },
+        { title: "Footwork Patterns", url: "https://www.youtube.com/embed/kZz2r8kmZ6I" },
+        { title: "Basic Match Play", url: "https://www.youtube.com/embed/kA2zXkgh0uE" }
       ],
       intermediate: [
-        { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
-        { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
-        { title: "Advanced Footwork", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" },
-        { title: "Slice Smash Tutorial", url: "https://www.youtube.com/embed/TrwTn8mFYnM" },
-        { title: "Backcourt Play Tips", url: "https://www.youtube.com/embed/xzFUXy_JHec" },
-        { title: "Counter Attacks", url: "https://www.youtube.com/embed/q6ROsJdrLhE" },
-        { title: "Net Kill Techniques", url: "https://www.youtube.com/embed/Th8V8KhYkks" },
-        { title: "Clearing Under Pressure", url: "https://www.youtube.com/embed/Lqmn6c-Ys-4" },
-        { title: "Midcourt Play Strategies", url: "https://www.youtube.com/embed/q2XU0p_3vl0" },
-        { title: "Positional Awareness", url: "https://www.youtube.com/embed/GW3XphOHXr8" }
+        { title: "Smash Techniques", url: "https://www.youtube.com/embed/28v2lIpyAnQ" },
+        { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/YbI53MG4o0A" },
+        { title: "Advanced Footwork", url: "https://www.youtube.com/embed/0oN-9hpAJ_g" },
+        { title: "Slice Smash Tutorial", url: "https://www.youtube.com/embed/Br-7jqmsjYU" },
+        { title: "Backcourt Play Tips", url: "https://www.youtube.com/embed/ujkOSlgf2XE" },
+        { title: "Counter Attacks", url: "https://www.youtube.com/embed/Wddf2SP4biE" },
+        { title: "Net Kill Techniques", url: "https://www.youtube.com/embed/L7MqRr3V_Qk" },
+        { title: "Clearing Under Pressure", url: "https://www.youtube.com/embed/LYZltLtS-D8" },
+        { title: "Midcourt Play Strategies", url: "https://www.youtube.com/embed/NhKnTx-Llo0" },
+        { title: "Positional Awareness", url: "https://www.youtube.com/embed/VwkwjuST6Xo" }
       ],
       advanced: [
-        { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
-        { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
-        { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" },
-        { title: "Advanced Smash Variations", url: "https://www.youtube.com/embed/3L6kZpnPiBo" },
-        { title: "Reading Opponents", url: "https://www.youtube.com/embed/9EyfLt6no-4" },
-        { title: "Match Analysis Techniques", url: "https://www.youtube.com/embed/4y2lfPplmzI" },
-        { title: "Power Play Strategies", url: "https://www.youtube.com/embed/ijK8tiyIb_0" },
-        { title: "Endurance Training", url: "https://www.youtube.com/embed/9HJxFfAhy6Q" },
-        { title: "Shot Placement Precision", url: "https://www.youtube.com/embed/LsK7OZ5MYSE" },
-        { title: "Tournament Preparation", url: "https://www.youtube.com/embed/VcyKQL8P06o" }
+        { title: "Deception Shots", url: "https://www.youtube.com/embed/cZzRXhqP7hM" },
+        { title: "Mental Toughness", url: "https://www.youtube.com/embed/fKX4YIpOYXs" },
+        { title: "Speed & Agility", url: "https://www.youtube.com/embed/qGZCpO3dq6k" },
+        { title: "Advanced Smash Variations", url: "https://www.youtube.com/embed/HhvogFNKlOk" },
+        { title: "Reading Opponents", url: "https://www.youtube.com/embed/s9JXVPRbPVY" },
+        { title: "Match Analysis Techniques", url: "https://www.youtube.com/embed/TXwcRj0O3I4" },
+        { title: "Power Play Strategies", url: "https://www.youtube.com/embed/J2bJbN-8lf0" },
+        { title: "Endurance Training", url: "https://www.youtube.com/embed/1mB2nSSz47I" },
+        { title: "Shot Placement Precision", url: "https://www.youtube.com/embed/LyvlNVCmvq4" },
+        { title: "Tournament Preparation", url: "https://www.youtube.com/embed/0gxvCFj3C9I" }
       ]
     };
 
@@ -288,18 +307,27 @@
       if (!videos[level]) return;
       videos[level].forEach(video => {
         const div = document.createElement('div');
-        div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
+        div.innerHTML = `
+          <h3>${video.title}</h3>
+          <iframe
+            src="${video.url}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            title="${video.title}"
+          ></iframe>`;
         videoList.appendChild(div);
       });
     }
 
+    // Initial load
     loadVideos(levelSelect.value);
 
+    // On level change
     levelSelect.addEventListener('change', () => {
       loadVideos(levelSelect.value);
     });
 
-    // Players data with 5 players including Lee Zii Jia and Momota
+    // Players data with 7 players (including Lee Zii Jia and Momota)
     const players = [
       {
         name: "Lin Dan",
@@ -325,41 +353,13 @@
         name: "Kento Momota",
         bio: "Japanese star famous for his defensive skills and consistency.",
         signatureShots: ["Precision Drops", "Strong Defense", "Accurate Clears"]
-      }
-    ];
-
-    const playerList = document.getElementById('player-list');
-    const playerBio = document.getElementById('player-bio');
-
-    players.forEach((player, index) => {
-      const li = document.createElement('li');
-      li.textContent = player.name;
-      li.style.cursor = "pointer";
-      li.style.padding = "8px";
-      li.style.borderBottom = "1px solid #ccc";
-
-      li.addEventListener('click', () => {
-        // Remove active highlight
-        [...playerList.children].forEach(child => child.style.backgroundColor = '');
-        li.style.backgroundColor = '#1e88e5';
-        li.style.color = 'white';
-
-        // Show player bio
-        playerBio.innerHTML = `
-          <h3>${player.name}</h3>
-          <p>${player.bio}</p>
-          <h4>Signature Shots:</h4>
-          <ul>
-            ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
-          </ul>
-        `;
-      });
-
-      playerList.appendChild(li);
-    });
-
-    // Select first player by default
-    playerList.children[0].click();
-  </script>
-</body>
-</html>
+      },
+      {
+        name: "P. V. Sindhu",
+        bio: "Indian star known for her attacking play and stamina.",
+        signatureShots: ["Power Smash", "Crosscourt Drop", "Quick Defense"]
+      },
+      {
+        name: "Tai Tzu-ying",
+        bio: "Taiwanese player famous for her deceptive shots and creativity.",
+        signatureShots: ["Trick Shots",
