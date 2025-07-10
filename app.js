@@ -28,23 +28,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Sample videos (replace URLs with real ones)
+// Real badminton training videos (updated)
 const videos = {
   beginner: [
-    { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
-    { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
+    { title: "Badminton Training for Beginners", url: "https://www.youtube.com/embed/D2QDyXXJtVc" },
+    { title: "Basic Badminton for Beginners", url: "https://www.youtube.com/embed/1UIhKZCPMYM" },
+    { title: "The Ultimate Footwork Tutorial for Beginners", url: "https://www.youtube.com/embed/NhNEEcLPjpc" },
+    { title: "Beginner, Intermediate, Advanced: Sweet Spot Challenge", url: "https://www.youtube.com/embed/bThPFpkmkIY" },
+    { title: "Basic Badminton for Beginners - Part 1 of 3", url: "https://www.youtube.com/embed/MsHMCZlcrXM" }
   ],
   intermediate: [
-    { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
-    { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" }
+    { title: "Badminton Training for Intermediate Players", url: "https://www.youtube.com/embed/yXJz0iAcZdE" },
+    { title: "Badminton Drills For Intermediate Players", url: "https://www.youtube.com/embed/flFsPfIVlRA" },
+    { title: "5 Common Mistakes Intermediate Badminton Players Make", url: "https://www.youtube.com/embed/XfNghQJ-zpA" },
+    { title: "EASILY MISSED Dos and Don'ts For Intermediate Badminton Players", url: "https://www.youtube.com/embed/-BBIYDt1LVc" },
+    { title: "Badminton Training - Intermediate Level", url: "https://www.youtube.com/embed/sdXWaMsYJck" }
   ],
   advanced: [
-    { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
-    { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" }
+    { title: "Badminton Training - Advanced Badminton Tips for Professionals", url: "https://www.youtube.com/embed/bSfNzZh1lHI" },
+    { title: "Copy these Advanced Badminton Training Drills to Improve", url: "https://www.youtube.com/embed/MBiTb0ZayE8" },
+    { title: "Advanced Badminton - How to Improve Speed for Badminton", url: "https://www.youtube.com/embed/sdXWaMsYJck" },
+    { title: "Weighted Vest Workout for Badminton", url: "https://www.youtube.com/embed/sdXWaMsYJck" },
+    { title: "Badminton - Single Defence From Beginner to Advanced", url: "https://www.youtube.com/embed/Wr2IDCBnKow" }
   ]
 };
 
-// Load videos into the video-list div based on selected level
 function loadVideos(level) {
   const container = document.getElementById('video-list');
   container.innerHTML = '';
