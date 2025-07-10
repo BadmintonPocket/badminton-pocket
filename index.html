@@ -1,208 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🏸 BadmintonPocket</title>
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      min-height: 100vh;
-      background: #f5f7fa;
-      color: #333;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .sidebar {
-      width: 250px;
-      background: #1e88e5;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      flex-shrink: 0;
-    }
-
-    .sidebar h1 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    .sidebar nav ul {
-      list-style: none;
-    }
-
-    .sidebar nav ul li {
-      margin-bottom: 15px;
-    }
-
-    .sidebar nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-      display: block;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .sidebar nav ul li a.active,
-    .sidebar nav ul li a:hover {
-      background-color: #1565c0;
-    }
-
-    #dark-toggle {
-      margin-top: auto;
-      padding: 10px;
-      background: #1565c0;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    main {
-      flex-grow: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    iframe {
-      border-radius: 8px;
-      width: 100%;
-      max-width: 560px;
-      height: 315px;
-      border: none;
-    }
-
-    body.dark-mode {
-      background: #121212;
-      color: #eee;
-    }
-
-    body.dark-mode .sidebar {
-      background: #283593;
-      color: #bbdefb;
-    }
-
-    body.dark-mode .sidebar nav ul li a {
-      color: #bbdefb;
-    }
-
-    body.dark-mode .sidebar nav ul li a.active,
-    body.dark-mode .sidebar nav ul li a:hover {
-      background-color: #5c6bc0;
-    }
-
-    body.dark-mode #dark-toggle {
-      background: #3949ab;
-      color: #eee;
-    }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <h1>🏸 BadmintonPocket</h1>
-    <nav>
-      <ul>
-        <li><a href="#training" class="nav-link active">Training</a></li>
-        <li><a href="#players" class="nav-link">Players</a></li>
-        <li><a href="#workouts" class="nav-link">Workouts</a></li>
-        <li><a href="#feedback" class="nav-link">Feedback</a></li>
-      </ul>
-    </nav>
-    <button id="dark-toggle">🌙 Dark Mode</button>
-  </div>
-
-  <main>
-    <section id="training" class="page active">
-      <h2>Training Videos</h2>
-      <label for="level-select">Choose Level:</label>
-      <select id="level-select">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
-      </select>
-      <div id="video-list"></div>
-    </section>
-
-    <section id="players" class="page">
-      <h2>Players</h2>
-      <p>Coming soon.</p>
-    </section>
-
-    <section id="workouts" class="page">
-      <h2>Workouts</h2>
-      <p>Coming soon.</p>
-    </section>
-
-    <section id="feedback" class="page">
-      <h2>Feedback</h2>
-      <p>Coming soon.</p>
-    </section>
-  </main>
-
-  <script>
-    // Sidebar navigation
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('main .page');
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        sections.forEach(s => s.classList.remove('active'));
-        document.getElementById(link.getAttribute('href').substring(1)).classList.add('active');
-      });
+<script>
+  // Sidebar navigation
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('main .page');
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      sections.forEach(s => s.classList.remove('active'));
+      document.getElementById(link.getAttribute('href').substring(1)).classList.add('active');
     });
+  });
 
-    // Dark mode toggle
-    const darkToggle = document.getElementById('dark-toggle');
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+  // Dark mode toggle
+  const darkToggle = document.getElementById('dark-toggle');
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+
+  // Videos
+  const videos = {
+    beginner: [
+      { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
+      { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
+      { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" },
+      { title: "Basic Forehand Grip Tutorial", url: "https://www.youtube.com/embed/7mlBfn3yt8c" },
+      { title: "Footwork Basics for Beginners", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
+      { title: "Net Shots Tutorial", url: "https://www.youtube.com/embed/CtPiH-M2BzY" },
+      { title: "Backhand Basics", url: "https://www.youtube.com/embed/I-vD4vIUrrM" },
+      { title: "How to Hold a Racket", url: "https://www.youtube.com/embed/Nogz4U_KtHk" },
+      { title: "Clear Shot Basics", url: "https://www.youtube.com/embed/EaqMkXZlFrY" },
+      { title: "Intro to Badminton Rules", url: "https://www.youtube.com/embed/tj3aJrszxuE" }
+    ],
+    intermediate: [
+      { title: "Jump Smash Tutorial", url: "https://www.youtube.com/embed/hDo6GRDb6oM" },
+      { title: "Improve Badminton Stamina", url: "https://www.youtube.com/embed/FPXoW-hrKxg" },
+      { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/7cRW_KaU-e4" },
+      { title: "How to Do a Slice Drop Shot", url: "https://www.youtube.com/embed/6n5OqqdpY_M" },
+      { title: "Mastering Deception", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
+      { title: "Flick Serve for Doubles", url: "https://www.youtube.com/embed/EGPbGrVPUac" },
+      { title: "Smash Follow-Up Footwork", url: "https://www.youtube.com/embed/XZ-yUQCLodE" },
+      { title: "Backhand Clear Drill", url: "https://www.youtube.com/embed/b_paknyUu3U" },
+      { title: "Attack Mindset in Singles", url: "https://www.youtube.com/embed/DWsbztSPXWk" },
+      { title: "Dealing With Push Shots", url: "https://www.youtube.com/embed/0E6W4C_q2CU" }
+    ],
+    advanced: [
+      { title: "Jump Smash Recovery Footwork", url: "https://www.youtube.com/embed/FMdDNN1rzP0" },
+      { title: "Reading Opponent's Movement", url: "https://www.youtube.com/embed/wlTXLGBoZyA" },
+      { title: "Deceptive Net Shots Advanced", url: "https://www.youtube.com/embed/M8UAdV5QfvE" },
+      { title: "Backhand Smash Tutorial", url: "https://www.youtube.com/embed/bO9oFvKqQ20" },
+      { title: "Anticipation in Rallies", url: "https://www.youtube.com/embed/E7tBfBoNwKY" },
+      { title: "Recovery Steps in Defense", url: "https://www.youtube.com/embed/MUcwSo2a5Ng" },
+      { title: "Elite Shuttle Placement", url: "https://www.youtube.com/embed/pFZWiNqUz1g" },
+      { title: "Professional Match Analysis", url: "https://www.youtube.com/embed/3gMrT-PTCXw" },
+      { title: "Smash Variation + Timing", url: "https://www.youtube.com/embed/tq_T7fAXMCI" },
+      { title: "Mindset for Elite Singles", url: "https://www.youtube.com/embed/kDHoVqtPFIk" }
+    ]
+  };
+
+  const levelSelect = document.getElementById('level-select');
+  const videoList = document.getElementById('video-list');
+
+  function loadVideos(level) {
+    videoList.innerHTML = '';
+    if (!videos[level]) return;
+    videos[level].forEach(video => {
+      const div = document.createElement('div');
+      div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
+      videoList.appendChild(div);
     });
+  }
 
-    // Videos
-    const videos = {
-      beginner: [
-        { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
-        { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-        { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" }
-      ],
-      intermediate: [],
-      advanced: []
-    };
-
-    const levelSelect = document.getElementById('level-select');
-    const videoList = document.getElementById('video-list');
-
-    function loadVideos(level) {
-      videoList.innerHTML = '';
-      if (!videos[level]) return;
-      videos[level].forEach(video => {
-        const div = document.createElement('div');
-        div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
-        videoList.appendChild(div);
-      });
-    }
-
-    loadVideos(levelSelect.value);
-    levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
-  </script>
-</body>
-</html>
+  loadVideos(levelSelect.value);
+  levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+</script>
