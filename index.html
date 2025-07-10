@@ -34,7 +34,53 @@
 
     <section id="players" class="page">
       <h2>Players</h2>
-      <p>Coming soon.</p>
+      <ul id="player-list">
+        <li><a href="#" onclick="showPlayer('lee-chong-wei')">Lee Chong Wei</a></li>
+        <li><a href="#" onclick="showPlayer('lin-dan')">Lin Dan</a></li>
+        <li><a href="#" onclick="showPlayer('lee-zii-jia')">Lee Zii Jia</a></li>
+        <li><a href="#" onclick="showPlayer('kento-momota')">Kento Momota</a></li>
+        <li><a href="#" onclick="showPlayer('victor-axelsen')">Victor Axelsen</a></li>
+      </ul>
+
+      <div id="lee-chong-wei" class="player-card">
+        <h3>Lee Chong Wei</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lee_Chong_Wei_2014.jpg/320px-Lee_Chong_Wei_2014.jpg" alt="Lee Chong Wei" />
+        <p><strong>Country:</strong> Malaysia 🇲🇾</p>
+        <p><strong>Playstyle:</strong> Lightning-fast footwork, precision, incredible stamina, and defensive control. Known for deceptive net play and sharp crosscourt smashes.</p>
+        <p><strong>Legacy:</strong> Former world No. 1 for 349 weeks, 3-time Olympic silver medalist, considered one of the greatest players never to win a World Championship or Olympic gold.</p>
+      </div>
+
+      <div id="lin-dan" class="player-card" style="display: none;">
+        <h3>Lin Dan</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Lin_Dan_2013.jpg/320px-Lin_Dan_2013.jpg" alt="Lin Dan" />
+        <p><strong>Country:</strong> China 🇨🇳</p>
+        <p><strong>Playstyle:</strong> Explosive, aggressive, unpredictable. Famous for court dominance, deceptive shots, and clutch performances under pressure.</p>
+        <p><strong>Legacy:</strong> Only men’s singles player to win two Olympic golds and five World Championships. Often considered the GOAT of badminton.</p>
+      </div>
+
+      <div id="lee-zii-jia" class="player-card" style="display: none;">
+        <h3>Lee Zii Jia</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lee_Zii_Jia_2019.jpg/320px-Lee_Zii_Jia_2019.jpg" alt="Lee Zii Jia" />
+        <p><strong>Country:</strong> Malaysia 🇲🇾</p>
+        <p><strong>Playstyle:</strong> Offensive-oriented, powerful smashes, quick recovery, and stylish backhand. Known for high-risk/high-reward gameplay.</p>
+        <p><strong>Legacy:</strong> 2021 All England champion, leading Malaysia's next generation after Lee Chong Wei. Known for going independent from national team.</p>
+      </div>
+
+      <div id="kento-momota" class="player-card" style="display: none;">
+        <h3>Kento Momota</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Kento_Momota_2018.jpg/320px-Kento_Momota_2018.jpg" alt="Kento Momota" />
+        <p><strong>Country:</strong> Japan 🇯🇵</p>
+        <p><strong>Playstyle:</strong> Extremely patient, tactical, and consistent. Incredible rally control, precision shots, and endurance.</p>
+        <p><strong>Legacy:</strong> 2-time World Champion, former world No. 1. Dominated 2019 season with 11 titles before a career-affecting car accident in 2020.</p>
+      </div>
+
+      <div id="victor-axelsen" class="player-card" style="display: none;">
+        <h3>Victor Axelsen</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Viktor_Axelsen_2019.jpg/320px-Viktor_Axelsen_2019.jpg" alt="Victor Axelsen" />
+        <p><strong>Country:</strong> Denmark 🇩🇰</p>
+        <p><strong>Playstyle:</strong> Physically dominant, big smashes, strong net presence, and disciplined footwork. Uses height and reach to control rallies.</p>
+        <p><strong>Legacy:</strong> 2020 Olympic gold medalist, 2-time World Champion, known for consistency and moving to Dubai to set up a high-performance training base.</p>
+      </div>
     </section>
 
     <section id="workouts" class="page">
@@ -48,7 +94,15 @@
     </section>
   </main>
 
-  <!-- ✅ Scripts must be here -->
+  <!-- ✅ Scripts -->
   <script src="app.js"></script>
+  <script>
+    function showPlayer(id) {
+      document.querySelectorAll('.player-card').forEach(card => {
+        card.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
 </body>
 </html>
