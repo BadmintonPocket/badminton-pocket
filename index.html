@@ -8,20 +8,36 @@
     .section { display: none; }
     .section.active { display: block; }
     button.active { background-color: #1565c0; color: white; }
+    #video-list div { margin-bottom: 15px; }
   </style>
 </head>
 <body>
   <nav>
     <button class="nav-btn active" data-target="sec1">Section 1</button>
-    <button class="nav-btn" data-target="sec2">Section 2</button>
+    <button class="nav-btn" data-target="sec2">Section 2 (Videos)</button>
     <button class="nav-btn" data-target="sec3">Section 3</button>
   </nav>
 
-  <div id="sec1" class="section active">This is Section 1</div>
-  <div id="sec2" class="section">This is Section 2</div>
-  <div id="sec3" class="section">This is Section 3</div>
+  <div id="sec1" class="section active">
+    <p>This is Section 1</p>
+  </div>
+
+  <div id="sec2" class="section">
+    <label for="level-select">Select Skill Level:</label>
+    <select id="level-select">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+    <div id="video-list"></div>
+  </div>
+
+  <div id="sec3" class="section">
+    <p>This is Section 3</p>
+  </div>
 
   <script>
+    // Tab switching logic
     document.querySelectorAll('button.nav-btn').forEach(button => {
       button.addEventListener('click', () => {
         document.querySelectorAll('button.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -31,47 +47,39 @@
         document.getElementById(target).classList.add('active');
       });
     });
+
+    // Video data
+    const videos = {
+      beginner: [
+        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+        { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
+      ],
+      intermediate: [
+        { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" }
+      ],
+      advanced: [
+        { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" }
+      ]
+    };
+
+    const videoList = document.getElementById('video-list');
+    const levelSelect = document.getElementById('level-select');
+
+    function loadVideos(level) {
+      videoList.innerHTML = '';
+      if (!videos[level]) return;
+      videos[level].forEach(video => {
+        const div = document.createElement('div');
+        div.innerHTML = `<h3>${video.title}</h3><iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>`;
+        videoList.appendChild(div);
+      });
+    }
+
+    loadVideos(levelSelect.value);
+
+    levelSelect.addEventListener('change', () => {
+      loadVideos(levelSelect.value);
+    });
   </script>
 </body>
 </html>
-<select id="level-select">
-  <option value="beginner">Beginner</option>
-  <option value="intermediate">Intermediate</option>
-  <option value="advanced">Advanced</option>
-</select>
-
-<div id="video-list"></div>
-
-<script>
-  const videos = {
-    beginner: [
-      { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
-      { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
-    ],
-    intermediate: [
-      { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" }
-    ],
-    advanced: [
-      { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" }
-    ]
-  };
-
-  const videoList = document.getElementById('video-list');
-  const levelSelect = document.getElementById('level-select');
-
-  function loadVideos(level) {
-    videoList.innerHTML = '';
-    if (!videos[level]) return;
-    videos[level].forEach(video => {
-      const div = document.createElement('div');
-      div.innerHTML = `<h3>${video.title}</h3><iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>`;
-      videoList.appendChild(div);
-    });
-  }
-
-  loadVideos(levelSelect.value);
-
-  levelSelect.addEventListener('change', () => {
-    loadVideos(levelSelect.value);
-  });
-</script>
