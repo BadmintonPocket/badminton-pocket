@@ -1,63 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BadmintonPocket</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="sidebar">
-    <h1>🏸 BadmintonPocket</h1>
-    <nav>
+document.addEventListener('DOMContentLoaded', () => {
+  // Navigation buttons
+  const navButtons = document.querySelectorAll('nav button.nav-btn');
+  const sections = document.querySelectorAll('main .section');
+
+  navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active from all buttons
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      // Hide all sections
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Activate clicked button & matching section
+      button.classList.add('active');
+      const targetId = button.getAttribute('data-target');
+      document.getElementById(targetId).classList.add('active');
+    });
+  });
+
+  // Video data
+  const videos = {
+    beginner: [
+      { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+      { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
+      { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" }
+    ],
+    intermediate: [
+      { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
+      { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
+      { title: "Advanced Footwork", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" }
+    ],
+    advanced: [
+      { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
+      { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
+      { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" }
+    ]
+  };
+
+  const videoList = document.getElementById('video-list');
+  const levelSelect = document.getElementById('level-select');
+
+  function loadVideos(level) {
+    videoList.innerHTML = '';
+    if (!videos[level]) return;
+
+    videos[level].forEach(video => {
+      const videoDiv = document.createElement('div');
+      videoDiv.innerHTML = `
+        <h3>${video.title}</h3>
+        <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
+      `;
+      videoList.appendChild(videoDiv);
+    });
+  }
+
+  // Initial load
+  loadVideos(levelSelect.value);
+
+  levelSelect.addEventListener('change', (e) => {
+    loadVideos(e.target.value);
+  });
+
+  // Players data
+  const players = [
+    {
+      name: "Lin Dan",
+      bio: "Two-time Olympic champion and one of the greatest badminton players of all time.",
+      signatureShots: ["Powerful Smash", "Fast Drop Shot", "Deceptive Net Play"]
+    },
+    {
+      name: "Carolina Marin",
+      bio: "Olympic gold medalist known for her aggressive playing style and speed.",
+      signatureShots: ["Fast Drive", "Crosscourt Smash", "Net Kill"]
+    },
+    {
+      name: "Viktor Axelsen",
+      bio: "World Champion known for his tall stature and strong overhead shots.",
+      signatureShots: ["Heavy Smash", "Clear Shot", "Net Shot"]
+    }
+  ];
+
+  const playerList = document.getElementById('player-list');
+  const playerBio = document.getElementById('player-bio');
+
+  players.forEach((player, i) => {
+    const li = document.createElement('li');
+    li.textContent = player.name;
+    li.tabIndex = 0; // keyboard focusable
+    li.addEventListener('click', () => showPlayer(i));
+    li.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') showPlayer(i);
+    });
+    playerList.appendChild(li);
+  });
+
+  function showPlayer(index) {
+    // Remove active from all
+    [...playerList.children].forEach(li => li.classList.remove('active'));
+    playerList.children[index].classList.add('active');
+
+    const player = players[index];
+    playerBio.innerHTML = `
+      <h3>${player.name}</h3>
+      <p>${player.bio}</p>
+      <h4>Signature Shots:</h4>
       <ul>
-        <li><a href="#training" class="active">Training</a></li>
-        <li><a href="#players">Players</a></li>
-        <li><a href="#workouts">Workouts</a></li>
-        <li><a href="#feedback">Feedback</a></li>
+        ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
       </ul>
-    </nav>
-    <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
-  </div>
+    `;
+  }
 
-  <div class="main-content">
-    <main>
-      <section id="training">
-        <h2>Training Videos</h2>
-        <label for="level-select">Select Skill Level:</label>
-        <select id="level-select" aria-label="Skill level selector">
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-        <div id="video-list" class="video-list"></div>
-        <div id="streak-counter">Current Streak: <span id="streak-count">0</span> days</div>
-        <button id="increment-streak">Watch Video (Increment Streak)</button>
-        <button id="reset-streak" class="danger">Reset Streak</button>
-      </section>
-
-      <section id="players" style="display:none;">
-        <h2>Players</h2>
-        <ul id="player-list" class="player-list" aria-label="List of players">
-          <!-- Player names will be loaded here -->
-        </ul>
-        <div id="player-bio" class="player-bio" aria-live="polite">
-          <p>Select a player to see their bio and signature moves.</p>
-        </div>
-      </section>
-
-      <section id="workouts" style="display:none;">
-        <h2>Workouts</h2>
-        <p>Coming soon! Get ready for badminton-specific workouts and drills.</p>
-      </section>
-
-      <section id="feedback" style="display:none;">
-        <h2>Feedback</h2>
-        <p>Coming soon! Provide feedback to improve BadmintonPocket.</p>
-      </section>
-    </main>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+  // Dark mode toggle
+  const darkModeBtn = document.getElementById('dark-mode-toggle');
+  darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    darkModeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+});
