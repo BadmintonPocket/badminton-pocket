@@ -1,270 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BadmintonPocket</title>
-<style>
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  body {
-    background: #f5f7fa;
-    color: #333;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  header h1 {
-    flex-grow: 1;
-  }
-  nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  nav button {
-    background-color: #1e88e5;
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  nav button:hover {
-    background-color: #1565c0;
-  }
-  nav button.active {
-    background-color: #0d47a1;
-  }
-  /* Sections */
-  .section {
-    display: none;
-  }
-  .section.active {
-    display: block;
-  }
-  /* Video list */
-  #video-list {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  #video-list iframe {
-    border-radius: 8px;
-    width: 320px;
-    height: 180px;
-  }
-  /* Player list */
-  #player-list {
-    list-style: none;
-    max-width: 300px;
-    margin-bottom: 15px;
-    padding-left: 0;
-  }
-  #player-list li {
-    padding: 10px;
-    background: #e3f2fd;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  #player-list li:hover,
-  #player-list li.active {
-    background: #90caf9;
-  }
-  /* Player bio */
-  #player-bio {
-    max-width: 600px;
-    padding: 15px;
-    background: #bbdefb;
-    border-radius: 6px;
-  }
-  /* Dark mode */
-  body.dark-mode {
-    background: #121212;
-    color: #eee;
-  }
-  body.dark-mode nav button {
-    background-color: #0d47a1;
-    color: #bbdefb;
-  }
-  body.dark-mode nav button.active {
-    background-color: #5c6bc0;
-  }
-  body.dark-mode #player-list li {
-    background-color: #283593;
-    color: #bbdefb;
-  }
-  body.dark-mode #player-list li.active,
-  body.dark-mode #player-list li:hover {
-    background-color: #5c6bc0;
-  }
-  body.dark-mode #player-bio {
-    background-color: #3949ab;
-    color: #eee;
-  }
-  body.dark-mode #video-list iframe {
-    filter: brightness(0.9);
-  }
-  /* Responsive */
-  @media (max-width: 600px) {
-    header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    #video-list iframe {
-      width: 100%;
-      height: auto;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BadmintonPocket</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <h1>🏸 BadmintonPocket</h1>
-  <nav>
-    <button class="nav-btn active" data-target="training">Training</button>
-    <button class="nav-btn" data-target="players">Players</button>
-    <button class="nav-btn" data-target="workouts">Workouts</button>
-    <button class="nav-btn" data-target="feedback">Feedback</button>
-    <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
-  </nav>
-</header>
+  <div class="sidebar">
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <ul>
+        <li><a href="#training" class="nav-link active">Training</a></li>
+        <li><a href="#players" class="nav-link">Players</a></li>
+        <li><a href="#workouts" class="nav-link">Workouts</a></li>
+        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+      </ul>
+    </nav>
+    <button id="dark-toggle">🌙</button>
+  </div>
 
-<main>
-  <section id="training" class="section active">
-    <h2>Training Videos</h2>
-    <label for="level-select">Select Skill Level:</label>
-    <select id="level-select">
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
-    </select>
-    <div id="video-list"></div>
-  </section>
+  <main>
+    <section id="training" class="page active">
+      <h2>Training Videos</h2>
+      <label for="level-select">Choose Level:</label>
+      <select id="level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="video-list"></div>
+    </section>
 
-  <section id="players" class="section">
-    <h2>Players</h2>
-    <ul id="player-list"></ul>
-    <div id="player-bio">Select a player to see details.</div>
-  </section>
+    <section id="players" class="page">
+      <h2>Players</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <section id="workouts" class="section">
-    <h2>Workouts</h2>
-    <p>Coming soon!</p>
-  </section>
+    <section id="workouts" class="page">
+      <h2>Workouts</h2>
+      <p>Coming soon...</p>
+    </section>
 
-  <section id="feedback" class="section">
-    <h2>Feedback</h2>
-    <p>Coming soon!</p>
-  </section>
-</main>
+    <section id="feedback" class="page">
+      <h2>Feedback</h2>
+      <p>Coming soon...</p>
+    </section>
+  </main>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Navigation buttons
-    const navButtons = document.querySelectorAll('nav button.nav-btn');
-    const sections = document.querySelectorAll('main .section');
-
-    navButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active from all buttons
-        navButtons.forEach(btn => btn.classList.remove('active'));
-        // Hide all sections
-        sections.forEach(section => section.classList.remove('active'));
-
-        // Activate clicked button & matching section
-        button.classList.add('active');
-        const targetId = button.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
-      });
-    });
-
-    // Video data (10 per level, working YT embed URLs)
-    const videos = {
-      beginner: [
-        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
-        { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
-        { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
-        { title: "Forehand Clear", url: "https://www.youtube.com/embed/e5gOX22mTEA" },
-        { title: "Backhand Clear", url: "https://www.youtube.com/embed/w3xGQRGvlIk" },
-        { title: "Basic Net Play", url: "https://www.youtube.com/embed/BFr9FocC4Jk" },
-        { title: "Shadow Footwork", url: "https://www.youtube.com/embed/9H39Zfwf7s0" },
-        { title: "Basic Dropshot", url: "https://www.youtube.com/embed/PH5pBf9SZ2Q" },
-        { title: "Basic Smash", url: "https://www.youtube.com/embed/1yZi6qI9cSY" },
-        { title: "Basic Backhand Smash", url: "https://www.youtube.com/embed/FeNw3bMlcjI" }
-      ],
-      intermediate: [
-        { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
-        { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
-        { title: "Advanced Footwork", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" },
-        { title: "Net Kill", url: "https://www.youtube.com/embed/yeUYRtQXKoY" },
-        { title: "Drive Shots", url: "https://www.youtube.com/embed/7xwFZ6ScbW4" },
-        { title: "Backhand Net Play", url: "https://www.youtube.com/embed/mFYnQcqLHmw" },
-        { title: "Clear Shots", url: "https://www.youtube.com/embed/PK3u7cooq2k" },
-        { title: "Smash Variations", url: "https://www.youtube.com/embed/Xtya6DNVb2M" },
-        { title: "Overhead Shots", url: "https://www.youtube.com/embed/7T0BvEZZnRE" },
-        { title: "Mixed Doubles Tactics", url: "https://www.youtube.com/embed/IZFi6__guF8" }
-      ],
-      advanced: [
-        { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
-        { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
-        { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" },
-        { title: "Advanced Smashes", url: "https://www.youtube.com/embed/oy_LvG4cRnc" },
-        { title: "Fast Drops", url: "https://www.youtube.com/embed/aN2nEYQj72o" },
-        { title: "Net Deception", url: "https://www.youtube.com/embed/D8jWzLnpP04" },
-        { title: "Anticipation Drills", url: "https://www.youtube.com/embed/xv7B44zQpFQ" },
-        { title: "Positional Play", url: "https://www.youtube.com/embed/h2WnS5Xe3Kw" },
-        { title: "Tournament Preparation", url: "https://www.youtube.com/embed/COmn_Ga9hWY" },
-        { title: "Match Analysis", url: "https://www.youtube.com/embed/HhV4-rxJqns" }
-      ]
-    };
-
-    const videoList = document.getElementById('video-list');
-    const levelSelect = document.getElementById('level-select');
-
-    function loadVideos(level) {
-      videoList.innerHTML = '';
-      if (!videos[level]) return;
-      videos[level].forEach(video => {
-        const videoDiv = document.createElement('div');
-        videoDiv.innerHTML = `
-          <h3>${video.title}</h3>
-          <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
-        `;
-        videoList.appendChild(videoDiv);
-      });
-    }
-
-    // Initial load
-    loadVideos(levelSelect.value);
-
-    levelSelect.addEventListener('change', (e) => {
-      loadVideos(e.target.value);
-    });
-
-    // Players data including Lee Zii Jia and Kento Momota
-    const players = [
-      {
-        name: "Lin Dan",
-        bio: "Two-time Olympic champion and one of the greatest badminton players of all time.",
-        signatureShots: ["Powerful Smash", "Fast Drop Shot", "Deceptive Net Play"]
-      },
-      {
-        name: "Carolina Marin",
-        bio: "Olympic gold
+  <script src="app.js"></script>
+</body>
+</html>
