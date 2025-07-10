@@ -1,64 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Nav Switching
-  const links = document.querySelectorAll('.nav-link');
+  // Navigation logic
+  const navLinks = document.querySelectorAll('.nav-link');
   const pages = document.querySelectorAll('.page');
 
-  links.forEach(link => {
+  navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      links.forEach(l => l.classList.remove('active'));
+      const target = link.getAttribute('href').substring(1);
+
+      navLinks.forEach(l => l.classList.remove('active'));
       pages.forEach(p => p.classList.remove('active'));
 
       link.classList.add('active');
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) target.classList.add('active');
+      document.getElementById(target).classList.add('active');
     });
   });
 
-  // Dark Mode Toggle
+  // Dark mode toggle
   const darkToggle = document.getElementById('dark-toggle');
   darkToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark');
-    darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
   });
 
-  // Video Loader
+  // Training videos by level
   const videos = {
     beginner: [
-      { title: "Basic Grip", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+      { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
       { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
-      { title: "Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
-      { title: "Backhand Basics", url: "https://www.youtube.com/embed/Yu4WgK6JVeA" },
-      { title: "Lunges", url: "https://www.youtube.com/embed/VOX05L8C_LU" },
-      { title: "Warm-Up", url: "https://www.youtube.com/embed/l9A6ZMMd2SM" },
-      { title: "Net Shots", url: "https://www.youtube.com/embed/XA9WFLZ8QgA" },
-      { title: "Basic Drills", url: "https://www.youtube.com/embed/oXJkvy43IYk" },
-      { title: "Beginner Rallies", url: "https://www.youtube.com/embed/lMrDkf9DAkk" },
-      { title: "Forehand Drive", url: "https://www.youtube.com/embed/l5D-fhH01-M" }
+      { title: "Basic Serve", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
+      { title: "Clear Shot Basics", url: "https://www.youtube.com/embed/URHOZhJCOIo" },
+      { title: "Drive Shot Drill", url: "https://www.youtube.com/embed/5s-rpZZqW18" },
+      { title: "Badminton Basics", url: "https://www.youtube.com/embed/F5LkUtwAnzE" },
+      { title: "Racket Positioning", url: "https://www.youtube.com/embed/f_OoEDm6Z0E" },
+      { title: "Rules Overview", url: "https://www.youtube.com/embed/52h_1Ueis3g" },
+      { title: "Common Mistakes", url: "https://www.youtube.com/embed/hUtZr1_QnFo" },
+      { title: "Serve Rules", url: "https://www.youtube.com/embed/A-q6TLgnRRY" }
     ],
     intermediate: [
-      { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
+      { title: "Smash Basics", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
       { title: "Drop Shots", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
-      { title: "Deception Basics", url: "https://www.youtube.com/embed/zJj0-RfL-VY" },
-      { title: "Net Kill", url: "https://www.youtube.com/embed/qBh0KOukEyY" },
-      { title: "Racket Grips", url: "https://www.youtube.com/embed/DBF9ofSdzHI" },
-      { title: "Movement Drills", url: "https://www.youtube.com/embed/UThDUL7H5uo" },
-      { title: "Midcourt Control", url: "https://www.youtube.com/embed/X7I9HIMIEr4" },
-      { title: "Smash Recovery", url: "https://www.youtube.com/embed/NbcAFGIVvqs" },
-      { title: "Backhand Smash", url: "https://www.youtube.com/embed/hHaJrH7u9IY" },
-      { title: "Push Defense", url: "https://www.youtube.com/embed/IWg0lK6XY9Q" }
+      { title: "Net Play Tips", url: "https://www.youtube.com/embed/ppOTYrTYbQw" },
+      { title: "Footwork Patterns", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" },
+      { title: "Doubles Rotation", url: "https://www.youtube.com/embed/mqNgnbmZXfQ" },
+      { title: "Backhand Clear", url: "https://www.youtube.com/embed/CyZ-rqNVGm8" },
+      { title: "Singles Tactics", url: "https://www.youtube.com/embed/mTNUZ_j8WMM" },
+      { title: "Flick Serve", url: "https://www.youtube.com/embed/ZARsCUURHxI" },
+      { title: "Drive Defense", url: "https://www.youtube.com/embed/_liRQTSUuec" },
+      { title: "Fast Flat Exchange", url: "https://www.youtube.com/embed/ZVX5cRW0ef4" }
     ],
     advanced: [
-      { title: "Deception Mastery", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
-      { title: "Mental Strength", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
-      { title: "Fast Pace Rallies", url: "https://www.youtube.com/embed/9pWZAnEaywU" },
-      { title: "Net Feints", url: "https://www.youtube.com/embed/CULp3Qe7ugU" },
-      { title: "Jump Smash", url: "https://www.youtube.com/embed/Whg9eMgDRLw" },
-      { title: "Defense Recovery", url: "https://www.youtube.com/embed/Ak8CWbObL3U" },
-      { title: "Pro-Level Stamina", url: "https://www.youtube.com/embed/vnI3e-YKzp8" },
-      { title: "Crosscourt Deception", url: "https://www.youtube.com/embed/Jm7bA7Nv0j0" },
-      { title: "Advanced Strategy", url: "https://www.youtube.com/embed/WKEMGEbcdFo" },
-      { title: "Doubles Rotation", url: "https://www.youtube.com/embed/krF-3zI8s8c" }
+      { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
+      { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
+      { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" },
+      { title: "Advanced Net Kill", url: "https://www.youtube.com/embed/9NwueCz9Fiw" },
+      { title: "Crosscourt Smash", url: "https://www.youtube.com/embed/Dh0g-5KjOG4" },
+      { title: "Jump Smash", url: "https://www.youtube.com/embed/93I3Bo7AZrM" },
+      { title: "Advanced Footwork", url: "https://www.youtube.com/embed/dp8ckYQVgrA" },
+      { title: "Smash Recovery", url: "https://www.youtube.com/embed/zUeFhx0H9Co" },
+      { title: "Front Court Rotation", url: "https://www.youtube.com/embed/0duRJ6EOMSo" },
+      { title: "Advanced Singles Strategy", url: "https://www.youtube.com/embed/YbdEMZ7pG9k" }
     ]
   };
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.innerHTML = `
         <h3>${video.title}</h3>
-        <iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+        <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
       `;
       videoList.appendChild(div);
     });
@@ -83,38 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadVideos(levelSelect.value);
   });
 
-  loadVideos(levelSelect.value); // Initial load
-
-  // Player Bios — placeholder structure for future expansion
-  const players = [
-    {
-      name: "Lin Dan",
-      bio: "Two-time Olympic champion known for his powerful smashes and net control."
-    },
-    {
-      name: "Lee Zii Jia",
-      bio: "Malaysian star with explosive movement and deadly jump smashes."
-    },
-    {
-      name: "Kento Momota",
-      bio: "Japan’s finesse master with deceptive shots and strategic precision."
-    }
-  ];
-
-  const playerList = document.getElementById('player-list');
-  const playerBio = document.getElementById('player-bio');
-
-  if (playerList && playerBio) {
-    players.forEach((player, i) => {
-      const li = document.createElement('li');
-      li.textContent = player.name;
-      li.addEventListener('click', () => showPlayer(i));
-      playerList.appendChild(li);
-    });
-
-    function showPlayer(index) {
-      const player = players[index];
-      playerBio.innerHTML = `<h3>${player.name}</h3><p>${player.bio}</p>`;
-    }
-  }
+  // Initial load
+  loadVideos(levelSelect.value);
 });
