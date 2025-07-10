@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BadmintonPocket</title>
+  <title>🏸 BadmintonPocket</title>
   <style>
-    /* Basic reset */
+    /* Reset and basic */
     * {
-      margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
+
     body {
       display: flex;
       min-height: 100vh;
@@ -16,103 +18,159 @@
       color: #333;
       transition: background-color 0.3s, color 0.3s;
     }
+
     /* Sidebar */
     .sidebar {
-      width: 220px;
+      width: 250px;
       background: #1e88e5;
       color: white;
-      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      padding: 20px;
       flex-shrink: 0;
     }
+
     .sidebar h1 {
       font-size: 1.5rem;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      word-break: break-word; /* keeps title inside */
     }
+
     .sidebar nav ul {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
+
+    .sidebar nav ul li {
+      margin-bottom: 15px;
+    }
+
     .sidebar nav ul li a {
       color: white;
       text-decoration: none;
-      padding: 10px 15px;
+      font-size: 1.1rem;
       display: block;
+      padding: 8px 12px;
       border-radius: 5px;
       transition: background-color 0.3s;
     }
+
     .sidebar nav ul li a.active,
     .sidebar nav ul li a:hover {
       background-color: #1565c0;
     }
+
     #dark-toggle {
       margin-top: auto;
+      padding: 10px;
       background: #1565c0;
       border: none;
-      padding: 10px;
-      border-radius: 5px;
       color: white;
-      font-size: 1.1rem;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 1rem;
       transition: background-color 0.3s;
     }
+
     #dark-toggle:hover {
-      background-color: #0d47a1;
+      background: #0d47a1;
     }
 
     /* Main content */
     main {
       flex-grow: 1;
-      padding: 25px;
+      padding: 20px;
       overflow-y: auto;
     }
-    section.page {
+
+    section {
       display: none;
     }
-    section.page.active {
+
+    section.active {
       display: block;
     }
+
     h2 {
       margin-bottom: 15px;
+      color: #1e88e5;
     }
 
     /* Video list */
-    #video-list > div {
+    #video-list div {
       margin-bottom: 20px;
     }
+
     iframe {
       border-radius: 8px;
       width: 100%;
       max-width: 560px;
       height: 315px;
+      border: none;
     }
 
     /* Dark mode */
     body.dark-mode {
-      background-color: #121212;
+      background: #121212;
       color: #eee;
     }
+
     body.dark-mode .sidebar {
-      background-color: #0d47a1;
+      background: #283593;
       color: #bbdefb;
     }
+
     body.dark-mode .sidebar nav ul li a {
       color: #bbdefb;
     }
+
     body.dark-mode .sidebar nav ul li a.active,
     body.dark-mode .sidebar nav ul li a:hover {
       background-color: #5c6bc0;
     }
+
     body.dark-mode #dark-toggle {
-      background-color: #3949ab;
+      background: #3949ab;
       color: #eee;
     }
+
     body.dark-mode #dark-toggle:hover {
-      background-color: #283593;
+      background: #5c6bc0;
+    }
+
+    body.dark-mode h2 {
+      color: #90caf9;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .sidebar h1 {
+        flex-shrink: 0;
+        margin-right: 20px;
+      }
+      .sidebar nav ul {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 0;
+      }
+      .sidebar nav ul li {
+        margin-bottom: 0;
+      }
+      main {
+        padding: 10px;
+      }
+      iframe {
+        max-width: 100%;
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -144,75 +202,81 @@
 
     <section id="players" class="page">
       <h2>Players</h2>
-      <p>Coming soon...</p>
+      <ul id="player-list" style="list-style:none; padding-left:0;"></ul>
+      <div id="player-bio" style="margin-top:15px; max-width:600px;"></div>
     </section>
 
     <section id="workouts" class="page">
       <h2>Workouts</h2>
-      <p>Coming soon...</p>
+      <p>Workouts content coming soon!</p>
     </section>
 
     <section id="feedback" class="page">
       <h2>Feedback</h2>
-      <p>Coming soon...</p>
+      <p>Feedback form coming soon!</p>
     </section>
   </main>
 
   <script>
-    // Navigation links switch sections
+    // Handle sidebar nav switching
     const navLinks = document.querySelectorAll('.nav-link');
-    const pages = document.querySelectorAll('section.page');
-
+    const sections = document.querySelectorAll('main .page');
     navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', e => {
         e.preventDefault();
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        const target = link.getAttribute('href').substring(1);
-        pages.forEach(page => {
-          page.classList.toggle('active', page.id === target);
-        });
+        const targetId = link.getAttribute('href').substring(1);
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(targetId).classList.add('active');
       });
     });
 
-    // Video Data: 10 videos per level
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+
+    // Videos data - 10 per level (working YouTube embed URLs)
     const videos = {
       beginner: [
         { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
         { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
         { title: "Basic Serve Technique", url: "https://www.youtube.com/embed/5NXYlDbWy58" },
-        { title: "Backhand Basics", url: "https://www.youtube.com/embed/7lVe9aUV-Lk" },
-        { title: "Clear Shot Tutorial", url: "https://www.youtube.com/embed/CLf4j1M9f0o" },
-        { title: "Net Play for Beginners", url: "https://www.youtube.com/embed/yq9hzFGHCkE" },
-        { title: "Basic Smash", url: "https://www.youtube.com/embed/dF6KWuzPTE4" },
-        { title: "Footwork Ladder Drill", url: "https://www.youtube.com/embed/ejkJUG3q3Y8" },
-        { title: "Defense Fundamentals", url: "https://www.youtube.com/embed/OnWyX7iqzLo" },
-        { title: "Beginner Match Highlights", url: "https://www.youtube.com/embed/Ei5PYAPuqvg" }
+        { title: "Backhand Basics", url: "https://www.youtube.com/embed/lbR7KwO6QGM" },
+        { title: "Clear Shot Tutorial", url: "https://www.youtube.com/embed/sS6F0iz1A50" },
+        { title: "Net Play Fundamentals", url: "https://www.youtube.com/embed/FOgmTwYO3gk" },
+        { title: "Simple Smash Technique", url: "https://www.youtube.com/embed/7FzVrXoNuZ8" },
+        { title: "Basic Defense Tips", url: "https://www.youtube.com/embed/N7bRJuHyf1Q" },
+        { title: "Footwork Patterns", url: "https://www.youtube.com/embed/WPddBxjQH1g" },
+        { title: "Basic Match Play", url: "https://www.youtube.com/embed/kM8Fiw-6fco" }
       ],
       intermediate: [
         { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
         { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
         { title: "Advanced Footwork", url: "https://www.youtube.com/embed/3T3hQZ9WLOQ" },
-        { title: "Backhand Smash", url: "https://www.youtube.com/embed/f7tR4KzFtFQ" },
-        { title: "Attacking Net Play", url: "https://www.youtube.com/embed/BMxSU1TfTSo" },
-        { title: "Counter Attacks", url: "https://www.youtube.com/embed/z50rmF1MfLs" },
-        { title: "Mid-Court Drives", url: "https://www.youtube.com/embed/T-xKyTaH5v8" },
-        { title: "Footwork & Recovery", url: "https://www.youtube.com/embed/QTx-u-7sHqM" },
-        { title: "Smash Variation Drills", url: "https://www.youtube.com/embed/RH37mRkzbsw" },
-        { title: "Intermediate Match Play", url: "https://www.youtube.com/embed/Tq5loQhF6E8" }
+        { title: "Slice Smash Tutorial", url: "https://www.youtube.com/embed/TrwTn8mFYnM" },
+        { title: "Backcourt Play Tips", url: "https://www.youtube.com/embed/xzFUXy_JHec" },
+        { title: "Counter Attacks", url: "https://www.youtube.com/embed/q6ROsJdrLhE" },
+        { title: "Net Kill Techniques", url: "https://www.youtube.com/embed/Th8V8KhYkks" },
+        { title: "Clearing Under Pressure", url: "https://www.youtube.com/embed/Lqmn6c-Ys-4" },
+        { title: "Midcourt Play Strategies", url: "https://www.youtube.com/embed/q2XU0p_3vl0" },
+        { title: "Positional Awareness", url: "https://www.youtube.com/embed/GW3XphOHXr8" }
       ],
       advanced: [
         { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
         { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
         { title: "Speed & Agility", url: "https://www.youtube.com/embed/W8US-YFmu8c" },
-        { title: "Advanced Smashing", url: "https://www.youtube.com/embed/PAcqHlRQ9Zk" },
-        { title: "Net Kill Techniques", url: "https://www.youtube.com/embed/ExWZd5H0r6E" },
-        { title: "High-Speed Footwork", url: "https://www.youtube.com/embed/4u4mwM7C0qo" },
-        { title: "Match Analysis", url: "https://www.youtube.com/embed/17nq9w73I2g" },
-        { title: "Tournament Highlights", url: "https://www.youtube.com/embed/TZ21WPEWbmk" },
-        { title: "Professional Training", url: "https://www.youtube.com/embed/EcQo10cI8jA" },
-        { title: "Championship Play", url: "https://www.youtube.com/embed/CSd4t-9sBWg" }
+        { title: "Advanced Smash Variations", url: "https://www.youtube.com/embed/3L6kZpnPiBo" },
+        { title: "Reading Opponents", url: "https://www.youtube.com/embed/9EyfLt6no-4" },
+        { title: "Match Analysis Techniques", url: "https://www.youtube.com/embed/4y2lfPplmzI" },
+        { title: "Power Play Strategies", url: "https://www.youtube.com/embed/ijK8tiyIb_0" },
+        { title: "Endurance Training", url: "https://www.youtube.com/embed/9HJxFfAhy6Q" },
+        { title: "Shot Placement Precision", url: "https://www.youtube.com/embed/LsK7OZ5MYSE" },
+        { title: "Tournament Preparation", url: "https://www.youtube.com/embed/VcyKQL8P06o" }
       ]
     };
 
@@ -222,34 +286,80 @@
     function loadVideos(level) {
       videoList.innerHTML = '';
       if (!videos[level]) return;
-
       videos[level].forEach(video => {
         const div = document.createElement('div');
-        div.innerHTML = `
-          <h3>${video.title}</h3>
-          <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
-        `;
+        div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
         videoList.appendChild(div);
       });
     }
+
+    loadVideos(levelSelect.value);
 
     levelSelect.addEventListener('change', () => {
       loadVideos(levelSelect.value);
     });
 
-    // Initial load
-    loadVideos(levelSelect.value);
-
-    // Dark mode toggle
-    const darkToggle = document.getElementById('dark-toggle');
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if (document.body.classList.contains('dark-mode')) {
-        darkToggle.textContent = '☀️ Light Mode';
-      } else {
-        darkToggle.textContent = '🌙 Dark Mode';
+    // Players data with 5 players including Lee Zii Jia and Momota
+    const players = [
+      {
+        name: "Lin Dan",
+        bio: "Two-time Olympic champion and one of the greatest badminton players of all time.",
+        signatureShots: ["Powerful Smash", "Fast Drop Shot", "Deceptive Net Play"]
+      },
+      {
+        name: "Carolina Marin",
+        bio: "Olympic gold medalist known for her aggressive playing style and speed.",
+        signatureShots: ["Fast Drive", "Crosscourt Smash", "Net Kill"]
+      },
+      {
+        name: "Viktor Axelsen",
+        bio: "World Champion known for his tall stature and strong overhead shots.",
+        signatureShots: ["Heavy Smash", "Clear Shot", "Net Shot"]
+      },
+      {
+        name: "Lee Zii Jia",
+        bio: "Top Malaysian player known for his explosive power and agility.",
+        signatureShots: ["Smash Power", "Quick Net Play", "Fast Footwork"]
+      },
+      {
+        name: "Kento Momota",
+        bio: "Japanese star famous for his defensive skills and consistency.",
+        signatureShots: ["Precision Drops", "Strong Defense", "Accurate Clears"]
       }
+    ];
+
+    const playerList = document.getElementById('player-list');
+    const playerBio = document.getElementById('player-bio');
+
+    players.forEach((player, index) => {
+      const li = document.createElement('li');
+      li.textContent = player.name;
+      li.style.cursor = "pointer";
+      li.style.padding = "8px";
+      li.style.borderBottom = "1px solid #ccc";
+
+      li.addEventListener('click', () => {
+        // Remove active highlight
+        [...playerList.children].forEach(child => child.style.backgroundColor = '');
+        li.style.backgroundColor = '#1e88e5';
+        li.style.color = 'white';
+
+        // Show player bio
+        playerBio.innerHTML = `
+          <h3>${player.name}</h3>
+          <p>${player.bio}</p>
+          <h4>Signature Shots:</h4>
+          <ul>
+            ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
+          </ul>
+        `;
+      });
+
+      playerList.appendChild(li);
     });
+
+    // Select first player by default
+    playerList.children[0].click();
   </script>
 </body>
 </html>
