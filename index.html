@@ -3,83 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BadmintonPocket Test</title>
-  <style>
-    .section { display: none; }
-    .section.active { display: block; }
-    button.active { background-color: #1565c0; color: white; }
-    #video-list div { margin-bottom: 15px; }
-  </style>
+  <title>BadmintonPocket</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav>
-    <button class="nav-btn active" data-target="sec1">Section 1</button>
-    <button class="nav-btn" data-target="sec2">Section 2 (Videos)</button>
-    <button class="nav-btn" data-target="sec3">Section 3</button>
+    <button class="nav-btn active" data-target="training">Training Videos</button>
+    <button class="nav-btn" data-target="players">Players</button>
+    <button class="nav-btn" data-target="workouts">Workouts</button>
+    <button class="nav-btn" data-target="feedback">Feedback</button>
   </nav>
 
-  <div id="sec1" class="section active">
-    <p>This is Section 1</p>
-  </div>
+  <main>
+    <section id="training" class="section active">
+      <label for="level-select">Select Skill Level:</label>
+      <select id="level-select" aria-label="Select skill level">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="video-list"></div>
+    </section>
 
-  <div id="sec2" class="section">
-    <label for="level-select">Select Skill Level:</label>
-    <select id="level-select">
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
-    </select>
-    <div id="video-list"></div>
-  </div>
+    <section id="players" class="section">
+      <h2>Players</h2>
+      <ul id="player-list" tabindex="0" aria-label="List of players"></ul>
+      <div id="player-bio" tabindex="0">Select a player to see details.</div>
+    </section>
 
-  <div id="sec3" class="section">
-    <p>This is Section 3</p>
-  </div>
+    <section id="workouts" class="section">
+      <h2>Workouts</h2>
+      <p>Coming soon!</p>
+    </section>
 
-  <script>
-    // Tab switching logic
-    document.querySelectorAll('button.nav-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('button.nav-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        button.classList.add('active');
-        const target = button.getAttribute('data-target');
-        document.getElementById(target).classList.add('active');
-      });
-    });
+    <section id="feedback" class="section">
+      <h2>Feedback</h2>
+      <p>Coming soon!</p>
+    </section>
+  </main>
 
-    // Video data
-    const videos = {
-      beginner: [
-        { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
-        { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
-      ],
-      intermediate: [
-        { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" }
-      ],
-      advanced: [
-        { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" }
-      ]
-    };
-
-    const videoList = document.getElementById('video-list');
-    const levelSelect = document.getElementById('level-select');
-
-    function loadVideos(level) {
-      videoList.innerHTML = '';
-      if (!videos[level]) return;
-      videos[level].forEach(video => {
-        const div = document.createElement('div');
-        div.innerHTML = `<h3>${video.title}</h3><iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>`;
-        videoList.appendChild(div);
-      });
-    }
-
-    loadVideos(levelSelect.value);
-
-    levelSelect.addEventListener('change', () => {
-      loadVideos(levelSelect.value);
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
