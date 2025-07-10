@@ -1,115 +1,53 @@
-/* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BadmintonPocket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <ul>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#players">Players</a></li>
+        <li><a href="#workouts">Workouts</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+      </ul>
+    </nav>
+  </div>
 
-/* Body */
-body {
-  background-color: #f5f7fa;
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-}
+  <div class="main-content">
+    <main>
+      <section id="training">
+        <h2>Training Videos</h2>
+        <select id="level-select">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <div id="video-list"></div>
+      </section>
 
-/* Sidebar */
-.sidebar {
-  background-color: #1e88e5;
-  color: white;
-  width: 250px;
-  min-height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 20px;
-}
+      <section id="players" style="display:none;">
+        <h2>Players Info</h2>
+        <p>Coming soon...</p>
+      </section>
 
-.sidebar h1 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
+      <section id="workouts" style="display:none;">
+        <h2>Workouts</h2>
+        <p>Coming soon...</p>
+      </section>
 
-.sidebar nav ul {
-  list-style: none;
-}
+      <section id="feedback" style="display:none;">
+        <h2>Feedback</h2>
+        <p>Coming soon...</p>
+      </section>
+    </main>
+  </div>
 
-.sidebar nav ul li {
-  margin: 15px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-.sidebar nav ul li:hover,
-.sidebar nav ul li.active {
-  background-color: #1565c0;
-}
-
-/* Main content */
-.main-content {
-  margin-left: 260px;
-  padding: 30px;
-  flex: 1;
-}
-
-/* Header */
-header {
-  margin-bottom: 20px;
-}
-
-header h2 {
-  font-weight: 700;
-  color: #1e88e5;
-}
-
-/* Section styling */
-section {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(30, 136, 229, 0.2);
-}
-
-/* Buttons */
-button {
-  background-color: #1e88e5;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #1565c0;
-}
-
-/* Dark Mode */
-body.dark-mode {
-  background-color: #121212;
-  color: #eee;
-}
-
-body.dark-mode .sidebar {
-  background-color: #0d47a1;
-}
-
-body.dark-mode section {
-  background-color: #1e1e1e;
-  box-shadow: none;
-}
-
-body.dark-mode button {
-  background-color: #0d47a1;
-}
-
-body.dark-mode button:hover {
-  background-color: #08306b;
-}
+  <script src="app.js"></script>
+</body>
+</html>
