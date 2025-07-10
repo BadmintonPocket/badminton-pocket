@@ -1,53 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BadmintonPocket</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="sidebar">
-    <h1>🏸 BadmintonPocket</h1>
-    <nav>
-      <ul>
-        <li><a href="#training">Training</a></li>
-        <li><a href="#players">Players</a></li>
-        <li><a href="#workouts">Workouts</a></li>
-        <li><a href="#feedback">Feedback</a></li>
-      </ul>
-    </nav>
-  </div>
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  <div class="main-content">
-    <main>
-      <section id="training">
-        <h2>Training Videos</h2>
-        <select id="level-select">
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-        <div id="video-list"></div>
-      </section>
+/* Body & Layout */
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  font-size: 16px;
+  line-height: 1.5;
+}
 
-      <section id="players" style="display:none;">
-        <h2>Players Info</h2>
-        <p>Coming soon...</p>
-      </section>
+/* Sidebar */
+.sidebar {
+  background-color: #1e88e5;
+  color: white;
+  width: 260px;
+  min-height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
 
-      <section id="workouts" style="display:none;">
-        <h2>Workouts</h2>
-        <p>Coming soon...</p>
-      </section>
+.sidebar h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
-      <section id="feedback" style="display:none;">
-        <h2>Feedback</h2>
-        <p>Coming soon...</p>
-      </section>
-    </main>
-  </div>
+.sidebar nav ul {
+  list-style: none;
+}
 
-  <script src="app.js"></script>
-</body>
-</html>
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background-color: #1565c0;
+}
+
+/* Main content */
+.main-content {
+  margin-left: 260px;
+  padding: 30px 40px;
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Section styling */
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.2);
+  margin-bottom: 40px;
+}
+
+/* Headers */
+h2 {
+  margin-bottom: 20px;
+  color: #1e88e5;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* Player profiles */
+.player-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.player-profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.player-profile h3 {
+  margin-bottom
