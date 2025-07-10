@@ -1,4 +1,4 @@
-/* Reset & base */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +6,14 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Layout */
 body {
+  display: flex;
+  min-height: 100vh;
   background-color: #f5f7fa;
   color: #333;
-  min-height: 100vh;
-  display: flex;
   font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar {
@@ -25,17 +27,16 @@ body {
   left: 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebar h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .sidebar nav ul {
   list-style: none;
-  flex-grow: 1;
 }
 
 .sidebar nav ul li {
@@ -49,150 +50,160 @@ body {
   display: block;
   border-radius: 6px;
   transition: background-color 0.3s ease;
-  font-weight: 600;
 }
 
-.sidebar nav ul li a.active,
-.sidebar nav ul li a:hover {
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
   background-color: #1565c0;
 }
 
-#darkModeToggle {
-  margin-top: 10px;
-  padding: 10px 15px;
-  font-size: 1rem;
+#dark-mode-toggle {
+  background-color: #1565c0;
   border: none;
-  background-color: #1565c0;
-  color: white;
-  cursor: pointer;
+  padding: 10px;
   border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
   transition: background-color 0.3s ease;
+  margin-top: auto;
 }
 
-#darkModeToggle:hover {
-  background-color: #0d3a7d;
+#dark-mode-toggle:hover {
+  background-color: #0d47a1;
 }
 
 .main-content {
   margin-left: 260px;
   padding: 30px;
   flex: 1;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
-h2 {
-  margin-bottom: 15px;
-}
-
-section {
+main section {
   background: white;
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 2px 6px rgba(30, 136, 229, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(30, 136, 229, 0.2);
   margin-bottom: 20px;
 }
 
-/* Player cards */
-.player-cards {
-  display: flex;
-  flex-wrap: wrap;
+/* Video List */
+.video-list {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
 
-.player-card {
-  background-color: #e3f2fd;
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(30, 136, 229, 0.3);
-  transition: transform 0.2s ease;
+.video-item h3 {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
 }
 
-.player-card:hover {
-  transform: scale(1.05);
-}
-
-.player-card h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #1565c0;
-}
-
-/* Signature moves list */
-#player-moves {
-  list-style: disc inside;
-  margin-bottom: 15px;
-}
-
-#player-videos iframe {
-  margin: 10px 10px 0 0;
-  border-radius: 10px;
-}
-
-/* Training videos */
-#training-videos .video-item {
-  margin-top: 15px;
-}
-
-#training-videos iframe {
-  border-radius: 10px;
-}
-
-/* Matches list */
-#matches-list {
+/* Player List */
+.player-list {
   list-style: none;
+  max-width: 300px;
 }
 
-#matches-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Feedback form */
-#feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 500px;
-}
-
-#feedback-text {
-  resize: vertical;
+.player-list li {
   padding: 10px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  min-height: 100px;
-}
-
-#feedback-form button {
-  align-self: flex-start;
-  background-color: #1e88e5;
-  border: none;
-  color: white;
-  padding: 10px 25px;
-  font-size: 1rem;
+  background-color: #e3f2fd;
+  margin-bottom: 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-#feedback-form button:hover {
+.player-list li:hover,
+.player-list li.active {
+  background-color: #90caf9;
+}
+
+.player-bio {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #bbdefb;
+  border-radius: 6px;
+  max-width: 600px;
+}
+
+/* Buttons */
+button,
+select {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover,
+select:hover {
   background-color: #1565c0;
 }
 
-/* Footer */
-footer {
-  margin-top: 40px;
-  font-weight: 700;
-  text-align: center;
-  font-size: 1.1rem;
+button.danger {
+  background-color: #e53935;
 }
 
-/* Dark mode */
+button.danger:hover {
+  background-color: #b71c1c;
+}
+
+/* Streak Counter */
+#streak-counter {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+  .sidebar h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+  .sidebar nav ul {
+    display: flex;
+    gap: 15px;
+  }
+  .sidebar nav ul li {
+    margin: 0;
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+  main section {
+    margin-bottom: 15px;
+  }
+}
+
+/* Dark Mode */
 body.dark-mode {
   background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode main section {
+  background-color: #1e1e1e;
+  box-shadow: none;
   color: #eee;
 }
 
@@ -200,49 +211,35 @@ body.dark-mode .sidebar {
   background-color: #0d47a1;
 }
 
-body.dark-mode section {
-  background-color: #1e1e1e;
-  box-shadow: none;
+body.dark-mode .sidebar nav ul li a,
+body.dark-mode .sidebar nav ul li a:hover,
+body.dark-mode .sidebar nav ul li a.active {
+  color: #bbdefb;
+  background-color: transparent;
 }
 
-body.dark-mode .player-card {
+body.dark-mode button,
+body.dark-mode select,
+body.dark-mode #dark-mode-toggle {
   background-color: #0d47a1;
-  color: white;
-  box-shadow: none;
+  color: #bbdefb;
 }
 
-body.dark-mode #feedback-text {
-  background-color: #333;
-  border-color: #555;
-  color: white;
-}
-
-body.dark-mode #feedback-form button,
-body.dark-mode #darkModeToggle {
-  background-color: #0d47a1;
-}
-
-body.dark-mode #feedback-form button:hover,
-body.dark-mode #darkModeToggle:hover {
+body.dark-mode button:hover,
+body.dark-mode select:hover,
+body.dark-mode #dark-mode-toggle:hover {
   background-color: #08306b;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px 0;
-  }
-  .main-content {
-    margin-left: 0;
-    padding: 15px;
-  }
-  .player-cards {
-    justify-content: center;
-  }
+body.dark-mode .player-list li {
+  background-color: #283593;
+}
+
+body.dark-mode .player-list li:hover,
+body.dark-mode .player-list li.active {
+  background-color: #5c6bc0;
+}
+
+body.dark-mode .player-bio {
+  background-color: #3949ab;
 }
