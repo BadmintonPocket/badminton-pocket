@@ -34,3 +34,44 @@
   </script>
 </body>
 </html>
+<select id="level-select">
+  <option value="beginner">Beginner</option>
+  <option value="intermediate">Intermediate</option>
+  <option value="advanced">Advanced</option>
+</select>
+
+<div id="video-list"></div>
+
+<script>
+  const videos = {
+    beginner: [
+      { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+      { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" }
+    ],
+    intermediate: [
+      { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" }
+    ],
+    advanced: [
+      { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" }
+    ]
+  };
+
+  const videoList = document.getElementById('video-list');
+  const levelSelect = document.getElementById('level-select');
+
+  function loadVideos(level) {
+    videoList.innerHTML = '';
+    if (!videos[level]) return;
+    videos[level].forEach(video => {
+      const div = document.createElement('div');
+      div.innerHTML = `<h3>${video.title}</h3><iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>`;
+      videoList.appendChild(div);
+    });
+  }
+
+  loadVideos(levelSelect.value);
+
+  levelSelect.addEventListener('change', () => {
+    loadVideos(levelSelect.value);
+  });
+</script>
