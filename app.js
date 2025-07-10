@@ -1,24 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Navigation links
-  const navLinks = document.querySelectorAll('.sidebar nav ul li a');
-  const sections = document.querySelectorAll('.main-content .section');
+  console.log('DOM fully loaded and parsed');
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
+  const navButtons = document.querySelectorAll('nav button.nav-btn');
+  const sections = document.querySelectorAll('main .section');
 
-      // Remove active class on all links and hide all sections
-      navLinks.forEach(nav => nav.classList.remove('active'));
+  navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      console.log(`Clicked button: ${button.textContent}`);
+
+      // Remove active from all buttons
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      // Hide all sections
       sections.forEach(section => section.classList.remove('active'));
 
-      // Activate clicked link and show matching section
-      link.classList.add('active');
-      const targetId = link.getAttribute('data-target');
-      document.getElementById(targetId).classList.add('active');
+      // Activate clicked button & matching section
+      button.classList.add('active');
+      const targetId = button.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      if(targetSection) {
+        targetSection.classList.add('active');
+      } else {
+        console.error(`No section with id '${targetId}' found!`);
+      }
     });
   });
 
-  // Training videos data
+  // Video data
   const videos = {
     beginner: [
       { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
@@ -37,30 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-  // Elements
   const videoList = document.getElementById('video-list');
   const levelSelect = document.getElementById('level-select');
 
-  // Load videos by skill level
   function loadVideos(level) {
+    console.log(`Loading videos for level: ${level}`);
     videoList.innerHTML = '';
-    if (!videos[level]) return;
+    if (!videos[level]) {
+      console.warn(`No videos found for level: ${level}`);
+      return;
+    }
 
     videos[level].forEach(video => {
       const videoDiv = document.createElement('div');
       videoDiv.innerHTML = `
         <h3>${video.title}</h3>
-        <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
+        <iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>
       `;
       videoList.appendChild(videoDiv);
     });
   }
 
-  // Initial video load
   loadVideos(levelSelect.value);
 
-  // Change videos on select change
-  levelSelect.addEventListener('change', e => {
+  levelSelect.addEventListener('change', (e) => {
     loadVideos(e.target.value);
   });
 
@@ -83,25 +90,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // Player list and bio elements
   const playerList = document.getElementById('player-list');
   const playerBio = document.getElementById('player-bio');
 
-  // Generate player list items
-  players.forEach((player, index) => {
+  players.forEach((player, i) => {
     const li = document.createElement('li');
     li.textContent = player.name;
-    li.tabIndex = 0; // keyboard accessible
-    li.addEventListener('click', () => showPlayer(index));
+    li.tabIndex = 0; // keyboard focusable
+    li.addEventListener('click', () => showPlayer(i));
     li.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') showPlayer(index);
+      if (e.key === 'Enter') showPlayer(i);
     });
     playerList.appendChild(li);
   });
 
-  // Show player bio and shots
   function showPlayer(index) {
-    // Remove active from all player items
     [...playerList.children].forEach(li => li.classList.remove('active'));
     playerList.children[index].classList.add('active');
 
@@ -109,4 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
     playerBio.innerHTML = `
       <h3>${player.name}</h3>
       <p>${player.bio}</p>
-      <h4>Signature Shots
+      <h4>Signature Shots:</h4>
+      <ul>
+        ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
+      </ul>
+    `;
+  }
+
+  // Dark mode toggle
+  const darkModeBtn = document.getElementById('dark-mode-toggle');
+  darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    darkModeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+});
