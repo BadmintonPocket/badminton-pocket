@@ -14,69 +14,47 @@
         <li><a href="#training" class="active">Training</a></li>
         <li><a href="#players">Players</a></li>
         <li><a href="#workouts">Workouts</a></li>
-        <li><a href="#matches">Matches</a></li>
         <li><a href="#feedback">Feedback</a></li>
       </ul>
     </nav>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
+    <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
   </div>
 
   <div class="main-content">
     <main>
-      <!-- Training Section -->
       <section id="training">
-        <h2>Training Plans</h2>
-        <label for="training-level">Select your level:</label>
-        <select id="training-level">
+        <h2>Training Videos</h2>
+        <label for="level-select">Select Skill Level:</label>
+        <select id="level-select" aria-label="Skill level selector">
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
           <option value="advanced">Advanced</option>
         </select>
-        <div id="training-videos"></div>
+        <div id="video-list" class="video-list"></div>
+        <div id="streak-counter">Current Streak: <span id="streak-count">0</span> days</div>
+        <button id="increment-streak">Watch Video (Increment Streak)</button>
+        <button id="reset-streak" class="danger">Reset Streak</button>
       </section>
 
-      <!-- Players Section -->
       <section id="players" style="display:none;">
         <h2>Players</h2>
-        <div id="players-list" class="player-cards"></div>
-
-        <div id="player-detail" style="display:none;">
-          <button id="backToPlayers">&larr; Back to Players</button>
-          <h3 id="player-name"></h3>
-          <p id="player-bio"></p>
-          <h4>Signature Moves:</h4>
-          <ul id="player-moves"></ul>
-          <div id="player-videos"></div>
+        <ul id="player-list" class="player-list" aria-label="List of players">
+          <!-- Player names will be loaded here -->
+        </ul>
+        <div id="player-bio" class="player-bio" aria-live="polite">
+          <p>Select a player to see their bio and signature moves.</p>
         </div>
       </section>
 
-      <!-- Workouts Section -->
       <section id="workouts" style="display:none;">
         <h2>Workouts</h2>
-        <p>Personalized workouts coming soon!</p>
+        <p>Coming soon! Get ready for badminton-specific workouts and drills.</p>
       </section>
 
-      <!-- Matches Section -->
-      <section id="matches" style="display:none;">
-        <h2>Upcoming Matches</h2>
-        <ul id="matches-list"></ul>
-      </section>
-
-      <!-- Feedback Section -->
       <section id="feedback" style="display:none;">
         <h2>Feedback</h2>
-        <p>We’d love to hear from you!</p>
-        <form id="feedback-form">
-          <textarea id="feedback-text" rows="5" placeholder="Your feedback..."></textarea>
-          <button type="submit">Submit</button>
-        </form>
-        <p id="feedback-msg"></p>
+        <p>Coming soon! Provide feedback to improve BadmintonPocket.</p>
       </section>
-
-      <!-- Streak Counter -->
-      <footer>
-        <p>🔥 Your current streak: <span id="streak-count">0</span> days</p>
-      </footer>
     </main>
   </div>
 
