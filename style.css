@@ -1,70 +1,89 @@
+/* DARK as default */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #222;
+  color: #eee;
+  transition: background .3s, color .3s;
+}
+.dark-mode {
   background: #f7f7f7;
   color: #222;
-  transition: background 0.3s, color 0.3s;
-}
-
-.dark-mode {
-  background: #111;
-  color: #eee;
 }
 
 .sidebar {
-  width: 240px;
-  padding: 20px;
-  background: #333;
-  color: white;
   position: fixed;
+  top: 0; left: 0;
+  width: 240px;
   height: 100%;
+  background: #111;
+  padding: 20px;
+  box-sizing: border-box;
 }
-
 .sidebar h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
 }
-
 .sidebar ul {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
-
 .sidebar li {
-  margin: 10px 0;
+  margin: 0.5rem 0;
 }
-
 .sidebar a {
+  color: #ccc;
   text-decoration: none;
-  color: white;
 }
-
+.sidebar a.active,
+.sidebar a:hover {
+  color: #fff;
+}
 .sidebar button {
-  margin-top: 20px;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
   background: none;
-  color: white;
-  border: 1px solid white;
-  padding: 6px 12px;
+  border: 1px solid #eee;
+  color: #eee;
   cursor: pointer;
 }
 
 main {
   margin-left: 260px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .page {
   display: none;
 }
-
 .page.active {
   display: block;
 }
 
+#video-list > div {
+  margin-bottom: 2rem;
+}
+#video-list h3 {
+  margin: 0 0 0.5rem;
+}
 iframe {
   width: 100%;
-  max-width: 500px;
-  height: 280px;
-  margin-bottom: 20px;
+  max-width: 560px;
+  height: 315px;
   border: none;
+}
+
+.player-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #333;
+  border-radius: 6px;
+}
+.player-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
 }
