@@ -7,20 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sidebar">
+  <header>
     <h1>🏸 BadmintonPocket</h1>
     <nav>
-      <ul>
-        <li><a href="#" data-target="training" class="active">Training</a></li>
-        <li><a href="#" data-target="players">Players</a></li>
-        <li><a href="#" data-target="workouts">Workouts</a></li>
-        <li><a href="#" data-target="feedback">Feedback</a></li>
-      </ul>
+      <button class="nav-btn active" data-target="training">Training</button>
+      <button class="nav-btn" data-target="players">Players</button>
+      <button class="nav-btn" data-target="workouts">Workouts</button>
+      <button class="nav-btn" data-target="feedback">Feedback</button>
       <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
     </nav>
-  </div>
+  </header>
 
-  <div class="main-content">
+  <main>
     <section id="training" class="section active">
       <h2>Training Videos</h2>
       <label for="level-select">Select Skill Level:</label>
@@ -47,7 +45,7 @@
       <h2>Feedback</h2>
       <p>Coming soon!</p>
     </section>
-  </div>
+  </main>
 
   <script src="app.js"></script>
 </body>
