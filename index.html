@@ -50,4 +50,55 @@
 
   <script src="app.js"></script>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BadmintonPocket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <button class="nav-btn active" data-target="training">Training</button>
+      <button class="nav-btn" data-target="players">Players</button>
+      <button class="nav-btn" data-target="workouts">Workouts</button>
+      <button class="nav-btn" data-target="feedback">Feedback</button>
+      <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="training" class="section active">
+      <h2>Training Videos</h2>
+      <label for="level-select">Select Skill Level:</label>
+      <select id="level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="video-list"></div>
+    </section>
+
+    <section id="players" class="section">
+      <h2>Players</h2>
+      <ul id="player-list"></ul>
+      <div id="player-bio">Select a player to see details.</div>
+    </section>
+
+    <section id="workouts" class="section">
+      <h2>Workouts</h2>
+      <p>Coming soon!</p>
+    </section>
+
+    <section id="feedback" class="section">
+      <h2>Feedback</h2>
+      <p>Coming soon!</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
 </html>
