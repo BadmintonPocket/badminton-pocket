@@ -106,19 +106,20 @@ const videos = {
     { title: "Raising Happy Badminton Kids", url: "https://www.youtube.com/embed/bqCpufQ-AXI" },
     { title: "Lin Dan’s Secret Strategy Explained", url: "https://www.youtube.com/embed/IlHI0q-UCMc" }
   ],
-footwork: [
-  { title: "Lin Dan’s Legendary Footwork", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" },
-  { title: "Smooth Footwork – Lin Dan Analysis", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-  { title: "Footwork Must-Have Skills", url: "https://www.youtube.com/embed/9QPPvSdNj9w" },
-  { title: "Kento Momota Transitional Step", url: "https://www.youtube.com/embed/osptHe5dyPM" },
-  { title: "8 Steps to Make You Faster", url: "https://www.youtube.com/embed/0E6mm6PgeY4" }
-]
-strategy: [
-  { title: "Deceptions You Should Practice – Lee Zii Jia", url: "https://www.youtube.com/embed/z5L7SWuj860" },
-  { title: "Control Your Opponent – Badminton Tactics", url: "https://www.youtube.com/embed/MrvYbLAnecY" },
-  { title: "Badminton Consistency – Key Concepts", url: "https://www.youtube.com/embed/K88F95osw0I" },
-  { title: "Singles Playstyles Breakdown", url: "https://www.youtube.com/embed/9_zISjHJq2E" },
-  { title: "Lin Dan's Strategic Insights", url: "https://www.youtube.com/embed/IlHI0q-UCMc" },
-  { title: "Fix Your Heavy-Handed Swing", url: "https://www.youtube.com/embed/EdCmk9BFsXQ" },
-  { title: "Tournament Mindset Preparation", url: "https://www.youtube.com/embed/R0rsw3mRTOA" }
-]
+  footwork: [
+    { title: "Lin Dan’s Legendary Footwork", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" },
+    { title: "Smooth Footwork – Lin Dan Analysis", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
+    { title: "Footwork Must-Have Skills", url: "https://www.youtube.com/embed/9QPPvSdNj9w" },
+    { title: "Kento Momota Transitional Step", url: "https://www.youtube.com/embed/osptHe5dyPM" },
+    { title: "8 Steps to Make You Faster", url: "https://www.youtube.com/embed/0E6mm6PgeY4" }
+  ],
+  strategy: [
+    { title: "Deceptions You Should Practice – Lee Zii Jia", url: "https://www.youtube.com/embed/z5L7SWuj860" },
+    { title: "Control Your Opponent – Badminton Tactics", url: "https://www.youtube.com/embed/MrvYbLAnecY" },
+    { title: "Badminton Consistency – Key Concepts", url: "https://www.youtube.com/embed/K88F95osw0I" },
+    { title: "Singles Playstyles Breakdown", url: "https://www.youtube.com/embed/9_zISjHJq2E" },
+    { title: "Lin Dan's Strategic Insights", url: "https://www.youtube.com/embed/IlHI0q-UCMc" },
+    { title: "Fix Your Heavy-Handed Swing", url: "https://www.youtube.com/embed/EdCmk9BFsXQ" },
+    { title: "Tournament Mindset Preparation", url: "https://www.youtube.com/embed/R0rsw3mRTOA" }
+  ]
+};
