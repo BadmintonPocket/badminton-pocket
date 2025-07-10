@@ -26,56 +26,61 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach((section, i) => section.style.display = i === 0 ? 'block' : 'none');
     navLinks[0].classList.add('active');
   }
-});
 
-// Real badminton training videos (updated)
-const videos = {
-  beginner: [
-    { title: "Badminton Training for Beginners", url: "https://www.youtube.com/embed/D2QDyXXJtVc" },
-    { title: "Basic Badminton for Beginners", url: "https://www.youtube.com/embed/1UIhKZCPMYM" },
-    { title: "The Ultimate Footwork Tutorial for Beginners", url: "https://www.youtube.com/embed/NhNEEcLPjpc" },
-    { title: "Beginner, Intermediate, Advanced: Sweet Spot Challenge", url: "https://www.youtube.com/embed/bThPFpkmkIY" },
-    { title: "Basic Badminton for Beginners - Part 1 of 3", url: "https://www.youtube.com/embed/MsHMCZlcrXM" }
-  ],
-  intermediate: [
-    { title: "Badminton Training for Intermediate Players", url: "https://www.youtube.com/embed/yXJz0iAcZdE" },
-    { title: "Badminton Drills For Intermediate Players", url: "https://www.youtube.com/embed/flFsPfIVlRA" },
-    { title: "5 Common Mistakes Intermediate Badminton Players Make", url: "https://www.youtube.com/embed/XfNghQJ-zpA" },
-    { title: "EASILY MISSED Dos and Don'ts For Intermediate Badminton Players", url: "https://www.youtube.com/embed/-BBIYDt1LVc" },
-    { title: "Badminton Training - Intermediate Level", url: "https://www.youtube.com/embed/sdXWaMsYJck" }
-  ],
-  advanced: [
-    { title: "Badminton Training - Advanced Badminton Tips for Professionals", url: "https://www.youtube.com/embed/bSfNzZh1lHI" },
-    { title: "Copy these Advanced Badminton Training Drills to Improve", url: "https://www.youtube.com/embed/MBiTb0ZayE8" },
-    { title: "Advanced Badminton - How to Improve Speed for Badminton", url: "https://www.youtube.com/embed/sdXWaMsYJck" },
-    { title: "Weighted Vest Workout for Badminton", url: "https://www.youtube.com/embed/sdXWaMsYJck" },
-    { title: "Badminton - Single Defence From Beginner to Advanced", url: "https://www.youtube.com/embed/Wr2IDCBnKow" }
-  ]
-};
+  // Sample videos (real YouTube URLs)
+  const videos = {
+    beginner: [
+      { title: "Basic Grip & Stance", url: "https://www.youtube.com/embed/VcQ9b-1NOqA" },
+      { title: "Footwork Drills", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
+      { title: "Basic Clear Shot", url: "https://www.youtube.com/embed/Y_9GvJ1NQ5o" },
+      { title: "Net Play Basics", url: "https://www.youtube.com/embed/hDcWynvBxgo" },
+      { title: "Serve Techniques", url: "https://www.youtube.com/embed/jwObgnucKO8" }
+    ],
+    intermediate: [
+      { title: "Smash Techniques", url: "https://www.youtube.com/embed/8oXYlr_pH3o" },
+      { title: "Drop Shots & Net Play", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
+      { title: "Drive Shots", url: "https://www.youtube.com/embed/kkAoqM7tdKA" },
+      { title: "Footwork Patterns", url: "https://www.youtube.com/embed/1-9XQqF0aPM" },
+      { title: "Rally Strategies", url: "https://www.youtube.com/embed/ckmvzJlV0oc" }
+    ],
+    advanced: [
+      { title: "Deception Shots", url: "https://www.youtube.com/embed/2k0lvnkhAZg" },
+      { title: "Mental Toughness", url: "https://www.youtube.com/embed/Otq50FYBo2I" },
+      { title: "Advanced Smash Variations", url: "https://www.youtube.com/embed/hkjC7N11Zc8" },
+      { title: "Doubles Tactics", url: "https://www.youtube.com/embed/WLkOlmrdR8Q" },
+      { title: "Speed & Endurance Training", url: "https://www.youtube.com/embed/1KwYjP0idA4" }
+    ]
+  };
 
-function loadVideos(level) {
-  const container = document.getElementById('video-list');
-  container.innerHTML = '';
+  function loadVideos(level) {
+    const container = document.getElementById('video-list');
+    container.innerHTML = '';
 
-  if (!videos[level]) return;
+    if (!videos[level]) return;
 
-  videos[level].forEach(video => {
-    const videoElem = document.createElement('div');
-    videoElem.className = 'video-item';
-    videoElem.innerHTML = `
-      <h3>${video.title}</h3>
-      <iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>
-    `;
-    container.appendChild(videoElem);
+    videos[level].forEach(video => {
+      const videoElem = document.createElement('div');
+      videoElem.className = 'video-item';
+      videoElem.innerHTML = `
+        <h3>${video.title}</h3>
+        <iframe width="320" height="180" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+      `;
+      container.appendChild(videoElem);
+    });
+  }
+
+  // Event listener for level select dropdown
+  document.getElementById('level-select').addEventListener('change', e => {
+    loadVideos(e.target.value);
   });
-}
 
-// Event listener for level select dropdown
-document.getElementById('level-select').addEventListener('change', e => {
-  loadVideos(e.target.value);
-});
+  // Initial load of beginner videos
+  loadVideos('beginner');
 
-// Initial load
-document.addEventListener('DOMContentLoaded', () => {
-  loadVideos('beginner'); // default to beginner videos
+  // Feedback form handling
+  document.getElementById('feedback-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('form-response').textContent = "Thanks for your feedback!";
+    this.reset();
+  });
 });
