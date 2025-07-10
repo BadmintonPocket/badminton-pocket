@@ -1,77 +1,54 @@
-<script>
-  // Sidebar navigation
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('main .page');
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(link.getAttribute('href').substring(1)).classList.add('active');
-    });
-  });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🏸 BadmintonPocket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h1>🏸 BadmintonPocket</h1>
+    <nav>
+      <ul>
+        <li><a href="#training" class="nav-link active">Training</a></li>
+        <li><a href="#players" class="nav-link">Players</a></li>
+        <li><a href="#workouts" class="nav-link">Workouts</a></li>
+        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+      </ul>
+    </nav>
+    <button id="dark-toggle">🌙 Dark Mode</button>
+  </div>
 
-  // Dark mode toggle
-  const darkToggle = document.getElementById('dark-toggle');
-  darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
-  });
+  <main>
+    <section id="training" class="page active">
+      <h2>Training Videos</h2>
+      <label for="level-select">Choose Level:</label>
+      <select id="level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="video-list"></div>
+    </section>
 
-  // Videos
-  const videos = {
-    beginner: [
-      { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
-      { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-      { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" },
-      { title: "Basic Forehand Grip Tutorial", url: "https://www.youtube.com/embed/7mlBfn3yt8c" },
-      { title: "Footwork Basics for Beginners", url: "https://www.youtube.com/embed/ZjZ8PyBfEEk" },
-      { title: "Net Shots Tutorial", url: "https://www.youtube.com/embed/CtPiH-M2BzY" },
-      { title: "Backhand Basics", url: "https://www.youtube.com/embed/I-vD4vIUrrM" },
-      { title: "How to Hold a Racket", url: "https://www.youtube.com/embed/Nogz4U_KtHk" },
-      { title: "Clear Shot Basics", url: "https://www.youtube.com/embed/EaqMkXZlFrY" },
-      { title: "Intro to Badminton Rules", url: "https://www.youtube.com/embed/tj3aJrszxuE" }
-    ],
-    intermediate: [
-      { title: "Jump Smash Tutorial", url: "https://www.youtube.com/embed/hDo6GRDb6oM" },
-      { title: "Improve Badminton Stamina", url: "https://www.youtube.com/embed/FPXoW-hrKxg" },
-      { title: "Footwork Correction Drill", url: "https://www.youtube.com/embed/7cRW_KaU-e4" },
-      { title: "How to Do a Slice Drop Shot", url: "https://www.youtube.com/embed/6n5OqqdpY_M" },
-      { title: "Mastering Deception", url: "https://www.youtube.com/embed/x9dxpeJ6GvQ" },
-      { title: "Flick Serve for Doubles", url: "https://www.youtube.com/embed/EGPbGrVPUac" },
-      { title: "Smash Follow-Up Footwork", url: "https://www.youtube.com/embed/XZ-yUQCLodE" },
-      { title: "Backhand Clear Drill", url: "https://www.youtube.com/embed/b_paknyUu3U" },
-      { title: "Attack Mindset in Singles", url: "https://www.youtube.com/embed/DWsbztSPXWk" },
-      { title: "Dealing With Push Shots", url: "https://www.youtube.com/embed/0E6W4C_q2CU" }
-    ],
-    advanced: [
-      { title: "Jump Smash Recovery Footwork", url: "https://www.youtube.com/embed/FMdDNN1rzP0" },
-      { title: "Reading Opponent's Movement", url: "https://www.youtube.com/embed/wlTXLGBoZyA" },
-      { title: "Deceptive Net Shots Advanced", url: "https://www.youtube.com/embed/M8UAdV5QfvE" },
-      { title: "Backhand Smash Tutorial", url: "https://www.youtube.com/embed/bO9oFvKqQ20" },
-      { title: "Anticipation in Rallies", url: "https://www.youtube.com/embed/E7tBfBoNwKY" },
-      { title: "Recovery Steps in Defense", url: "https://www.youtube.com/embed/MUcwSo2a5Ng" },
-      { title: "Elite Shuttle Placement", url: "https://www.youtube.com/embed/pFZWiNqUz1g" },
-      { title: "Professional Match Analysis", url: "https://www.youtube.com/embed/3gMrT-PTCXw" },
-      { title: "Smash Variation + Timing", url: "https://www.youtube.com/embed/tq_T7fAXMCI" },
-      { title: "Mindset for Elite Singles", url: "https://www.youtube.com/embed/kDHoVqtPFIk" }
-    ]
-  };
+    <section id="players" class="page">
+      <h2>Players</h2>
+      <ul id="player-list" style="list-style:none; padding-left:0;"></ul>
+      <div id="player-bio" style="margin-top:15px; max-width:600px;"></div>
+    </section>
 
-  const levelSelect = document.getElementById('level-select');
-  const videoList = document.getElementById('video-list');
+    <section id="workouts" class="page">
+      <h2>Workouts</h2>
+      <p>Coming soon.</p>
+    </section>
 
-  function loadVideos(level) {
-    videoList.innerHTML = '';
-    if (!videos[level]) return;
-    videos[level].forEach(video => {
-      const div = document.createElement('div');
-      div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
-      videoList.appendChild(div);
-    });
-  }
+    <section id="feedback" class="page">
+      <h2>Feedback</h2>
+      <p>Coming soon.</p>
+    </section>
+  </main>
 
-  loadVideos(levelSelect.value);
-  levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
-</script>
+  <script src="app.js" defer></script>
+</body>
+</html>
