@@ -22,17 +22,35 @@ toggle.addEventListener('click', () => {
     : '☀️ Light Mode';
 });
 
-// Player toggling
+// Player toggle logic
 document.querySelectorAll('.player-link').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
+    document.querySelectorAll('.player-card').forEach(card => card.hidden = true);
     const id = link.getAttribute('data-id');
-    document.querySelectorAll('.player-card').forEach(card => {
-      card.hidden = true;
-    });
     document.getElementById(id).hidden = false;
   });
 });
+
+// Video rendering logic
+const levelSelect = document.getElementById('level-select');
+const videoList = document.getElementById('video-list');
+
+function loadVideos(level) {
+  videoList.innerHTML = '';
+  if (!videos[level]) return;
+  videos[level].forEach(video => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>${video.title}</h3>
+      <iframe src="${video.url}" allowfullscreen></iframe>
+    `;
+    videoList.appendChild(div);
+  });
+}
+
+loadVideos(levelSelect.value);
+levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
 
 // Video database
 const videos = {
@@ -88,14 +106,14 @@ const videos = {
     { title: "Raising Happy Badminton Kids", url: "https://www.youtube.com/embed/bqCpufQ-AXI" },
     { title: "Lin Dan’s Secret Strategy Explained", url: "https://www.youtube.com/embed/IlHI0q-UCMc" }
   ],
-  footwork: [
-    { title: "Lin Dan’s Legendary Footwork", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" },
-    { title: "Smooth Footwork – Lin Dan Analysis", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
-    { title: "Footwork Must-Have Skills", url: "https://www.youtube.com/embed/9QPPvSdNj9w" },
-    { title: "Kento Momota Transitional Step", url: "https://www.youtube.com/embed/osptHe5dyPM" },
-    { title: "8 Steps to Make You Faster", url: "https://www.youtube.com/embed/0E6mm6PgeY4" }
-  ],
-  strategy: [
+footwork: [
+  { title: "Lin Dan’s Legendary Footwork", url: "https://www.youtube.com/embed/CBgcPzbA9Kw" },
+  { title: "Smooth Footwork – Lin Dan Analysis", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
+  { title: "Footwork Must-Have Skills", url: "https://www.youtube.com/embed/9QPPvSdNj9w" },
+  { title: "Kento Momota Transitional Step", url: "https://www.youtube.com/embed/osptHe5dyPM" },
+  { title: "8 Steps to Make You Faster", url: "https://www.youtube.com/embed/0E6mm6PgeY4" }
+]
+strategy: [
   { title: "Deceptions You Should Practice – Lee Zii Jia", url: "https://www.youtube.com/embed/z5L7SWuj860" },
   { title: "Control Your Opponent – Badminton Tactics", url: "https://www.youtube.com/embed/MrvYbLAnecY" },
   { title: "Badminton Consistency – Key Concepts", url: "https://www.youtube.com/embed/K88F95osw0I" },
