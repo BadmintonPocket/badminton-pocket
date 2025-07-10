@@ -4,7 +4,115 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🏸 BadmintonPocket</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f5f7fa;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #1e88e5;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+    }
+
+    .sidebar nav ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar nav ul li a.active,
+    .sidebar nav ul li a:hover {
+      background-color: #1565c0;
+    }
+
+    #dark-toggle {
+      margin-top: auto;
+      padding: 10px;
+      background: #1565c0;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    iframe {
+      border-radius: 8px;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode .sidebar {
+      background: #283593;
+      color: #bbdefb;
+    }
+
+    body.dark-mode .sidebar nav ul li a {
+      color: #bbdefb;
+    }
+
+    body.dark-mode .sidebar nav ul li a.active,
+    body.dark-mode .sidebar nav ul li a:hover {
+      background-color: #5c6bc0;
+    }
+
+    body.dark-mode #dark-toggle {
+      background: #3949ab;
+      color: #eee;
+    }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -17,7 +125,7 @@
         <li><a href="#feedback" class="nav-link">Feedback</a></li>
       </ul>
     </nav>
-    <button id="dark-toggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+    <button id="dark-toggle">🌙 Dark Mode</button>
   </div>
 
   <main>
@@ -34,21 +142,67 @@
 
     <section id="players" class="page">
       <h2>Players</h2>
-      <ul id="player-list" style="list-style:none; padding-left:0;"></ul>
-      <div id="player-bio" style="margin-top:15px; max-width:600px;"></div>
+      <p>Coming soon.</p>
     </section>
 
     <section id="workouts" class="page">
       <h2>Workouts</h2>
-      <p>Workouts content coming soon!</p>
+      <p>Coming soon.</p>
     </section>
 
     <section id="feedback" class="page">
       <h2>Feedback</h2>
-      <p>Feedback form coming soon!</p>
+      <p>Coming soon.</p>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    // Sidebar navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main .page');
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(link.getAttribute('href').substring(1)).classList.add('active');
+      });
+    });
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+
+    // Videos
+    const videos = {
+      beginner: [
+        { title: "How to Return the Flick Serve", url: "https://www.youtube.com/embed/AVs3bIhdQig" },
+        { title: "How to Smash (for beginners)", url: "https://www.youtube.com/embed/9gZx_6UYyo0" },
+        { title: "Serve Return Positioning", url: "https://www.youtube.com/embed/JzkigWSDucw" }
+      ],
+      intermediate: [],
+      advanced: []
+    };
+
+    const levelSelect = document.getElementById('level-select');
+    const videoList = document.getElementById('video-list');
+
+    function loadVideos(level) {
+      videoList.innerHTML = '';
+      if (!videos[level]) return;
+      videos[level].forEach(video => {
+        const div = document.createElement('div');
+        div.innerHTML = `<h3>${video.title}</h3><iframe src="${video.url}" allowfullscreen></iframe>`;
+        videoList.appendChild(div);
+      });
+    }
+
+    loadVideos(levelSelect.value);
+    levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+  </script>
 </body>
 </html>
