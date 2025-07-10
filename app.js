@@ -55,3 +55,68 @@ function loadVideos(level) {
 
 loadVideos(levelSelect.value);
 levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+
+// Players data
+const players = [
+  {
+    name: "Lin Dan",
+    bio: "Two-time Olympic champion and one of the greatest badminton players of all time.",
+    signatureShots: ["Powerful Smash", "Fast Drop Shot", "Deceptive Net Play"]
+  },
+  {
+    name: "Carolina Marin",
+    bio: "Olympic gold medalist known for her aggressive playing style and speed.",
+    signatureShots: ["Fast Drive", "Crosscourt Smash", "Net Kill"]
+  },
+  {
+    name: "Viktor Axelsen",
+    bio: "World Champion known for his tall stature and strong overhead shots.",
+    signatureShots: ["Heavy Smash", "Clear Shot", "Net Shot"]
+  },
+  {
+    name: "Lee Zii Jia",
+    bio: "Top Malaysian player known for his explosive power and agility.",
+    signatureShots: ["Smash Power", "Quick Net Play", "Fast Footwork"]
+  },
+  {
+    name: "Kento Momota",
+    bio: "Japanese star famous for his defensive skills and consistency.",
+    signatureShots: ["Precision Drops", "Strong Defense", "Accurate Clears"]
+  }
+];
+
+const playerList = document.getElementById('player-list');
+const playerBio = document.getElementById('player-bio');
+
+players.forEach((player, index) => {
+  const li = document.createElement('li');
+  li.textContent = player.name;
+  li.style.cursor = "pointer";
+  li.style.padding = "8px";
+  li.style.borderBottom = "1px solid #ccc";
+
+  li.addEventListener('click', () => {
+    [...playerList.children].forEach(child => {
+      child.style.backgroundColor = '';
+      child.style.color = '';
+    });
+    li.style.backgroundColor = '#1e88e5';
+    li.style.color = 'white';
+
+    playerBio.innerHTML = `
+      <h3>${player.name}</h3>
+      <p>${player.bio}</p>
+      <h4>Signature Shots:</h4>
+      <ul>
+        ${player.signatureShots.map(shot => `<li>${shot}</li>`).join('')}
+      </ul>
+    `;
+  });
+
+  playerList.appendChild(li);
+});
+
+// Select first player by default
+if (playerList.children.length > 0) {
+  playerList.children[0].click();
+}
