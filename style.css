@@ -11,43 +11,72 @@ body {
   background: #f5f7fa;
   color: #333;
   min-height: 100vh;
-  padding: 20px;
+  display: flex;
+  font-size: 16px;
+  overflow-x: hidden;
 }
 
-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+.sidebar {
+  background-color: #1e88e5;
+  color: white;
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar h1 {
+  font-size: 1.8rem;
   margin-bottom: 20px;
 }
 
-header h1 {
-  flex-grow: 1;
+.sidebar nav ul {
+  list-style: none;
 }
 
-nav {
-  display: flex;
-  gap: 10px;
+.sidebar nav ul li {
+  margin: 15px 0;
 }
 
-nav button {
-  background-color: #1e88e5;
-  border: none;
+.sidebar nav ul li a {
   color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-nav button:hover {
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
   background-color: #1565c0;
 }
 
-nav button.active {
+.sidebar nav button#dark-mode-toggle {
+  margin-top: 20px;
+  background-color: #1565c0;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sidebar nav button#dark-mode-toggle:hover {
   background-color: #0d47a1;
+}
+
+.main-content {
+  margin-left: 270px;
+  padding: 30px;
+  flex: 1;
+  max-width: calc(100vw - 270px);
+  overflow-x: hidden;
 }
 
 /* Sections */
@@ -78,6 +107,7 @@ nav button.active {
   list-style: none;
   max-width: 300px;
   margin-bottom: 15px;
+  padding-left: 0;
 }
 
 #player-list li {
@@ -107,13 +137,25 @@ body.dark-mode {
   color: #eee;
 }
 
-body.dark-mode nav button {
+body.dark-mode .sidebar {
   background-color: #0d47a1;
+}
+
+body.dark-mode .sidebar nav ul li a {
   color: #bbdefb;
 }
 
-body.dark-mode nav button.active {
+body.dark-mode .sidebar nav ul li a:hover,
+body.dark-mode .sidebar nav ul li a.active {
   background-color: #5c6bc0;
+}
+
+body.dark-mode .sidebar nav button#dark-mode-toggle {
+  background-color: #5c6bc0;
+}
+
+body.dark-mode .sidebar nav button#dark-mode-toggle:hover {
+  background-color: #3949ab;
 }
 
 body.dark-mode #player-list li {
@@ -137,9 +179,18 @@ body.dark-mode #video-list iframe {
 
 /* Responsive */
 @media (max-width: 600px) {
-  header {
+  body {
     flex-direction: column;
-    align-items: flex-start;
+  }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+  .main-content {
+    margin-left: 0;
+    max-width: 100vw;
+    padding: 15px;
   }
   #video-list iframe {
     width: 100%;
