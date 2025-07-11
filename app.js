@@ -2,52 +2,54 @@ document.addEventListener('DOMContentLoaded', () => {
   // refs
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const darkToggle    = document.getElementById('dark-toggle');
-  const navLinks      = document.querySelectorAll('.nav-link');
-  const sections      = document.querySelectorAll('.page');
-  const playerLinks   = document.querySelectorAll('.player-link');
+  const navLinks      = [...document.querySelectorAll('.nav-link')];
+  const pages         = [...document.querySelectorAll('.page')];
+  const playerLinks   = [...document.querySelectorAll('.player-link')];
   const levelSelect   = document.getElementById('level-select');
   const videoList     = document.getElementById('video-list');
   const workoutSelect = document.getElementById('workout-level-select');
   const workoutPlan   = document.getElementById('workout-plan');
 
-  // sidebar toggle
+  // SIDEBAR toggle
   sidebarToggle.addEventListener('click', () => {
     document.body.classList.toggle('sidebar-open');
   });
 
-  // tab navigation
+  // TAB navigation
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       navLinks.forEach(l => l.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+
       link.classList.add('active');
-      const id = link.getAttribute('href').slice(1);
+      const id = link.getAttribute('href').substring(1);
       document.getElementById(id).classList.add('active');
+
+      // collapse on mobile
       if (window.innerWidth < 768) {
         document.body.classList.remove('sidebar-open');
       }
     });
   });
 
-  // dark mode toggle
+  // DARK-MODE toggle
   darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    darkToggle.textContent = document.body.classList.contains('dark-mode')
-      ? '☀️ Light Mode'
-      : '🌙 Dark Mode';
+    const dark = document.body.classList.toggle('dark-mode');
+    darkToggle.textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
   });
 
-  // player cards toggle
+  // PLAYER-card toggle
   playerLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelectorAll('.player-card').forEach(c => c.hidden = true);
+      document.querySelectorAll('.player-card')
+              .forEach(c => c.hidden = true);
       document.getElementById(link.dataset.id).hidden = false;
     });
   });
 
-  // full video library
+  // FULL video library
   const videos = {
     beginner: [
       { title: "Your Shots Are WAY Too Predictable! Here's How to Fix It", url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { title: "When Opponent Returns Hard – What To Do",url: "https://www.youtube.com/embed/XKCa1KnnH5Q" },
       { title: "Master Lunging in Badminton",           url: "https://www.youtube.com/embed/AJfdtR8Ogus" },
       { title: "Forehand Straight Lift Technique",     url: "https://www.youtube.com/embed/J-qiOgGEwBM" },
-      { title: "3 Ways of Net Lifting – Forehand Tutorial",url: "https://www.youtube.com/embed/qy4XJ3ZGkcE" },
+      { title: "3 Ways of Net Lifting – Forehand Tutorial", url: "https://www.youtube.com/embed/qy4XJ3ZGkcE" },
       { title: "3 Ways to Practice Net Lifts",          url: "https://www.youtube.com/embed/jNdlYBI5ZGU" },
       { title: "Perfect Your Overhead Swing – 3 Phases",url: "https://www.youtube.com/embed/eVNY8r6Oeek" },
       { title: "Master Backhand Shots – Change Angles", url: "https://www.youtube.com/embed/fCq-SO6rixQ" },
@@ -119,60 +121,57 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-  // render videos
   function loadVideos(level) {
     videoList.innerHTML = '';
-    if (!videos[level]) return;
-    videos[level].forEach(v => {
-      const div = document.createElement('div');
-      div.innerHTML = `<h3>${v.title}</h3>
-                       <iframe src="${v.url}" allowfullscreen></iframe>`;
-      videoList.appendChild(div);
+    const list = videos[level] || [];
+    list.forEach(v => {
+      const d = document.createElement('div');
+      d.innerHTML = `<h3>${v.title}</h3>
+                     <iframe src="${v.url}" allowfullscreen></iframe>`;
+      videoList.appendChild(d);
     });
   }
-  loadVideos(levelSelect.value);
   levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+  loadVideos(levelSelect.value);
 
-  // workout routines
+  // WORKOUT SPLITS
   const workouts = {
     beginner: {
-      Monday:   ['10 min light jog + dynamic leg swings','4×30s shuttle-runs','3×15 walking lunges','5 min four-corner footwork'],
-      Tuesday:  ['3×15 bodyweight squats','3×10 push-ups','3×20s plank','5 min split-step shadow footwork'],
-      Wednesday:['5×30s side-shuffles','3×12 single-leg deadlift','5 min hop-scotch drill'],
+      Monday:   ['10 min light jog + dynamic leg swings','4×30s shuttle-runs','3×15 walking lunges','5 min four-corner footwork'],
+      Tuesday:  ['3×15 bodyweight squats','3×10 push-ups','3×20s plank','5 min split-step shadow footwork'],
+      Wednesday:['5×30s side-shuffles','3×12 single-leg deadlift','5 min hop-scotch drill'],
       Thursday: ['3×10 bent-over rows','3×12 overhead presses','3×20 Russian twists'],
-      Friday:   ['10 min moderate run','4×30s high-knee footwork','30 net swings, 30 clear swings'],
-      Saturday: ['4×5 min rally practice','10 min cool-down & stretch']
+      Friday:   ['10 min moderate run','4×30s high-knee footwork','30 net swings & 30 clear swings'],
+      Saturday: ['4×5 min rally practice','10 min cool-down & stretch']
     },
     intermediate: {
-      Monday:   ['15 min interval run','5×40m shuttle-runs','5 min cross-court footwork'],
+      Monday:   ['15 min interval run','5×40m shuttle-runs','5 min cross-court footwork'],
       Tuesday:  ['4×8 goblet squats','4×10 single-arm rows','3×20 Russian twists'],
-      Wednesday:['3×8 box jumps','5 min agility ladder','3×15 lateral bounds'],
+      Wednesday:['3×8 box jumps','5 min agility ladder','3×15 lateral bounds'],
       Thursday: ['4×8 pull-ups','4×10 push-ups','3×12 dips','3×30s side-plank'],
-      Friday:   ['10 min tempo run','3×20 fly-runs','30 drive swings'],
-      Saturday: ['30 min multi-shuttle drill','15 min tactical rally','10 min stretch']
+      Friday:   ['10 min tempo run','3×20 fly-runs','30 drive swings'],
+      Saturday: ['30 min multi-shuttle drill','15 min tactical rally','10 min stretch']
     },
     advanced: {
-      Monday:   ['20 min interval run','6×50m shuttle-runs','4×8 eight-corner footwork'],
+      Monday:   ['20 min interval run','6×50m shuttle-runs','4×8 eight-corner footwork'],
       Tuesday:  ['5×5 back squats','4×6 deadlifts','4×8 weighted lunges','4×15 windshield-wipers'],
-      Wednesday:['4×6 depth jumps','10 min advanced ladder','4×8 bounding'],
+      Wednesday:['4×6 depth jumps','10 min advanced ladder','4×8 bounding'],
       Thursday: ['5×5 push-press','4×8 weighted pull-ups','4×10 dips','3×60s hollow hold'],
-      Friday:   ['10 min tempo run','5×20m fly-runs','30 flick-serve returns','30 drive drills'],
-      Saturday: ['Best-of-three match simulation','15 min cool-down & stretch']
+      Friday:   ['10 min tempo run','5×20m fly-runs','30 flick-serve returns','30 drive drills'],
+      Saturday: ['Best-of-three match simulation','15 min cool-down & stretch']
     }
   };
 
-  // render workouts
   function renderWorkouts(level) {
     workoutPlan.innerHTML = '';
-    const days = workouts[level];
-    for (let [day, exs] of Object.entries(days)) {
+    const days = workouts[level] || {};
+    Object.entries(days).forEach(([day, exs]) => {
       const wrap = document.createElement('div');
       wrap.classList.add('workout-day');
-      wrap.innerHTML = `<h3>${day}</h3>
-                        <ul>${exs.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+      wrap.innerHTML = `<h3>${day}</h3><ul>${exs.map(x=>`<li>${x}</li>`).join('')}</ul>`;
       workoutPlan.appendChild(wrap);
-    }
+    });
   }
-  renderWorkouts(workoutSelect.value);
   workoutSelect.addEventListener('change', () => renderWorkouts(workoutSelect.value));
+  renderWorkouts(workoutSelect.value);
 });
