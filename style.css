@@ -1,3 +1,5 @@
+/* style.css */
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -37,6 +39,10 @@ body {
 .sidebar a.active {
   font-weight: bold;
 }
+.sidebar a:hover {
+  text-decoration: underline;
+  color: #fffa;
+}
 .sidebar button {
   margin-top: 20px;
   padding: 8px 12px;
@@ -65,6 +71,7 @@ iframe {
   border: none;
   margin-bottom: 20px;
 }
+
 .player-card {
   background: #eaf7ff;
   border-radius: 8px;
@@ -75,4 +82,14 @@ iframe {
   max-width: 320px;
   display: block;
   margin-bottom: 10px;
+}
+
+/* Dark mode overrides */
+
+.dark-mode .player-card {
+  background: #444;
+  color: #eee;
+}
+.dark-mode iframe {
+  background: #222;
 }
