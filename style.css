@@ -1,5 +1,4 @@
 /* style.css */
-
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -12,13 +11,27 @@ body {
   color: #eee;
 }
 
+/* Sidebar */
 .sidebar {
   background: #1e90ff;
   width: 240px;
   height: 100vh;
   position: fixed;
+  top: 0;
+  left: 0;
   padding: 20px;
   box-sizing: border-box;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+#sidebar-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
 .sidebar h1 {
   font-size: 1.5rem;
@@ -43,7 +56,7 @@ body {
   text-decoration: underline;
   color: #fffa;
 }
-.sidebar button {
+.sidebar button#dark-toggle {
   margin-top: 20px;
   padding: 8px 12px;
   background: none;
@@ -52,11 +65,12 @@ body {
   cursor: pointer;
 }
 
+/* Main content */
 main {
   margin-left: 260px;
   padding: 20px;
+  transition: margin-left 0.3s ease;
 }
-
 .page {
   display: none;
 }
@@ -64,6 +78,7 @@ main {
   display: block;
 }
 
+/* Video iframes */
 iframe {
   width: 100%;
   max-width: 560px;
@@ -72,24 +87,36 @@ iframe {
   margin-bottom: 20px;
 }
 
+/* Player cards */
 .player-card {
   background: #eaf7ff;
   border-radius: 8px;
   padding: 20px;
   margin-top: 10px;
 }
-.player-card img {
-  max-width: 320px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* Dark mode overrides */
-
 .dark-mode .player-card {
   background: #444;
   color: #eee;
 }
 .dark-mode iframe {
   background: #222;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  #sidebar-toggle {
+    display: block;
+  }
+  .sidebar {
+    transform: translateX(0);
+  }
+  body.collapsed .sidebar {
+    transform: translateX(-100%);
+  }
+  body.collapsed main {
+    margin-left: 0;
+  }
+  main {
+    margin-left: 0;
+  }
 }
