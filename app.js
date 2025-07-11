@@ -1,4 +1,4 @@
-// refs
+// element refs
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const darkToggle    = document.getElementById('dark-toggle');
 const navLinks      = document.querySelectorAll('.nav-link');
@@ -7,12 +7,12 @@ const playerLinks   = document.querySelectorAll('.player-link');
 const levelSelect   = document.getElementById('level-select');
 const videoList     = document.getElementById('video-list');
 
-// sidebar toggle
+// sidebar collapse
 sidebarToggle.addEventListener('click', () => {
   document.body.classList.toggle('sidebar-open');
 });
 
-// tab nav
+// tab navigation
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -20,14 +20,14 @@ navLinks.forEach(link => {
     sections.forEach(s => s.classList.remove('active'));
     link.classList.add('active');
     document.getElementById(link.getAttribute('href').slice(1))
-      .classList.add('active');
+            .classList.add('active');
     if (window.innerWidth < 768) {
       document.body.classList.remove('sidebar-open');
     }
   });
 });
 
-// dark mode
+// dark mode toggle
 darkToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   darkToggle.textContent = document.body.classList.contains('dark-mode')
@@ -35,7 +35,7 @@ darkToggle.addEventListener('click', () => {
     : '🌙 Dark Mode';
 });
 
-// player cards
+// player-card toggle
 playerLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -47,18 +47,18 @@ playerLinks.forEach(link => {
 // full video library
 const videos = {
   beginner: [
-    { title: "Your Shots Are WAY Too Predictable! Here's How to Fix It", url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
-    { title: "Want To MASTER Badminton Overhead Pronation",           url: "https://www.youtube.com/embed/JzkigWSDucw" },
-    { title: "Master Dry Swing Today!",                              url: "https://www.youtube.com/embed/GolGwsK9Nxg" },
-    { title: "Forehand Net Cross-Court Technique",                   url: "https://www.youtube.com/embed/w4us5HVuFgg" },
-    { title: "Magical Cross Net Shot Tutorial",                      url: "https://www.youtube.com/embed/6kFhxbab55E" },
-    { title: "Two Types of Backhand Drive",                          url: "https://www.youtube.com/embed/SoXecwpUKnE" },
-    { title: "Two Deceptive Badminton Shots You Should Be Using",     url: "https://www.youtube.com/embed/NQXEusQZvTM" },
-    { title: "Beginner Defensive Mistakes to Avoid",                 url: "https://www.youtube.com/embed/zDzsdU4LO0g" },
-    { title: "9 Mistakes Ruining Your Return of Flick Serve",        url: "https://www.youtube.com/embed/AVs3bIhdQig" },
-    { title: "5 Beginner Badminton Mistakes",                        url: "https://www.youtube.com/embed/ySBotNdN7NU" },
-    { title: "Master the V-Grip: Chop & Punch Power!",               url: "https://www.youtube.com/embed/aW1e4REHSWc" },
-    { title: "Badminton Grip Hack – Never Lose Your Racket Again",    url: "https://www.youtube.com/embed/pGd56ZQwAvE" }
+    { title: "Your Shots Are WAY Too Predictable! Here's How to Fix It",      url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
+    { title: "Want To MASTER Badminton Overhead Pronation",                  url: "https://www.youtube.com/embed/JzkigWSDucw" },
+    { title: "Master Dry Swing Today!",                                       url: "https://www.youtube.com/embed/GolGwsK9Nxg" },
+    { title: "Forehand Net Cross-Court Technique",                            url: "https://www.youtube.com/embed/w4us5HVuFgg" },
+    { title: "Magical Cross Net Shot Tutorial",                               url: "https://www.youtube.com/embed/6kFhxbab55E" },
+    { title: "Two Types of Backhand Drive",                                   url: "https://www.youtube.com/embed/SoXecwpUKnE" },
+    { title: "Two Deceptive Badminton Shots You Should Be Using",              url: "https://www.youtube.com/embed/NQXEusQZvTM" },
+    { title: "Beginner Defensive Mistakes to Avoid",                           url: "https://www.youtube.com/embed/zDzsdU4LO0g" },
+    { title: "9 Mistakes Ruining Your Return of Flick Serve",                  url: "https://www.youtube.com/embed/AVs3bIhdQig" },
+    { title: "5 Beginner Badminton Mistakes",                                  url: "https://www.youtube.com/embed/ySBotNdN7NU" },
+    { title: "Master the V-Grip: Chop & Punch Power!",                        url: "https://www.youtube.com/embed/aW1e4REHSWc" },
+    { title: "Badminton Grip Hack – Never Lose Your Racket Again",             url: "https://www.youtube.com/embed/pGd56ZQwAvE" }
   ],
   intermediate: [
     { title: "Improve Your Dropshot Instantly!",            url: "https://www.youtube.com/embed/WY9tbZTuS_c" },
@@ -116,7 +116,7 @@ const videos = {
   ]
 };
 
-// render
+// render videos
 function loadVideos(level) {
   videoList.innerHTML = '';
   if (!videos[level]) return;
@@ -132,4 +132,3 @@ function loadVideos(level) {
 
 loadVideos(levelSelect.value);
 levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
-```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/szerintedmi/roadmap-radar-chart/tree/45ee5f9f7a1d44100313358e369abb025b935cea/README.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
