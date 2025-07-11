@@ -6,95 +6,77 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f0f8ff;
   color: #222;
-  transition: background 0.3s, color 0.3s;
+  transition: background .3s, color .3s;
 }
 .dark-mode {
   background: #222;
   color: #eee;
 }
 
-/* Hamburger */
+/* hamburger always on top */
 #sidebar-toggle {
   position: fixed; top: 12px; left: 12px;
-  font-size: 1.5rem;
-  background: none; border: none;
-  cursor: pointer; z-index: 2000;
-  color: #1e90ff;
+  font-size: 1.5rem; background: none; border: none;
+  color: #1e90ff; cursor: pointer; z-index: 2000;
 }
 
-/* Sidebar */
+/* sidebar */
 .sidebar {
-  position: fixed;
-  top: 0; left: 0;
-  width: var(--sidebar-width);
-  height: 100vh;
-  background: #1e90ff;
-  padding: 20px 10px;
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-width); height: 100vh;
+  background: #1e90ff; padding: 20px 10px;
   transform: translateX(calc(-1 * var(--sidebar-width)));
-  transition: transform 0.3s ease;
-  z-index: 1500;
+  transition: transform .3s ease; z-index: 1500;
 }
-/* push header down so it never overlaps toggle */
+/* push title down so it never sits under the toggle */
 .sidebar header { padding-top: 48px; }
+body.sidebar-open .sidebar { transform: translateX(0); }
 
-body.sidebar-open .sidebar {
-  transform: translateX(0);
-}
 @media (min-width: 768px) {
   .sidebar { transform: translateX(0) !important; }
   #sidebar-toggle { display: none; }
   main { margin-left: var(--sidebar-width); }
 }
 
-/* Sidebar content */
+/* sidebar links */
 .sidebar h1 {
   margin: 0 0 20px;
-  font-size: 1.5rem;
   color: #fff;
+  font-size: 1.5rem;
 }
 .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
 .sidebar nav li { margin-bottom: 1rem; }
 .sidebar a {
-  color: #fff;
-  text-decoration: none;
+  color: #fff; text-decoration: none;
 }
 .sidebar a.active { font-weight: bold; }
 .sidebar a:hover { text-decoration: underline; }
 
-/* Dark-mode toggle in sidebar */
+/* dark-mode switch */
 #dark-toggle {
-  margin-top: auto;
-  padding: 8px 12px;
-  background: none;
-  color: #fff;
-  border: 1px solid #fff;
-  cursor: pointer;
+  margin-top: auto; padding: 8px 12px;
+  background: none; border: 1px solid #fff;
+  color: #fff; cursor: pointer;
 }
 
-/* Main area */
+/* main content */
 main {
-  margin-left: 0;
   padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-@media (min-width: 768px) {
-  main { margin-left: var(--sidebar-width); }
+  transition: margin-left .3s ease;
 }
 
-/* Pages */
+/* pages */
 .page { display: none; }
 .page.active { display: block; }
 
-/* Training iframes */
+/* video iframes */
 iframe {
-  width: 100%;
-  max-width: 560px;
-  height: 315px;
-  border: none;
+  width: 100%; max-width: 560px;
+  height: 315px; border: none;
   margin-bottom: 20px;
 }
 
-/* Player cards */
+/* player cards */
 .player-card {
   background: #eaf7ff;
   border-radius: 8px;
@@ -109,7 +91,7 @@ iframe {
   background: #222;
 }
 
-/* WORKOUTS styling */
+/* workouts styling */
 #workout-plan { margin-top: 20px; }
 .workout-day { margin-bottom: 1.5rem; }
 .workout-day h3 {
