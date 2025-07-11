@@ -1,3 +1,11 @@
+// app.js
+
+// Sidebar collapse toggle
+const sidebarToggle = document.getElementById('sidebar-toggle');
+sidebarToggle.addEventListener('click', () => {
+  document.body.classList.toggle('collapsed');
+});
+
 // Navigation tabs
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.page');
@@ -7,16 +15,17 @@ navLinks.forEach(link => {
     navLinks.forEach(l => l.classList.remove('active'));
     sections.forEach(s => s.classList.remove('active'));
     link.classList.add('active');
-    const target = link.getAttribute('href').substring(1);
-    document.getElementById(target).classList.add('active');
+    document.getElementById(link.getAttribute('href').slice(1)).classList.add('active');
+    // auto-hide sidebar on mobile after click
+    if (window.innerWidth <= 768) document.body.classList.add('collapsed');
   });
 });
 
 // Dark mode toggle
-const toggle = document.getElementById('dark-toggle');
-toggle.addEventListener('click', () => {
+const darkToggle = document.getElementById('dark-toggle');
+darkToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
-  toggle.textContent = document.body.classList.contains('dark-mode')
+  darkToggle.textContent = document.body.classList.contains('dark-mode')
     ? '☀️ Light Mode'
     : '🌙 Dark Mode';
 });
@@ -26,15 +35,13 @@ document.querySelectorAll('.player-link').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     document.querySelectorAll('.player-card').forEach(card => card.hidden = true);
-    const id = link.getAttribute('data-id');
-    document.getElementById(id).hidden = false;
+    document.getElementById(link.dataset.id).hidden = false;
   });
 });
 
 // Video rendering logic
 const levelSelect = document.getElementById('level-select');
 const videoList = document.getElementById('video-list');
-
 const videos = {
   beginner: [
     { title: "Your Shots Are WAY Too Predictable! Here's How to Fix It", url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
@@ -121,3 +128,4 @@ function loadVideos(level) {
 
 loadVideos(levelSelect.value);
 levelSelect.addEventListener('change', () => loadVideos(levelSelect.value));
+```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/rxliuli/blog/tree/cf25bc01317c3d91ced9c0c21a17c1c9f6600da7/source%2F_posts%2F6586ffbb50ac49ceb31397ce58b49f16.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/jbhbrown/DEAN-Website/tree/344053872d3aef1c64a7dadd4c605d0deb0e5f53/jdb393-project-3%2Fgallery.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/al996/Jewelry-by-Mamta/tree/23ea741dfe5161131c441406cd3ab02ba8e99c6b/about.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "3")
