@@ -1,3 +1,5 @@
+// app.js
+
 // Navigation tabs
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.page');
@@ -18,8 +20,8 @@ const toggle = document.getElementById('dark-toggle');
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   toggle.textContent = document.body.classList.contains('dark-mode')
-    ? '🌙 Dark Mode'
-    : '☀️ Light Mode';
+    ? '☀️ Light Mode'
+    : '🌙 Dark Mode';
 });
 
 // Player toggle logic
@@ -38,7 +40,8 @@ const videoList = document.getElementById('video-list');
 
 const videos = {
   beginner: [
-    { title: "Beginner Smash Technique", url: "https://www.youtube.com/embed/gqIsUa4gCz4" }
+    { title: "Your Shots Are WAY Too Predictable! Here's How to Fix It", url: "https://www.youtube.com/embed/gqIsUa4gCz4" },
+    { title: "Want To MASTER Badminton Overhead Pronation",       url: "https://www.youtube.com/embed/JzkigWSDucw" }
   ],
   intermediate: [
     { title: "Intermediate Dropshot Drill", url: "https://www.youtube.com/embed/WY9tbZTuS_c" }
