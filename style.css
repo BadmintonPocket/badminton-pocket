@@ -1,4 +1,7 @@
-/* style.css */
+:root {
+  --sidebar-width: 240px;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -6,6 +9,7 @@ body {
   color: #222;
   transition: background 0.3s, color 0.3s;
 }
+
 .dark-mode {
   background: #222;
   color: #eee;
@@ -13,43 +17,70 @@ body {
 
 /* Sidebar */
 .sidebar {
-  background: #1e90ff;
-  width: 240px;
-  height: 100vh;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: #1e90ff;
   padding: 20px;
   box-sizing: border-box;
   transition: transform 0.3s ease;
   z-index: 1000;
 }
+
+/* Toggle button */
 .sidebar-toggle {
-  display: none;
-  font-size: 1.5rem;
+  position: fixed;
+  top: 12px;
+  left: 12px;
   background: none;
   border: none;
-  color: #fff;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #1e90ff;
+  z-index: 1100;
   cursor: pointer;
 }
-.sidebar h1 {
-  color: #fff;
-  margin: 0 0 20px;
+
+/* Hide sidebar on small unless toggled open */
+body:not(.collapsed) .sidebar {
+  transform: translateX(0);
 }
-.sidebar ul { list-style: none; padding: 0; }
-.sidebar li { margin: 10px 0; }
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(calc(-1 * var(--sidebar-width)));
+  }
+  body.collapsed .sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar content */
+.sidebar h1 {
+  margin: 0 0 20px;
+  color: #fff;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  margin-bottom: 12px;
+}
 .sidebar a {
   color: #fff;
   text-decoration: none;
 }
-.sidebar a.active { font-weight: bold; }
+.sidebar a.active {
+  font-weight: bold;
+}
 .sidebar a:hover {
   text-decoration: underline;
-  color: #fffa;
 }
-#darkToggle {
+#dark-toggle {
   margin-top: 20px;
-  padding: 8px 12px;
+  padding: 6px 12px;
   background: none;
   color: #fff;
   border: 1px solid #fff;
@@ -58,14 +89,25 @@ body {
 
 /* Main content */
 main {
-  margin-left: 260px;
+  margin-left: var(--sidebar-width);
   padding: 20px;
   transition: margin-left 0.3s ease;
 }
-.page { display: none; }
-.page.active { display: block; }
+@media (max-width: 768px) {
+  main {
+    margin-left: 0;
+  }
+}
 
-/* Video iframes */
+/* Pages */
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+
+/* Videos */
 iframe {
   width: 100%;
   max-width: 560px;
@@ -87,14 +129,4 @@ iframe {
 }
 .dark-mode iframe {
   background: #222;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .sidebar-toggle { display: block; }
-  body.sidebar-open .sidebar {
-    transform: translateX(0);
-  }
-  .sidebar { transform: translateX(-100%); }
-  main { margin-left: 0; }
 }
