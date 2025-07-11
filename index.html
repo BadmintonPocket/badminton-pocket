@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- always-visible toggle button -->
+  <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle menu">☰</button>
+
   <div class="sidebar">
-    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
     <h1>🏸 BadmintonPocket</h1>
     <nav>
       <ul>
         <li><a href="#training" class="nav-link active">Training</a></li>
-        <li><a href="#players" class="nav-link">Players</a></li>
+        <li><a href="#players"  class="nav-link">Players</a></li>
         <li><a href="#workouts" class="nav-link">Workouts</a></li>
         <li><a href="#feedback" class="nav-link">Feedback</a></li>
       </ul>
     </nav>
-    <button id="darkToggle">🌙 Dark Mode</button>
+    <button id="dark-toggle">🌙 Dark Mode</button>
   </div>
 
   <main>
@@ -45,6 +46,7 @@
         <li><a href="#" class="player-link" data-id="kento-momota">Kento Momota</a></li>
         <li><a href="#" class="player-link" data-id="victor-axelsen">Victor Axelsen</a></li>
       </ul>
+
       <div id="lee-chong-wei" class="player-card">
         <h3>Lee Chong Wei</h3>
         <p><strong>Country:</strong> Malaysia 🇲🇾</p>
