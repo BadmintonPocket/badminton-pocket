@@ -1,5 +1,7 @@
 :root { --sidebar-width: 240px; }
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -8,7 +10,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* dark mode */
 .dark-mode {
   background: #222;
   color: #eee;
@@ -22,9 +23,9 @@ body {
   font-size: 1.5rem;
   background: none;
   border: none;
-  color: #1e90ff;
-  z-index: 2000;
   cursor: pointer;
+  z-index: 2000;
+  color: #1e90ff;
 }
 
 /* sidebar */
@@ -34,38 +35,46 @@ body {
   width: var(--sidebar-width);
   height: 100vh;
   background: #1e90ff;
-  padding: 20px;
-  box-sizing: border-box;
-  transform: translateX(-100%);
+  padding: 20px 10px;
+  transform: translateX(calc(-1 * var(--sidebar-width)));
   transition: transform 0.3s ease;
   z-index: 1500;
 }
 
-/* show sidebar when toggled or on desktop */
+/* open on toggle */
 body.sidebar-open .sidebar {
   transform: translateX(0);
 }
-@media (min-width: 769px) {
+
+/* always visible on desktop */
+@media (min-width: 768px) {
   .sidebar {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
   #sidebar-toggle {
     display: none;
   }
+  main {
+    margin-left: var(--sidebar-width);
+  }
 }
 
-/* sidebar content */
+.sidebar header {
+  margin-bottom: 2rem;
+}
 .sidebar h1 {
-  margin: 0 0 20px;
+  margin: 0;
+  font-size: 1.5rem;
   color: #fff;
 }
-.sidebar ul {
+
+.sidebar nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.sidebar li {
-  margin-bottom: 12px;
+.sidebar nav li {
+  margin-bottom: 1rem;
 }
 .sidebar a {
   color: #fff;
@@ -78,10 +87,9 @@ body.sidebar-open .sidebar {
   text-decoration: underline;
 }
 
-/* dark-mode button */
 #dark-toggle {
-  margin-top: 20px;
-  padding: 6px 12px;
+  margin-top: auto;
+  padding: 8px 12px;
   background: none;
   color: #fff;
   border: 1px solid #fff;
@@ -90,17 +98,9 @@ body.sidebar-open .sidebar {
 
 /* main content */
 main {
-  margin-left: var(--sidebar-width);
   padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-@media (max-width: 768px) {
-  main {
-    margin-left: 0;
-  }
 }
 
-/* pages */
 .page {
   display: none;
 }
@@ -108,7 +108,6 @@ main {
   display: block;
 }
 
-/* video & player styling */
 iframe {
   width: 100%;
   max-width: 560px;
@@ -116,6 +115,7 @@ iframe {
   border: none;
   margin-bottom: 20px;
 }
+
 .player-card {
   background: #eaf7ff;
   border-radius: 8px;
@@ -125,4 +125,7 @@ iframe {
 .dark-mode .player-card {
   background: #444;
   color: #eee;
+}
+.dark-mode iframe {
+  background: #222;
 }
