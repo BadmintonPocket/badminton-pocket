@@ -1,6 +1,8 @@
 :root { --sidebar-width: 240px; }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -10,6 +12,7 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+/* dark mode */
 .dark-mode {
   background: #222;
   color: #eee;
@@ -31,7 +34,8 @@ body {
 /* sidebar */
 .sidebar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: var(--sidebar-width);
   height: 100vh;
   background: #1e90ff;
@@ -41,12 +45,15 @@ body {
   z-index: 1500;
 }
 
-/* open on toggle */
+/* push h1 down on mobile so it never overlaps toggle */
+.sidebar header {
+  padding-top: 48px;
+}
+
+/* show sidebar when open or always on desktop */
 body.sidebar-open .sidebar {
   transform: translateX(0);
 }
-
-/* always visible on desktop */
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0) !important;
@@ -54,20 +61,14 @@ body.sidebar-open .sidebar {
   #sidebar-toggle {
     display: none;
   }
-  main {
-    margin-left: var(--sidebar-width);
-  }
 }
 
-.sidebar header {
-  margin-bottom: 2rem;
-}
+/* sidebar content */
 .sidebar h1 {
-  margin: 0;
+  margin: 0 0 20px;
   font-size: 1.5rem;
   color: #fff;
 }
-
 .sidebar nav ul {
   list-style: none;
   padding: 0;
@@ -87,6 +88,7 @@ body.sidebar-open .sidebar {
   text-decoration: underline;
 }
 
+/* dark-mode button */
 #dark-toggle {
   margin-top: auto;
   padding: 8px 12px;
@@ -98,9 +100,17 @@ body.sidebar-open .sidebar {
 
 /* main content */
 main {
+  margin-left: 0;
   padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+@media (min-width: 768px) {
+  main {
+    margin-left: var(--sidebar-width);
+  }
 }
 
+/* pages */
 .page {
   display: none;
 }
@@ -108,6 +118,7 @@ main {
   display: block;
 }
 
+/* video iframes */
 iframe {
   width: 100%;
   max-width: 560px;
@@ -116,6 +127,7 @@ iframe {
   margin-bottom: 20px;
 }
 
+/* player cards */
 .player-card {
   background: #eaf7ff;
   border-radius: 8px;
