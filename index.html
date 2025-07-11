@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- always-visible hamburger -->
   <button id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
 
   <aside class="sidebar">
@@ -48,7 +48,6 @@
         <li><a href="#" class="player-link" data-id="kento-momota">Kento Momota</a></li>
         <li><a href="#" class="player-link" data-id="victor-axelsen">Victor Axelsen</a></li>
       </ul>
-
       <div id="lee-chong-wei"  class="player-card">
         <h3>Lee Chong Wei</h3>
         <p><strong>Country:</strong> Malaysia 🇲🇾</p>
@@ -83,7 +82,13 @@
 
     <section id="workouts" class="page">
       <h2>Workouts</h2>
-      <p>Coming soon.</p>
+      <label for="workout-level-select">Choose Skill Level:</label>
+      <select id="workout-level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <div id="workout-plan"></div>
     </section>
 
     <section id="feedback" class="page">
