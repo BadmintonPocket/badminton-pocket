@@ -6,12 +6,9 @@
   <title>🏸 BadmintonPocket</title>
   <link rel="stylesheet" href="style.css"/>
 
-  <!-- MoveNet for film analysis -->
+  <!-- TensorFlow.js & MoveNet for film analysis -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-
-  <!-- gpt4all-browser for local LLM chat -->
-  <script src="https://cdn.jsdelivr.net/npm/gpt4all-browser@0.1.4/dist/index.min.js"></script>
 </head>
 <body>
   <button id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
@@ -22,15 +19,15 @@
         <li><a href="#training" class="nav-link active">Training</a></li>
         <li><a href="#players"  class="nav-link">Players</a></li>
         <li><a href="#workouts" class="nav-link">Workouts</a></li>
-        <li><a href="#ai-chat"  class="nav-link">AI Chat</a></li>
-        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+        <li><a href="#film-analysis" class="nav-link">Film Analysis</a></li>
+        <li><a href="#feedback"  class="nav-link">Feedback</a></li>
       </ul>
     </nav>
     <button id="dark-toggle">🌙 Dark Mode</button>
   </aside>
 
   <main>
-    <!-- TRAINING -->
+    <!-- 1) Training -->
     <section id="training" class="page active">
       <h2>Training Library</h2>
       <label for="level-select">Choose Category:</label>
@@ -44,14 +41,14 @@
       <div id="video-list"></div>
     </section>
 
-    <!-- PLAYERS -->
+    <!-- 2) Players -->
     <section id="players" class="page">
       <h2>Players</h2>
       <ul id="players-list"></ul>
       <div id="players-cards"></div>
     </section>
 
-    <!-- WORKOUTS -->
+    <!-- 3) Workouts -->
     <section id="workouts" class="page">
       <h2>Workouts</h2>
       <label for="workout-level-select">Choose Skill Level:</label>
@@ -63,11 +60,9 @@
       <div id="workout-plan"></div>
     </section>
 
-    <!-- AI CHAT & FILM ANALYZER -->
-    <section id="ai-chat" class="page">
-      <h2>AI Chat</h2>
-      <div id="user-greeting" class="user-greeting"></div>
-
+    <!-- 4) Film Analysis -->
+    <section id="film-analysis" class="page">
+      <h2>Film Analysis</h2>
       <div class="film-analyzer">
         <label for="video-upload">Upload Match Clip:</label>
         <input type="file" id="video-upload" accept="video/*"/>
@@ -76,17 +71,9 @@
         <button id="analyze-btn" disabled>Analyze Film</button>
       </div>
       <div id="analysis-result" class="analysis-result"></div>
-
-      <div class="chat-container">
-        <div id="chat-window"></div>
-        <div id="chat-input-row">
-          <input type="text" id="chat-input" placeholder="Ask your badminton coach…" disabled/>
-          <button id="chat-send" disabled>Send</button>
-        </div>
-      </div>
     </section>
 
-    <!-- FEEDBACK -->
+    <!-- 5) Feedback -->
     <section id="feedback" class="page">
       <h2>Feedback</h2>
       <p>
