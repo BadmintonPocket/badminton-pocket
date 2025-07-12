@@ -3,10 +3,10 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI',sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: #f0f8ff;
   color: #222;
-  transition: background .3s,color .3s;
+  transition: background .3s, color .3s;
 }
 .dark-mode {
   background: #222;
@@ -15,98 +15,105 @@ body {
 
 /* Hamburger */
 #sidebar-toggle {
-  position: fixed; top:12px; left:12px;
-  font-size:1.5rem; background:none; border:none;
-  color:#1e90ff; cursor:pointer; z-index:2000;
+  position: fixed; top: 12px; left: 12px;
+  font-size: 1.5rem; background: none; border: none;
+  color: #1e90ff; cursor: pointer; z-index: 2000;
 }
 
 /* Sidebar */
 .sidebar {
-  position:fixed; top:0; left:0;
-  width:var(--sidebar-width); height:100vh;
-  background:#1e90ff; padding:20px 10px;
-  transform:translateX(calc(-1 * var(--sidebar-width)));
-  transition:transform .3s ease; z-index:1500;
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-width); height: 100vh;
+  background: #1e90ff; padding: 20px 10px;
+  transform: translateX(calc(-1 * var(--sidebar-width)));
+  transition: transform .3s ease; z-index: 1500;
 }
-.sidebar header { padding-top:48px; }
-body.sidebar-open .sidebar { transform:translateX(0); }
-@media(min-width:768px){
-  .sidebar{transform:translateX(0)!important;}
-  #sidebar-toggle{display:none;}
-  main{margin-left:var(--sidebar-width);}
+.sidebar header { padding-top: 48px; }
+body.sidebar-open .sidebar { transform: translateX(0); }
+@media (min-width: 768px) {
+  .sidebar { transform: translateX(0) !important; }
+  #sidebar-toggle { display: none; }
+  main { margin-left: var(--sidebar-width); }
 }
 
 /* Sidebar links */
-.sidebar h1{margin:0 0 20px;color:#fff;font-size:1.5rem;}
-.sidebar nav ul{list-style:none;padding:0;margin:0;}
-.sidebar nav li{margin-bottom:1rem;}
-.sidebar a{color:#fff;text-decoration:none;}
-.sidebar a.active{font-weight:bold;}
-.sidebar a:hover{text-decoration:underline;}
+.sidebar h1 { margin: 0 0 20px; color: #fff; font-size: 1.5rem; }
+.sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+.sidebar nav li { margin-bottom: 1rem; }
+.sidebar a { color: #fff; text-decoration: none; }
+.sidebar a.active { font-weight: bold; }
+.sidebar a:hover { text-decoration: underline; }
 
-/* Dark-mode switch */
-#dark-toggle{
-  margin-top:auto;padding:8px 12px;
-  background:none;border:1px solid #fff;
-  color:#fff;cursor:pointer;
+/* Dark-mode toggle */
+#dark-toggle {
+  margin-top: auto; padding: 8px 12px;
+  background: none; border: 1px solid #fff;
+  color: #fff; cursor: pointer;
 }
 
-/* Main */
-main{
-  padding:20px;
-  transition:margin-left .3s ease;
+/* Main content */
+main {
+  padding: 20px;
+  transition: margin-left .3s ease;
 }
-.page{display:none;}
-.page.active{display:block;}
+.page { display: none; }
+.page.active { display: block; }
 
 /* Videos & Players */
-iframe{
-  width:100%; max-width:560px; height:315px;
-  border:none; margin-bottom:20px;
+iframe {
+  width: 100%; max-width: 560px;
+  height: 315px; border: none;
+  margin-bottom: 20px;
 }
-.player-card{
-  background:#eaf7ff; border-radius:8px;
-  padding:20px; margin-top:10px;
+.player-card {
+  background: #eaf7ff; border-radius: 8px;
+  padding: 20px; margin-top: 10px;
 }
-.dark-mode .player-card{background:#444;color:#eee;}
-.dark-mode iframe{background:#222;}
+.dark-mode .player-card { background: #444; color: #eee; }
+.dark-mode iframe { background: #222; }
 
 /* Workouts */
-#workout-plan{margin-top:20px;}
-.workout-day{margin-bottom:1.5rem;}
-.workout-day h3{
-  margin:0 0 8px; font-size:1.2rem;
-  border-bottom:1px solid #ccc; padding-bottom:4px;
+#workout-plan { margin-top: 20px; }
+.workout-day { margin-bottom: 1.5rem; }
+.workout-day h3 {
+  margin: 0 0 8px; font-size: 1.2rem;
+  border-bottom: 1px solid #ccc; padding-bottom: 4px;
 }
-.workout-day ul{margin:0;padding-left:1.2rem;}
+.workout-day ul { margin: 0; padding-left: 1.2rem; }
 
-/* AI Chat */
-#chat-window{
-  border:1px solid #ccc; border-radius:8px;
-  height:300px; padding:10px; overflow-y:auto;
-  background:#fff; display:flex; flex-direction:column;
+/* AI Chat additions */
+.user-greeting {
+  margin-bottom: 8px;
+  font-style: italic;
 }
-.dark-mode #chat-window{
-  background:#333; border-color:#555; color:#eee;
+.film-analyzer {
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  background: #fafafa;
 }
-#chat-input-container{display:flex;margin-top:10px;}
-#chat-input{
-  flex:1;padding:8px;border:1px solid #ccc;
-  border-radius:4px 0 0 4px;
+.film-analyzer label {
+  display: block; margin-bottom: 4px;
 }
-#chat-send{
-  padding:8px 12px;border:1px solid #ccc;
-  border-left:none;border-radius:0 4px 4px 0;
-  background:#1e90ff;color:#fff;cursor:pointer;
+#game-video {
+  width: 100%; max-width: 480px; margin: 8px 0;
 }
-.dark-mode #chat-input,
-.dark-mode #chat-send{
-  background:#555;border-color:#666;color:#eee;
+#analyze-btn {
+  padding: 6px 12px; background: #1e90ff;
+  color: #fff; border: none; border-radius: 4px;
+  cursor: pointer;
 }
-.chat-message{
-  margin-bottom:8px;padding:6px 10px;border-radius:4px;
-  max-width:80%;
+#analyze-btn:hover { background: #007acc; }
+.analysis-result {
+  margin: 8px 0; padding: 6px; background: #e8f4ff;
+  border-left: 4px solid #1e90ff;
 }
-.chat-message.user{background:#e1ffc7;align-self:flex-end;}
-.chat-message.ai{background:#f0f0f0;align-self:flex-start;}
-.dark-mode .chat-message.ai{background:#555;}
+
+/* Hugging Face embed */
+.hf-chat-embed {
+  margin-top: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
