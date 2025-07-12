@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>🏸 BadmintonPocket</title>
   <link rel="stylesheet" href="style.css"/>
-
-  <!-- TensorFlow.js & MoveNet for film analysis -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 </head>
@@ -27,7 +25,7 @@
   </aside>
 
   <main>
-    <!-- 1) Training -->
+    <!-- 1) Training Videos -->
     <section id="training" class="page active">
       <h2>Training Library</h2>
       <label for="level-select">Choose Category:</label>
@@ -70,8 +68,6 @@
         <canvas id="frame-canvas" hidden></canvas>
         <button id="analyze-btn" disabled>Analyze Film</button>
       </div>
-
-      <!-- Slide-in Feedback Panel -->
       <div id="analysis-panel" class="analysis-panel hidden">
         <h3>Match Feedback 📋</h3>
         <div id="analysis-result" class="analysis-result"></div>
