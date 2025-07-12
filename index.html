@@ -6,7 +6,13 @@
   <title>🏸 BadmintonPocket</title>
   <link rel="stylesheet" href="style.css"/>
 
-  <!-- TensorFlow.js & MoveNet for free in-browser analysis -->
+  <!-- vConsole for mobile debugging -->
+  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>
+    window.addEventListener('load', () => new VConsole());
+  </script>
+
+  <!-- TensorFlow.js & MoveNet for free in-browser pose estimation -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 </head>
@@ -52,7 +58,7 @@
         <li><a href="#" class="player-link" data-id="kento-momota">Kento Momota</a></li>
         <li><a href="#" class="player-link" data-id="victor-axelsen">Victor Axelsen</a></li>
       </ul>
-      <div id="lee-chong-wei" class="player-card">
+      <div id="lee-chong-wei"  class="player-card">
         <h3>Lee Chong Wei</h3>
         <p><strong>Country:</strong> Malaysia 🇲🇾</p>
         <p><strong>Style:</strong> Lightning-fast footwork, deceptive net play</p>
@@ -112,7 +118,7 @@
         <button id="analyze-btn">Analyze Film</button>
       </div>
 
-      <!-- Show analysis result here -->
+      <!-- Display analysis result -->
       <div id="analysis-result" class="analysis-result"></div>
 
       <!-- Free ChatGPT embed via Hugging Face Space -->
