@@ -1,6 +1,5 @@
 :root { --sidebar-width:240px; }
 * { box-sizing:border-box; margin:0; padding:0; }
-
 body {
   font-family:'Segoe UI',sans-serif;
   background:#f0f8ff; color:#222;
@@ -93,7 +92,7 @@ iframe {
 #analyze-btn:disabled { background:#9ecfff; cursor:wait; }
 #analyze-btn:hover:not(:disabled) { background:#007acc; }
 
-/* Slide-in Feedback Panel */
+/* Feedback Panel */
 .analysis-panel {
   margin-top:20px;
   border:2px solid #1e90ff;
