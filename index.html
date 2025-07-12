@@ -16,11 +16,11 @@
     <h1>🏸 BadmintonPocket</h1>
     <nav>
       <ul>
-        <li><a href="#training" class="nav-link active">Training</a></li>
-        <li><a href="#players"  class="nav-link">Players</a></li>
-        <li><a href="#workouts" class="nav-link">Workouts</a></li>
+        <li><a href="#training"      class="nav-link active">Training</a></li>
+        <li><a href="#players"       class="nav-link">Players</a></li>
+        <li><a href="#workouts"      class="nav-link">Workouts</a></li>
         <li><a href="#film-analysis" class="nav-link">Film Analysis</a></li>
-        <li><a href="#feedback"  class="nav-link">Feedback</a></li>
+        <li><a href="#feedback"      class="nav-link">Feedback</a></li>
       </ul>
     </nav>
     <button id="dark-toggle">🌙 Dark Mode</button>
@@ -70,7 +70,12 @@
         <canvas id="frame-canvas" hidden></canvas>
         <button id="analyze-btn" disabled>Analyze Film</button>
       </div>
-      <div id="analysis-result" class="analysis-result"></div>
+
+      <!-- Slide-in Feedback Panel -->
+      <div id="analysis-panel" class="analysis-panel hidden">
+        <h3>Match Feedback 📋</h3>
+        <div id="analysis-result" class="analysis-result"></div>
+      </div>
     </section>
 
     <!-- 5) Feedback -->
