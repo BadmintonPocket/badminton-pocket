@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>🏸 BadmintonPocket</title>
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- TensorFlow.js & MoveNet for free in-browser analysis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 </head>
 <body>
   <button id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
@@ -48,7 +52,7 @@
         <li><a href="#" class="player-link" data-id="kento-momota">Kento Momota</a></li>
         <li><a href="#" class="player-link" data-id="victor-axelsen">Victor Axelsen</a></li>
       </ul>
-      <div id="lee-chong-wei"  class="player-card">
+      <div id="lee-chong-wei" class="player-card">
         <h3>Lee Chong Wei</h3>
         <p><strong>Country:</strong> Malaysia 🇲🇾</p>
         <p><strong>Style:</strong> Lightning-fast footwork, deceptive net play</p>
@@ -58,7 +62,7 @@
         <h3>Lin Dan</h3>
         <p><strong>Country:</strong> China 🇨🇳</p>
         <p><strong>Style:</strong> Explosive, dominant, clutch performer</p>
-        <p><strong>Legacy:</strong> 2× Olympic Gold, 5× World Champion</p>
+        <p><strong>Legacy:</strong> 2× Olympic Gold; 5× World Champion</p>
       </div>
       <div id="lee-zii-jia" class="player-card" hidden>
         <h3>Lee Zii Jia</h3>
@@ -70,13 +74,13 @@
         <h3>Kento Momota</h3>
         <p><strong>Country:</strong> Japan 🇯🇵</p>
         <p><strong>Style:</strong> Tactical, precise, rally control</p>
-        <p><strong>Legacy:</strong> 2× World Champion, 11 titles in 2019</p>
+        <p><strong>Legacy:</strong> 2× World Champion; 11 titles in 2019</p>
       </div>
       <div id="victor-axelsen" class="player-card" hidden>
         <h3>Victor Axelsen</h3>
         <p><strong>Country:</strong> Denmark 🇩🇰</p>
         <p><strong>Style:</strong> Physically dominant, disciplined footwork</p>
-        <p><strong>Legacy:</strong> Olympic Gold 2020, World Champion</p>
+        <p><strong>Legacy:</strong> Olympic Gold 2020; World Champion</p>
       </div>
     </section>
 
@@ -95,10 +99,30 @@
     <!-- AI CHAT -->
     <section id="ai-chat" class="page">
       <h2>AI Chat</h2>
-      <div id="chat-window"></div>
-      <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Ask about your game, drills or footage…" />
-        <button id="chat-send">Send</button>
+
+      <!-- User greeting -->
+      <div id="user-greeting" class="user-greeting"></div>
+
+      <!-- Film analyzer UI -->
+      <div class="film-analyzer">
+        <label for="video-upload">Upload Match Clip:</label>
+        <input type="file" id="video-upload" accept="video/*"/>
+        <video id="game-video" controls></video>
+        <canvas id="frame-canvas" hidden></canvas>
+        <button id="analyze-btn">Analyze Film</button>
+      </div>
+
+      <!-- Show analysis result here -->
+      <div id="analysis-result" class="analysis-result"></div>
+
+      <!-- Free ChatGPT embed via Hugging Face Space -->
+      <div class="hf-chat-embed">
+        <iframe
+          src="https://hf.space/embed/yuntian-deng/ChatGPT?embed=true"
+          width="100%"
+          height="500"
+          frameborder="0"
+        ></iframe>
       </div>
     </section>
 
