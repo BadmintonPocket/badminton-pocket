@@ -37,7 +37,9 @@ body.sidebar-open .sidebar { transform: translateX(0); }
 }
 
 /* Sidebar links */
-.sidebar h1 { margin: 0 0 20px; color: #fff; font-size: 1.5rem; }
+.sidebar h1 {
+  margin: 0 0 20px; color: #fff; font-size: 1.5rem;
+}
 .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
 .sidebar nav li { margin-bottom: 1rem; }
 .sidebar a { color: #fff; text-decoration: none; }
@@ -69,8 +71,12 @@ iframe {
   background: #eaf7ff; border-radius: 8px;
   padding: 20px; margin-top: 10px;
 }
-.dark-mode .player-card { background: #444; color: #eee; }
-.dark-mode iframe { background: #222; }
+.dark-mode .player-card {
+  background: #444; color: #eee;
+}
+.dark-mode iframe {
+  background: #222;
+}
 
 /* Workouts */
 #workout-plan { margin-top: 20px; }
@@ -106,8 +112,8 @@ iframe {
 }
 #analyze-btn:hover { background: #007acc; }
 .analysis-result {
-  margin: 8px 0; padding: 6px; background: #e8f4ff;
-  border-left: 4px solid #1e90ff;
+  margin-top: 8px; padding: 6px;
+  background: #e8f4ff; border-left: 4px solid #1e90ff;
 }
 
 /* Hugging Face embed */
