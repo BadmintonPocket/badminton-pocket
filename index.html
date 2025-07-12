@@ -12,7 +12,7 @@
     window.addEventListener('load', () => new VConsole());
   </script>
 
-  <!-- TensorFlow.js & MoveNet for free in-browser pose estimation -->
+  <!-- TensorFlow.js & MoveNet for in-browser pose estimation -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
 </head>
@@ -52,12 +52,27 @@
     <section id="players" class="page">
       <h2>Players</h2>
       <ul>
+        <!-- original five -->
         <li><a href="#" class="player-link" data-id="lee-chong-wei">Lee Chong Wei</a></li>
         <li><a href="#" class="player-link" data-id="lin-dan">Lin Dan</a></li>
         <li><a href="#" class="player-link" data-id="lee-zii-jia">Lee Zii Jia</a></li>
         <li><a href="#" class="player-link" data-id="kento-momota">Kento Momota</a></li>
         <li><a href="#" class="player-link" data-id="victor-axelsen">Victor Axelsen</a></li>
+
+        <!-- 10 more -->
+        <li><a href="#" class="player-link" data-id="chen-long">Chen Long</a></li>
+        <li><a href="#" class="player-link" data-id="carolina-marin">Carolina Marín</a></li>
+        <li><a href="#" class="player-link" data-id="tai-tzu-ying">Tai Tzu-ying</a></li>
+        <li><a href="#" class="player-link" data-id="pv-sindhu">P. V. Sindhu</a></li>
+        <li><a href="#" class="player-link" data-id="ratchanok-intanon">Ratchanok Intanon</a></li>
+        <li><a href="#" class="player-link" data-id="nozomi-okuhara">Nozomi Okuhara</a></li>
+        <li><a href="#" class="player-link" data-id="anders-antonsen">Anders Antonsen</a></li>
+        <li><a href="#" class="player-link" data-id="jonatan-christie">Jonatan Christie</a></li>
+        <li><a href="#" class="player-link" data-id="anthony-ginting">Anthony Ginting</a></li>
+        <li><a href="#" class="player-link" data-id="akane-yamaguchi">Akane Yamaguchi</a></li>
       </ul>
+
+      <!-- Player cards -->
       <div id="lee-chong-wei"  class="player-card">
         <h3>Lee Chong Wei</h3>
         <p><strong>Country:</strong> Malaysia 🇲🇾</p>
@@ -88,6 +103,68 @@
         <p><strong>Style:</strong> Physically dominant, disciplined footwork</p>
         <p><strong>Legacy:</strong> Olympic Gold 2020; World Champion</p>
       </div>
+
+      <!-- New Player Cards -->
+      <div id="chen-long" class="player-card" hidden>
+        <h3>Chen Long</h3>
+        <p><strong>Country:</strong> China 🇨🇳</p>
+        <p><strong>Style:</strong> Solid defense, powerful clears</p>
+        <p><strong>Legacy:</strong> Olympic Gold 2016; 2× World Champion</p>
+      </div>
+      <div id="carolina-marin" class="player-card" hidden>
+        <h3>Carolina Marín</h3>
+        <p><strong>Country:</strong> Spain 🇪🇸</p>
+        <p><strong>Style:</strong> Aggressive footwork, fierce smashes</p>
+        <p><strong>Legacy:</strong> Olympic Gold 2016; 3× World Champion</p>
+      </div>
+      <div id="tai-tzu-ying" class="player-card" hidden>
+        <h3>Tai Tzu-ying</h3>
+        <p><strong>Country:</strong> Taiwan 🇹🇼</p>
+        <p><strong>Style:</strong> Deceptive, creative rallying</p>
+        <p><strong>Legacy:</strong> Longest‐reigning Women’s No. 1; multiple Superseries titles</p>
+      </div>
+      <div id="pv-sindhu" class="player-card" hidden>
+        <h3>P. V. Sindhu</h3>
+        <p><strong>Country:</strong> India 🇮🇳</p>
+        <p><strong>Style:</strong> Powerful smashes, athletic defense</p>
+        <p><strong>Legacy:</strong> Olympic silver 2016 & 2020; World Champion 2019</p>
+      </div>
+      <div id="ratchanok-intanon" class="player-card" hidden>
+        <h3>Ratchanok Intanon</h3>
+        <p><strong>Country:</strong> Thailand 🇹🇭</p>
+        <p><strong>Style:</strong> Precise touch, court vision</p>
+        <p><strong>Legacy:</strong> Youngest World Champion 2013</p>
+      </div>
+      <div id="nozomi-okuhara" class="player-card" hidden>
+        <h3>Nozomi Okuhara</h3>
+        <p><strong>Country:</strong> Japan 🇯🇵</p>
+        <p><strong>Style:</strong> Relentless defense, stamina</p>
+        <p><strong>Legacy:</strong> World Champion 2017; Olympic bronze 2016</p>
+      </div>
+      <div id="anders-antonsen" class="player-card" hidden>
+        <h3>Anders Antonsen</h3>
+        <p><strong>Country:</strong> Denmark 🇩🇰</p>
+        <p><strong>Style:</strong> Tactical, accurate shotmaking</p>
+        <p><strong>Legacy:</strong> European Champion 2018; World silver 2019</p>
+      </div>
+      <div id="jonatan-christie" class="player-card" hidden>
+        <h3>Jonatan Christie</h3>
+        <p><strong>Country:</strong> Indonesia 🇮🇩</p>
+        <p><strong>Style:</strong> Aggressive drives, flair</p>
+        <p><strong>Legacy:</strong> Asian Champion 2019; multiple Superseries titles</p>
+      </div>
+      <div id="anthony-ginting" class="player-card" hidden>
+        <h3>Anthony Ginting</h3>
+        <p><strong>Country:</strong> Indonesia 🇮🇩</p>
+        <p><strong>Style:</strong> Explosive attacks, fast rallies</p>
+        <p><strong>Legacy:</strong> World Tour Finals champion; Olympic bronze 2020</p>
+      </div>
+      <div id="akane-yamaguchi" class="player-card" hidden>
+        <h3>Akane Yamaguchi</h3>
+        <p><strong>Country:</strong> Japan 🇯🇵</p>
+        <p><strong>Style:</strong> Speedy defense, relentless pressure</p>
+        <p><strong>Legacy:</strong> World Champion 2023; former World No. 1</p>
+      </div>
     </section>
 
     <!-- WORKOUTS -->
@@ -106,10 +183,10 @@
     <section id="ai-chat" class="page">
       <h2>AI Chat</h2>
 
-      <!-- User greeting -->
+      <!-- user greeting -->
       <div id="user-greeting" class="user-greeting"></div>
 
-      <!-- Film analyzer UI -->
+      <!-- film-analyzer UI (unchanged) -->
       <div class="film-analyzer">
         <label for="video-upload">Upload Match Clip:</label>
         <input type="file" id="video-upload" accept="video/*"/>
@@ -117,14 +194,13 @@
         <canvas id="frame-canvas" hidden></canvas>
         <button id="analyze-btn">Analyze Film</button>
       </div>
-
-      <!-- Display analysis result -->
       <div id="analysis-result" class="analysis-result"></div>
 
-      <!-- Free ChatGPT embed via Hugging Face Space -->
+      <!-- FREE embed: works in-browser, no API key needed -->
       <div class="hf-chat-embed">
         <iframe
           src="https://hf.space/embed/yuntian-deng/ChatGPT?embed=true"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           width="100%"
           height="500"
           frameborder="0"
@@ -142,4 +218,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/szerintedmi/roadmap-radar-chart/tree/45ee5f9f7a1d44100313358e369abb025b935cea/README.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
