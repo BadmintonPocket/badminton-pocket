@@ -1,30 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // —— YOUR OPENAI KEY HERE —————————————————————————
-  const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
-  if (!OPENAI_API_KEY) {
-    console.warn('AI Chat disabled: set OPENAI_API_KEY at top of app.js');
+  // 1) Simple user greeting via LocalStorage
+  let username = localStorage.getItem('bp_username');
+  if (!username) {
+    username = prompt('Enter your name:') || 'Guest';
+    localStorage.setItem('bp_username', username);
   }
+  document.getElementById('user-greeting').textContent =
+    `Logged in as ${username}`;
 
-  // refs
+  // 2) UI refs
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const darkToggle    = document.getElementById('dark-toggle');
-  const navLinks      = Array.from(document.querySelectorAll('.nav-link'));
-  const pages         = Array.from(document.querySelectorAll('.page'));
-  const playerLinks   = Array.from(document.querySelectorAll('.player-link'));
+  const navLinks      = [...document.querySelectorAll('.nav-link')];
+  const pages         = [...document.querySelectorAll('.page')];
+  const playerLinks   = [...document.querySelectorAll('.player-link')];
   const levelSelect   = document.getElementById('level-select');
   const videoList     = document.getElementById('video-list');
   const workoutSelect = document.getElementById('workout-level-select');
   const workoutPlan   = document.getElementById('workout-plan');
-  const chatWindow    = document.getElementById('chat-window');
-  const chatInput     = document.getElementById('chat-input');
-  const chatSend      = document.getElementById('chat-send');
+  const upload        = document.getElementById('video-upload');
+  const video         = document.getElementById('game-video');
+  const canvas        = document.getElementById('frame-canvas');
+  const analyzeBtn    = document.getElementById('analyze-btn');
+  const analysisOut   = document.getElementById('analysis-result');
 
-  // SIDEBAR toggle
+  // 3) Sidebar toggle
   sidebarToggle.addEventListener('click', () =>
     document.body.classList.toggle('sidebar-open')
   );
 
-  // TAB navigation
+  // 4) Tab navigation
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -37,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // DARK mode
+  // 5) Dark mode
   darkToggle.addEventListener('click', () => {
     const dark = document.body.classList.toggle('dark-mode');
     darkToggle.textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
   });
 
-  // PLAYER cards
+  // 6) Player cards
   playerLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -52,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // FULL video library
+  // 7) Full video library
   const videos = {
     beginner: [
       { title:"Your Shots Are WAY Too Predictable! Here's How to Fix It", url:"https://www.youtube.com/embed/gqIsUa4gCz4" },
@@ -113,110 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
       { title:"Kento Momota Transitional Step", url:"https://www.youtube.com/embed/osptHe5dyPM" },
       { title:"8 Steps to Make You Faster", url:"https://www.youtube.com/embed/0E6mm6PgeY4" }
     ],
-    strategy: [
+    strategy: [43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/systanon/Cardio_gym/tree/6fdc636d02b1ca0d7339df1992a3198d68caa580/slider.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/szerintedmi/roadmap-radar-chart/tree/45ee5f9f7a1d44100313358e369abb025b935cea/README.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")[
       { title:"Deceptions You Should Practice – Lee Zii Jia", url:"https://www.youtube.com/embed/z5L7SWuj860" },
-      { title:"Control Your Opponent – Badminton Tactics", url:"https://www.youtube.com/embed/MrvYbLAnecY" },
-      { title:"Badminton Consistency – Key Concepts", url:"https://www.youtube.com/embed/K88F95osw0I" },
-      { title:"Singles Playstyles Breakdown", url:"https://www.youtube.com/embed/9_zISjHJq2E" },
-      { title:"Lin Dan's Strategic Insights", url:"https://www.youtube.com/embed/IlHI0q-UCMc" },
-      { title:"Fix Your Heavy-Handed Swing", url:"https://www.youtube.com/embed/EdCmk9BFsXQ" },
-      { title:"Tournament Mindset Preparation", url:"https://www.youtube.com/embed/R0rsw3mRTOA" }
-    ]
-  };
-
-  function loadVideos(cat) {
-    videoList.innerHTML = '';
-    (videos[cat]||[]).forEach(v=>{
-      const div=document.createElement('div');
-      div.innerHTML=`
-        <h3>${v.title}</h3>
-        <iframe src="${v.url}" allowfullscreen></iframe>
-      `;
-      videoList.appendChild(div);
-    });
-  }
-  levelSelect.addEventListener('change',()=>loadVideos(levelSelect.value));
-  loadVideos(levelSelect.value);
-
-  // WORKOUT SPLITS
-  const workouts = {
-    beginner: {
-      Monday:   ['10 min jog + leg swings','4×30s shuttles','3×15 lunges','5 min 4-corner footwork'],
-      Tuesday:  ['3×15 squats','3×10 push-ups','3×20s plank','5 min shadow split-step'],
-      Wednesday:['5×30s side-shuffles','3×12 single-leg deadlift','5 min hopscotch'],
-      Thursday: ['3×10 rows','3×12 press','3×20 Russian twists'],
-      Friday:   ['10 min run','4×30s high-knee','30 net & 30 clear swings'],
-      Saturday: ['4×5 min rallies','10 min cooldown/stretches']
-    },
-    intermediate: {
-      Monday:   ['15 min intervals','5×40m shuttles','5 min cross-court'],
-      Tuesday:  ['4×8 goblet squats','4×10 rows','3×20 Russian twists'],
-      Wednesday:['3×8 box jumps','5 min ladder','3×15 lateral bounds'],
-      Thursday: ['4×8 pull-ups','4×10 push-ups','3×12 dips','3×30s side-plank'],
-      Friday:   ['10 min tempo run','3×20 fly-runs','30 drive swings'],
-      Saturday: ['30 min multi-shuttle','15 min tactical rally','10 min stretch']
-    },
-    advanced: {
-      Monday:   ['20 min intervals','6×50m shuttles','4×8 eight-corner'],
-      Tuesday:  ['5×5 back squats','4×6 deadlifts','4×8 weighted lunges','4×15 windshield wipers'],
-      Wednesday:['4×6 depth jumps','10 min advanced ladder','4×8 bounding'],
-      Thursday: ['5×5 push-press','4×8 weighted pull-ups','4×10 dips','3×60s hollow hold'],
-      Friday:   ['10 min run + 5×20m fly-runs','30 flick-serve returns','30 drive drills'],
-      Saturday: ['Best‐of‐three matches','15 min cooldown & stretch']
-    }
-  };
-  function renderWorkouts(level) {
-    workoutPlan.innerHTML = '';
-    Object.entries(workouts[level]||{}).forEach(([day,exs])=>{
-      const w=document.createElement('div');
-      w.className='workout-day';
-      w.innerHTML=`<h3>${day}</h3><ul>${exs.map(x=>`<li>${x}</li>`).join('')}</ul>`;
-      workoutPlan.appendChild(w);
-    });
-  }
-  workoutSelect.addEventListener('change',()=>renderWorkouts(workoutSelect.value));
-  renderWorkouts(workoutSelect.value);
-
-  // AI CHAT — OpenAI integration
-  async function sendToOpenAI(message) {
-    if (!OPENAI_API_KEY) return 'AI key missing.';
-    const resp = await fetch('https://api.openai.com/v1/chat/completions',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+OPENAI_API_KEY
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role:'system', content:'You are a helpful badminton coach analyzing player footage, tactics, and drills.' },
-          { role:'user', content: message }
-        ]
-      })
-    });
-    const js = await resp.json();
-    return js?.choices?.[0]?.message?.content?.trim() 
-           || 'Sorry, no response.';
-  }
-
-  function appendMsg(who,text) {
-    const m=document.createElement('div');
-    m.className=`chat-message ${who}`;
-    m.textContent=text;
-    chatWindow.appendChild(m);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-  async function handleChat() {
-    const txt = chatInput.value.trim();
-    if(!txt) return;
-    appendMsg('user', txt);
-    chatInput.value='';
-    appendMsg('ai','…thinking…');
-    const reply = await sendToOpenAI(txt);
-    // replace last "…thinking…" with real reply
-    const thinking = chatWindow.querySelector('.chat-message.ai:last-child');
-    thinking.textContent = reply;
-  }
-  chatSend.addEventListener('click', handleChat);
-  chatInput.addEventListener('keypress', e => e.key==='Enter' && handleChat());
-});
+      { title:"Control Your Opponent – Badminton Ta{"mode":"full","isActive":false}
