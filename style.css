@@ -3,12 +3,13 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f0f8ff; color: #222;
+  background: #f0f8ff;
+  color: #222;
   transition: background .3s, color .3s;
 }
 .dark-mode { background: #222; color: #eee; }
 
-/* Sidebar toggle */
+/* Hamburger */
 #sidebar-toggle {
   position: fixed; top:12px; left:12px;
   font-size:1.5rem; background:none; border:none;
@@ -17,13 +18,13 @@ body {
 
 /* Sidebar */
 .sidebar {
-  position: fixed; top:0; left:0;
-  width: var(--sidebar-width); height:100vh;
-  background: #1e90ff; padding:20px 10px;
-  transform: translateX(calc(-1*var(--sidebar-width)));
-  transition: transform .3s ease; z-index:1500;
+  position:fixed; top:0; left:0;
+  width:var(--sidebar-width); height:100vh;
+  background:#1e90ff; padding:20px 10px;
+  transform:translateX(calc(-1*var(--sidebar-width)));
+  transition:transform .3s ease; z-index:1500;
 }
-body.sidebar-open .sidebar { transform: translateX(0); }
+body.sidebar-open .sidebar { transform:translateX(0); }
 @media(min-width:768px){
   .sidebar { transform:none!important; }
   #sidebar-toggle { display:none; }
@@ -35,25 +36,24 @@ body.sidebar-open .sidebar { transform: translateX(0); }
 .sidebar a { color:#fff; text-decoration:none; }
 .sidebar a.active { font-weight:bold; }
 
-/* Dark-mode button */
+/* Dark toggle */
 #dark-toggle {
-  margin-top:auto; padding:8px 12px; background:none;
-  border:1px solid #fff; border-radius:4px; color:#fff;
-  width:calc(var(--sidebar-width)-20px); text-align:left;
-  cursor:pointer;
+  margin-top:auto; padding:8px 12px;
+  background:none; border:1px solid #fff;
+  border-radius:4px; color:#fff;
+  width:calc(var(--sidebar-width)-20px);
+  text-align:left; cursor:pointer;
 }
 
 /* Main */
-main {
-  padding:20px; transition:margin-left .3s ease;
-}
+main { padding:20px; transition:margin-left .3s ease; }
 .page { display:none; }
 .page.active { display:block; }
 
 /* Videos */
 iframe {
-  width:100%; max-width:560px; height:315px;
-  border:none; margin-bottom:20px;
+  width:100%; max-width:560px;
+  height:315px; border:none; margin-bottom:20px;
 }
 
 /* Players */
@@ -61,20 +61,17 @@ iframe {
   list-style:none; display:flex; flex-wrap:wrap; gap:8px;
   margin-bottom:12px;
 }
-#players-list li { flex:1 1 calc(33.333% - 16px); }
+#players-list li { flex: 1 1 calc(33.333% - 16px); }
 #players-list a {
   display:block; padding:6px; background:#e1f5fe;
   border-radius:4px; text-decoration:none; color:#006064;
 }
 #players-list a:hover { background:#b3e5fc; }
-
 .player-card {
   background:#eaf7ff; padding:20px; border-radius:8px;
   margin-top:12px;
 }
-.dark-mode .player-card {
-  background:#444; color:#eee;
-}
+.dark-mode .player-card { background:#444; color:#eee; }
 
 /* Workouts */
 #workout-plan { margin-top:20px; }
